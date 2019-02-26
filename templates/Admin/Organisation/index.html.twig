@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title'Manage Certifications Body' %}
+{% block title'Manage Organisation' %}
 {% block body %}
 
     <div class="container mt-4">
@@ -10,7 +10,7 @@
             </div>
         {% endfor %}
         <div class="text-right">
-            <a href="{{ path('admin.cb.new') }}" class="btn btn-primary">Create New Certification Body</a>
+            <a href="{{ path('admin.org.new') }}" class="btn btn-primary">Create New Organisation</a>
 
         </div>
 
@@ -22,15 +22,17 @@
             </tr>
             </thead>
             <tbody>
-            {% for cb in cbs %}
+            {% for org in orgs %}
                 <tr>
-                    <td> <a href="{{ path('cb.show', {id: cb.id, slug: cb.slug}) }}" >{{ cb.name }} </a></td>
+                    {#<td> <a href="{{ path('cb.show', {id: cb.id, slug: cb.slug}) }}" >{{ org.name }} </a></td>#}
+                    <td> {{ org.name }} </td>
+
                     <td>
-                        <a href="{{ path('admin.cb.edit', {id: cb.id}) }}" class="btn btn-success">Edit</a>
-                        <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"
+                        <a href="#" class="btn btn-success">Edit</a>
+                        <form method="post" action="#" style="display: inline-block"
                               onsubmit="return confirm('Wanna really delete')" >
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cb.id) }}">
+                            {#<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cb.id) }}">#}
                             <button class="btn btn btn-danger">DELETE</button>
 
 

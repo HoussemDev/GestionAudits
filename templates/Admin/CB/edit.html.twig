@@ -4,11 +4,11 @@
 
 
     <div class="container mt-4">
-        <h2> Edit CB</h2>
+        <h2> Edit Certification Body</h2>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+        {{ include('Admin/CB/_formcb.html.twig', {form: form, button: 'Save'}) }}
+
+
     </div>
 
 {% endblock %}

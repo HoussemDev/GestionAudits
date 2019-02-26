@@ -3,13 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Cocur\Slugify\Slugify;
-
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CBRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\OrganisationRepository")
  */
-class CB
+class Organisation
 {
     /**
      * @ORM\Id()
@@ -19,7 +17,7 @@ class CB
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $number;
 
@@ -39,7 +37,7 @@ class CB
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $country;
 
@@ -63,7 +61,7 @@ class CB
         return $this->number;
     }
 
-    public function setNumber(?int $number): self
+    public function setNumber(int $number): self
     {
         $this->number = $number;
 
@@ -76,23 +74,17 @@ class CB
     }
 
     public function setName(string $name): self
-	{
-		$this->name = $name;
+    {
+        $this->name = $name;
 
-		return $this;
-	}
-
-	public function getSlug(): string
-	{
-		return(new Slugify())->slugify($this->name);
-	}
-
+        return $this;
+    }
 
     public function getAdress(): ?string
-{
-	return $this->adress;
+    {
+        return $this->adress;
+    }
 
-}
     public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
@@ -117,7 +109,7 @@ class CB
         return $this->country;
     }
 
-    public function setCountry(?string $country): self
+    public function setCountry(string $country): self
     {
         $this->country = $country;
 
@@ -147,6 +139,4 @@ class CB
 
         return $this;
     }
-
-
 }

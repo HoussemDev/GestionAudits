@@ -23,90 +23,133 @@
     <schema id="17" parent="1" name="viasyst_preprod_v2"/>
     <table id="18" parent="2" name="cb"/>
     <table id="19" parent="2" name="migration_versions"/>
-    <table id="20" parent="2" name="user"/>
-    <column id="21" parent="18" name="id">
+    <table id="20" parent="2" name="organisation"/>
+    <table id="21" parent="2" name="user"/>
+    <column id="22" parent="18" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="22" parent="18" name="number">
+    <column id="23" parent="18" name="number">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="23" parent="18" name="name">
+    <column id="24" parent="18" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="18" name="adress">
+    <column id="25" parent="18" name="adress">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="25" parent="18" name="city">
+    <column id="26" parent="18" name="city">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="26" parent="18" name="country">
+    <column id="27" parent="18" name="country">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="27" parent="18" name="website">
+    <column id="28" parent="18" name="website">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="28" parent="18" name="contactperson">
+    <column id="29" parent="18" name="contactperson">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="29" parent="18" name="PRIMARY">
+    <key id="30" parent="18" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="30" parent="19" name="version">
+    <column id="31" parent="19" name="version">
       <Position>1</Position>
       <DataType>varchar(14)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="31" parent="19" name="executed_at">
+    <column id="32" parent="19" name="executed_at">
       <Position>2</Position>
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="32" parent="19" name="PRIMARY">
+    <key id="33" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="33" parent="20" name="id">
+    <column id="34" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="34" parent="20" name="name">
+    <column id="35" parent="20" name="number">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="20" name="email">
+    <column id="36" parent="20" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="20" name="username">
+    <column id="37" parent="20" name="adress">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="38" parent="20" name="city">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="39" parent="20" name="country">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="20" name="website">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="41" parent="20" name="contactperson">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="42" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="43" parent="21" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="44" parent="21" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="21" name="email">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="21" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="20" name="passwword">
+    <column id="47" parent="21" name="passwword">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="38" parent="20" name="PRIMARY">
+    <key id="48" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div class="container mt-4" >
+
+        <div class="row">
+            <div class="col -md-8">
+                <h2>Certification Body {{ cb.name }}</h2>
+                <br>
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Certification Body Number</td>
+                        <td>{{ cb.number }}</td>
+                        <td>Certification Body Name</td>
+                        <td>{{ cb.name }}</td>
+                        <td>Certification Body City</td>
+                        <td>{{ cb.city }}</td>
+                        <td>Certification Body Adress</td>
+                        <td>{{ cb.adress }}</td>
+                        <td>Certification Body Country</td>
+                        <td>{{ cb.country }}</td>
+                        <td>Certification Body Contact Person</td>
+                        <td>{{ cb.contactperson }}</td>
+                        <td>Certification Body Contact Website</td>
+                        <td>{{ cb.website }}</td>
+
+
+
+
+
+
+
+
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
