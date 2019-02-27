@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-12">{{ form_row(form.Title) }}</div>
+    <div class="col-md-12">{{ form_row(form.Status) }}</div>
+    <div class="col-md-12">{{ form_row(form.Numberfte) }}</div>
+    <div class="col-md-12">{{ form_row(form.audittype) }}</div>
+    <div class="col-md-12">{{ form_row(form.scopestatment) }}</div>
+    <div class="col-md-12">{{ form_row(form.auditdfinding) }}</div>
+</div>
+
+
+{{ form_widget(form) }}
+<button class="btn btn-primary"> {{ button|default('Save') }} </button>
+{{ form_end(form) }}

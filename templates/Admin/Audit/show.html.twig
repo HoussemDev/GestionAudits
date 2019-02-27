@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div class="container mt-4" >
+
+        <div class="row">
+            <div class="col -md-8">
+                <h2> {{ audits.title }}</h2>
+                <br>
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Audit Status</td>
+                        <td>{{ audits.status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of FTE</td>
+                        <td>{{ audits.numberfte }}</td>
+                    </tr>
+                    <tr>
+                        <td>Audit Type</td>
+                        <td>{{ audits.audittype }}</td>
+                    </tr>
+                    <tr>
+                        <td>Scope Statemeent</td>
+                        <td>{{ audits.scopestatment }}</td>
+                    </tr>
+                    <tr>
+                        <td>Audit Finding</td>
+                        <td>{{ audits.auditdfinding }}</td>
+                    </tr>
+
+
+
+
+
+
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
