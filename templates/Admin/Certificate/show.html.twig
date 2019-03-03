@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div class="container mt-4" >
+
+        <div class="row">
+            <div class="col -md-8">
+                <h2>Certification Body {{ certs.title }}</h2>
+                <br>
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Certificat Scope Statement</td>
+                        <td>{{ certs.scopestatment }}</td>
+                    </tr>
+                    <tr>
+                        <td>Certificat Scope</td>
+                        <td>{{ certs.scope }}</td>
+                    </tr>
+                    <tr>
+                        <td>Certificat Issue date</td>
+                        <td>{{ certs.issuedate|date('Y-m-d') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Certificat Valide until date</td>
+                        <td>{{ certs.validuntil|date('Y-m-d') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Certificat Intial Certification date</td>
+                        <td>{{ certs.initialcertdate|date('Y-m-d') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Certificat Status</td>
+                        <td>{{ certs.certificatstatus }}</td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

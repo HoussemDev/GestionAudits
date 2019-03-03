@@ -3,17 +3,21 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Certifcation Body List</h1>
+
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
+
+        <div class="small">
+            Number of Certification Body :  {{ cbs  .getTotalItemCount }}
+        </div>
         <div class="text-right">
-            <a href="{{ path('admin.cb.new') }}" class="btn btn-primary">Create New Certification Body</a>
+            <a href="{{ path('admin.cb.new') }}" class="btn btn-primary">Create New Certification Body</a><br><br>
 
         </div>
-
+        <div class="container-fluid col-sm-8">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -38,13 +42,20 @@
                     </td>
 
                 </tr>
-            {% endfor %}
+
+
             </tbody>
+            {% endfor %}
 
         </table>
+        <div class="container">
+            <div class="navigation cen">
+                {{ knp_pagination_render(cbs) }}
+            </div>
+        </div>
 
 
 
     </div>
-
+    </div>
 {% endblock %}

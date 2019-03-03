@@ -3,13 +3,52 @@
 {% block body %}
 
 
-    <div class="container mt-4">
-        <h2> Edit Certification Body</h2>
+{#<div class="container">#}
+    {#<div class="row">#}
+        {#<div class="col-sm-8">#}
 
-        {{ include('Admin/Audit/_formaudit.html.twig', {form: form, button: 'Save'}) }}
+    {#{{ include('Admin/Audit/auditleftmenu.html.twig') }}#}
+        {#</div>#}
 
 
+
+    {#<div class="col-sm-8">#}
+
+
+        {#<h2> Edit Audit</h2>#}
+
+        {#{{ include('Admin/Audit/_formaudit.html.twig', {form: form, button: 'Save'}) }}#}
+
+
+    {#</div>#}
+{#</div>#}
+{#</div>#}
+    <div class="container theme-showcase" role="main">
+
+        <div class="jumbotron">
+    <div class="row">
+        <div class="col-sm-4 dropdown-menu-sm-left">
+            {{ include('Admin/Audit/auditleftmenu.html.twig') }}
+        </div>
+
+        <div class="col-sm-8">
+            {#<h2> Edit Audit</h2>#}
+
+            {{ include('Admin/Audit/_formaudit.html.twig', {form: form, button: 'Save'}) }}
+        </div>
     </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
 

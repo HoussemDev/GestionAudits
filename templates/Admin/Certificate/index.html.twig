@@ -3,22 +3,16 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Audit List</h1>
+        <h1>Certificates List</h1>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
         <div class="text-right">
-            <a href="{{ path('admin.audit.new') }}" class="btn btn-primary">Create New Audit</a>
+            <a href="{{ path('admin.cert.new') }}" class="btn btn-primary">Create New Certificate</a>
 
         </div>
-
-        
-
-
-
-
 
         <table class="table table-striped">
             <thead>
@@ -28,17 +22,18 @@
             </tr>
             </thead>
             <tbody>
-            {% for audit in audits %}
+            {% for cert in certs %}
                 <tr>
-                    <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.Title }} </a></td>
-
-
                     <td>
-                        <a href="{{ path('admin.audit.edit', {id: audit.id}) }}" class="btn btn-success">Edit</a>
-                        <form method="post" action="{{ path('admin.audit.delete', {id: audit.id }) }}" style="display: inline-block"
+                        <a href="{{ path('cert.show', {id: cert.id, slug: cert.slug}) }}" >{{ cert.title }} </a>
+
+                       </td>
+                    <td>
+                        <a href="{{ path('admin.cert.edit', {id: cert.id}) }}" class="btn btn-success">Edit</a>
+                        <form method="post" action="{{ path('admin.cert.delete', {id: cert.id }) }}" style="display: inline-block"
                               onsubmit="return confirm('Wanna really delete')" >
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ audit.id) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cert.id) }}">
                             <button class="btn btn btn-danger">DELETE</button>
 
 

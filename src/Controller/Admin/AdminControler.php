@@ -13,6 +13,7 @@ use App\Entity\CB;
 use App\Form\CbType;
 use App\Repository\CBRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,12 +41,22 @@ class AdminControler extends AbstractController
 
 	/**
 	 * @Route("/admin/cb", name="admin.cblist.index")
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @param PaginatorInterface $paginator
+	 * @return Response
 	 */
-	public function index()
+	public function index(PaginatorInterface $paginator, Request $request): Response
 	{
-		$cbs = $this->repository->findAll();
-		return $this->render('Admin/CB/index.html.twig', compact('cbs'));
+		$cbs = $paginator->paginate(
+			$this->repository->findAll(),
+			$request->query->getInt('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
+
+		return $this->render('Admin/CB/index.html.twig', [
+			'cbs' => $cbs,
+			'current_menu' => 'CB'
+
+		]);
 	}
 
 	/**
