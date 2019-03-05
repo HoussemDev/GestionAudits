@@ -48,6 +48,12 @@ class Organisation
      */
     private $website;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\CB", inversedBy="organisations")
+	 * @ORM\JoinColumn()
+	 */
+    private $cb;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -146,4 +152,21 @@ class Organisation
 
         return $this;
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getCb()
+	{
+		return $this->cb;
+	}
+
+	/**
+	 * @param mixed $cb
+	 */
+	public function setCb($cb)
+	{
+		$this->cb = $cb;
+	}
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 
@@ -53,7 +54,17 @@ class CB
      */
     private $contactperson;
 
-    public function getId(): ?int
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\Organisation", mappedBy="cb")
+	 */
+    private $organisations;
+
+    public function __construct()
+	{
+		$this->organisations = new ArrayCollection();
+	}
+
+	public function getId(): ?int
     {
         return $this->id;
     }
@@ -148,5 +159,12 @@ class CB
         return $this;
     }
 
+	/**
+	 * @return mixed
+	 */
+	public function getOrganisations()
+	{
+		return $this->organisations;
+	}
 
 }

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container-fluid col-sm-8">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for organisation in organisations %}
+    <tr>
+        <td>
+        {{ organisation.name }}
+        </td>
+    </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

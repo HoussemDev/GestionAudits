@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\CB;
 use App\Entity\Organisation;
 use App\Form\OrganisationType;
 use App\Repository\OrganisationRepository;
@@ -18,6 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @property  twig
+ */
 class AdminOrgController extends AbstractController
 {
 
@@ -29,12 +33,23 @@ class AdminOrgController extends AbstractController
 	 * @var ObjectManager
 	 */
 	private $em;
+	/**
+	 * @var \Twig_Environment
+	 */
+	private $twig;
 
 
-	public function __construct(OrganisationRepository $repository, ObjectManager $em)
+	/**
+	 * AdminOrgController constructor.
+	 * @param OrganisationRepository $repository
+	 * @param ObjectManager $em
+	 * @param \Twig_Environment $twig
+	 */
+	public function __construct(OrganisationRepository $repository, ObjectManager $em, \Twig_Environment $twig)
 	{
 		$this->repository = $repository;
 		$this->em = $em;
+		$this->twig = $twig;
 	}
 
 	/**
@@ -141,5 +156,25 @@ class AdminOrgController extends AbstractController
 		return $this->redirectToRoute('admin.organlist.index');
 	}
 
+
+	/**
+	 * @Route("/admin/{name}", name="cb.organisations")
+	 * @param CB $cborganisation
+	 * @return Response
+	 */
+	public function cbOrganisation (CB $cborganisation)
+	{
+		$html = $this->twig->render('Admin/CB/cborg.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+			'organisations' => $cborganisation->getOrganisations()
+			]);
+		return new Response($html);
+
+	}
 
 }

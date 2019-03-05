@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\CB;
+use App\Entity\Organisation;
 use App\Form\CbType;
 use App\Repository\CBRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -153,8 +154,6 @@ class AdminControler extends AbstractController
 
 		return $this->redirectToRoute('admin.cblist.index');
 	}
-
-
 
 
 
