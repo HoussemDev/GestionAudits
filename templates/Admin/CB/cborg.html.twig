@@ -1,23 +1,37 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
+
+
+
+    <div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+    <div class="row">
+    <div class="col-sm-4 dropdown-menu-sm-left">
+        {{ include('Admin/CB/cbleftmenu.html.twig') }}
+    </div>
+    <div class="col-sm-8">
+
     <div class="container-fluid col-sm-8">
     <table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for organisation in organisations %}
-    <tr>
-        <td>
-        {{ organisation.name }}
-        </td>
-    </tr>
+        <thead>
+        <tr>
+            <th>Organisations</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for organisation in organisations %}
+            <tr>
+
+
+                <td> <a href="{{ path('org.show', {id: organisation.id, slug: organisation.slug}) }}" >{{ organisation.name }} </a></td>
+                    {#{{ organisation.name }}#}
+
+            </tr>
         {% endfor %}
-    </tbody>
+        </tbody>
     </table>
 
 {% endblock %}

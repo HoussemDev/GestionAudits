@@ -47,6 +47,12 @@ class Audit
      */
     private $auditdfinding;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="orgaudits")
+	 * @ORM\JoinColumn()
+	 */
+	private $auditorg;
+
     public function getId(): ?int
     {
         return $this->id;

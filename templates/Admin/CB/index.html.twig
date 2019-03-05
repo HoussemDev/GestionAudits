@@ -29,7 +29,7 @@
             {% for cb in cbs %}
                 <tr>
                     <td> <a href="{{ path('cb.show', {id: cb.id, slug: cb.slug}) }}" >{{ cb.name }} </a></td>
-                    <td> <a class="nav-link" href="{{ path('cb.organisations', {name: cb.name }) }}">organisations</a></td>
+                    {#<td> <a class="nav-link" href="{{ path('cb.organisations', {name: cb.name }) }}">organisations</a></td>#}
                     <td>
                         <a href="{{ path('admin.cb.edit', {id: cb.id}) }}" class="btn btn-success">Edit</a>
                         <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"

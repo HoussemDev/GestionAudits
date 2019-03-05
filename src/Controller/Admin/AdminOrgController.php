@@ -171,7 +171,13 @@ class AdminOrgController extends AbstractController
 //					['time' => 'DESC']
 //				),
 //				'cbs' => $cborganisation,
-			'organisations' => $cborganisation->getOrganisations()
+			'organisations' => $cborganisation->getOrganisations(),
+//				'id' => $cborganisation->getId(),
+//				'slug' => $cborganisation->getSlug(),
+				'cb' => $cborganisation
+
+
+
 			]);
 		return new Response($html);
 

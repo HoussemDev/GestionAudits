@@ -5,12 +5,23 @@
 {% block body %}
     <div class="container mt-4" >
 
-        <div class="row">
+
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-sm-4 dropdown-menu-sm-left">
+                        {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
+                    </div>
             <div class="col -md-8">
-                <h2>Oragnisation {{ org.name }}</h2>
-                <br>
 
                 <table class="table table-striped">
+                    <tr>
+                        <td>Organisation Certification Body</td>
+                        <td>{{ org.cb.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Organisation Name</td>
+                        <td>{{ org.name }}</td>
+                    </tr>
                     <tr>
                         <td>Organisation Number</td>
                         <td>{{ org.number }}</td>
@@ -54,6 +65,7 @@
             </div>
 
         </div>
+            </div>
     </div>
 
 {% endblock %}

@@ -59,6 +59,12 @@ class Organisation
      */
     private $contactperson;
 
+
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\Organisation", mappedBy="auditorg")
+	 */
+	private $orgaudits;
+
     public function getId(): ?int
     {
         return $this->id;

@@ -103,7 +103,7 @@ class AdminControler extends AbstractController
 			return $this->redirectToRoute('admin.cblist.index');
 		}
 		return $this->render('Admin/CB/edit.html.twig',  [
-			'property' => $cb,
+			'cb' => $cb,
 			'form' => $form->createView()
 		]);
 	}
@@ -130,7 +130,7 @@ class AdminControler extends AbstractController
 		}
 
 		return $this->render('Admin/CB/edit.html.twig',  [
-			'property' => $cb,
+			'cb' => $cb,
 			'form' => $form->createView() ]);
 	}
 
