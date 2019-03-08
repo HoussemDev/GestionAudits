@@ -53,7 +53,7 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisations", name="admin.organlist.index")
+	 * @Route("/admin/organisation", name="admin.organlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function index()
@@ -82,6 +82,34 @@ class AdminOrgController extends AbstractController
 			'current_menu' => 'org'
 
 		]);
+
+	}
+
+	/**
+	 * @Route("/admin/organisation/{name}", name="audits_org2")
+	 * @param Organisation $audits
+	 * @return Response
+	 */
+	public function orgAudits (Organisation $audits)
+	{
+		$html = $this->twig->render('Admin/Organisation/AuditslistinOrg.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'audits' => $audits->getAudits(),
+				'id' => $audits->getId(),
+				'slug' => $audits->getSlug(),
+				'organisation' => $audits,
+				'org' => $audits
+
+
+
+
+			]);
+		return new Response($html);
 
 	}
 
@@ -157,6 +185,8 @@ class AdminOrgController extends AbstractController
 	}
 
 
+
+
 	/**
 	 * @Route("/admin/{name}", name="cb.organisations")
 	 * @param CB $cborganisation
@@ -182,5 +212,9 @@ class AdminOrgController extends AbstractController
 		return new Response($html);
 
 	}
+
+
+
+
 
 }

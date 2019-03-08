@@ -48,10 +48,29 @@ class Audit
     private $auditdfinding;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="orgaudits")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Organisation", inversedBy="audits" )
 	 * @ORM\JoinColumn()
 	 */
-	private $auditorg;
+	private $org;
+
+	/**
+	 * @return mixed
+	 */
+	public function getOrg()
+	{
+		return $this->org;
+	}
+
+	/**
+	 * @param mixed $org
+	 */
+	public function setOrg($org)
+	{
+		$this->org = $org;
+	}
+
+
+
 
     public function getId(): ?int
     {

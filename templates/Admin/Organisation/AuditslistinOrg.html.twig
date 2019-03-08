@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+
+
+    <div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+    <div class="row">
+    <div class="col-sm-4 dropdown-menu-sm-left">
+        {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
+    </div>
+    <div class="col-sm-8">
+
+    <div class="container-fluid col-sm-8">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Audits List </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for audit in audits %}
+            <tr>
+
+
+                <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.title }} </a></td>
+                {#{{ audit.Status }}#}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

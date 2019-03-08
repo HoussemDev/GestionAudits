@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Audit;
+use App\Entity\Organisation;
 use App\Form\AuditType;
 use App\Repository\AuditRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,11 +30,16 @@ class AdminAuditController extends AbstractController
 	 * @var ObjectManager
 	 */
 	private $em;
+	/**
+	 * @var \Twig_Environment
+	 */
+	private $twig;
 
-	public function __construct(AuditRepository $repository, ObjectManager $em)
+	public function __construct(AuditRepository $repository, ObjectManager $em, \Twig_Environment $twig)
 	{
 		$this->repository = $repository;
 		$this->em = $em;
+		$this->twig = $twig;
 	}
 
 
@@ -46,6 +52,10 @@ class AdminAuditController extends AbstractController
 		$audits = $this->repository->findAll();
 		return $this->render('Admin/Audit/index.html.twig', compact('audits'));
 	}
+
+
+
+
 
 	/**
 	 * @Route("/admin/audit/{slug}.{id}", name="audit.show", requirements={"slug": "[a-z0-9\-]*"})

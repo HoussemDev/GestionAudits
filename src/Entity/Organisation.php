@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 
@@ -61,9 +62,23 @@ class Organisation
 
 
 	/**
-	 * @ORM\OneToMany(targetEntity="App\Entity\Organisation", mappedBy="auditorg")
+	 * @ORM\OneToMany(targetEntity="App\Entity\Audit", mappedBy="org")
 	 */
-	private $orgaudits;
+	private $audits;
+
+	/**
+	 * @return mixed
+	 */
+	public function getAudits()
+	{
+		return $this->audits;
+	}
+
+
+	public function __construct()
+	{
+		$this->audits = new ArrayCollection();
+	}
 
     public function getId(): ?int
     {

@@ -17,16 +17,16 @@ class AppFixtures extends Fixture
 
 
 
-		$this->loadCBS($manager);
-		$this->loadOrganisations($manager);
-		$this->loadAudits($manager);
+		    $this->loadCBS($manager);
+			$this->loadOrganisations($manager);
+			$this->loadAudits($manager);
     }
 
 	private function loadOrganisations(ObjectManager $manager)
 	{
-		for ($i = 1; $i < 10; $i++) {
+//		for ($i = 1; $i < 10; $i++) {
 			$organisation = new Organisation();
-			$organisation->setNumber($i);
+			$organisation->setNumber(rand(0,100));
 			$organisation->setName('Organisation'. rand(0,100));
 			$organisation->setAdress('Adress'. rand(0,100));
 			$organisation->setCity('City'. rand(0,100));
@@ -34,12 +34,12 @@ class AppFixtures extends Fixture
 			$organisation->setContactperson('Contact Person organisation'. rand(0,100));
 			$organisation->setWebsite('Website'. rand(0,100));
 
-			$this->addReference('Org_10', $organisation);
+			$this->addReference('Org_20', $organisation);
 
 			$organisation->setCb($this->getReference('CB_12'));
 			$manager->persist($organisation);
 
-		}
+//		}
 
 		$manager->flush();
 	}
@@ -65,18 +65,18 @@ class AppFixtures extends Fixture
 
 	private function loadAudits(ObjectManager $manager)
 	{
-		for ($i = 1; $i < 10; $i++) {
+//		for ($i = 1; $i < 10; $i++) {
 			$audit = new Audit();
-			$audit->setTitle('Audit Title'. $i);
+			$audit->setTitle('Audit Title');
 			$audit->setStatus('Status'. rand(0,100));
 			$audit->setNumberfte( rand(0,100));
 			$audit->setAudittype('Audit Type'. rand(0,100));
 			$audit->setScopestatment('Audit Scope Statement'. rand(0,100));
 			$audit->setAuditdfinding('Audit Finding'. rand(0,100));
 
-			$audit->setCb($this->getReference('Org_10'));
+			$audit->setOrg($this->getReference('Org_20'));
 			$manager->persist($audit);
-		}
+//		}
 
 		$manager->flush();
 	}

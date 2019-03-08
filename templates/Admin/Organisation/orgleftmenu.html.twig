@@ -5,8 +5,11 @@
     {#<div class="jumbotron jumbotron-fluid">#}
     <div class="container mt-4 bg-white">
 <nav class="nav flex-column">
-    <a class="nav-link active" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>
-    <a class="nav-link" href="#">Audits</a>
+    <a class="nav-link" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>
+    {#<a class="nav-link" href="{{ path('audits_org2', {id: org.id, slug: org.slug}) }}">Audits</a>#}
+    <a class="nav-link" href="{{ path('audits_org2', {name: org.name}) }}">Audits</a>
+
+
     <a class="nav-link" href="#">Certificates</a>
 
 
