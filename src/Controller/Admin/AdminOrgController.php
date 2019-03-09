@@ -63,7 +63,7 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisation/{slug}.{id}", name="org.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/admin/organisation/profile/{slug}.{id}", name="org.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Organisation $organisation
 	 * @return Response
 	 */
@@ -85,8 +85,82 @@ class AdminOrgController extends AbstractController
 
 	}
 
+
 	/**
-	 * @Route("/admin/organisation/{name}", name="audits_org2")
+	 * @Route("/admin/organisationlist/create/{name}", name="admin.org.new")
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+	 */
+	public function new(Request $request,  $name )
+	{
+		$org = new Organisation();
+
+		$form = $this->createForm(OrganisationType::class, $org);
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() && $form->isValid())
+		{
+			$org->setCb($this->em->getRepository(CB::class)->findOneBy(array("name" => $name)));
+
+			$this->em->persist($org);
+			$this->em->flush();
+			$maddedorg = $this->addFlash('success','Organisation Created' );
+
+			return $this->redirectToRoute('cb.organisations', array("name" => $name, "success" => $maddedorg ));
+		}
+		return $this->render('Admin/Organisation/edit.html.twig',  [
+			'property' => $org,
+			'form' => $form->createView()
+		]);
+	}
+
+	/**
+	 * @Route("/admin/organisation/edit/{id}", name="admin.org.edit")
+	 * @param Organisation $organisation
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function edit(Organisation $organisation, Request $request)
+	{
+		$form =$this->createForm(OrganisationType::class, $organisation);
+
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() && $form->isValid())
+		{
+			$this->em->flush();
+			$this->addFlash('success','Organisation was Edited' );
+			return $this->redirectToRoute('admin.organlist.index');
+		}
+
+		return $this->render('Admin/Organisation/edit.html.twig',  [
+			'org' => $organisation,
+			'form' => $form->createView() ]);
+	}
+
+
+	/**
+	 * @Route("/admin/organisation/delete/{id}", name="admin.org.delete", methods="DELETE")
+	 * @param Organisation $organisation
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
+	public function delete(Organisation $organisation, Request $request)
+	{
+		if ($this->isCsrfTokenValid('delete' . $organisation->getId(), $request->get('_token')))
+		{
+			$this->em->remove($organisation);
+			$this->em->flush();
+			$this->addFlash('success','Organisation was removed' );
+
+		}
+
+
+		return $this->redirectToRoute('admin.organlist.index');
+	}
+
+	/**
+	 * @Route("/admin/organisation/auditlist/{name}", name="audits_org2")
 	 * @param Organisation $audits
 	 * @return Response
 	 */
@@ -114,81 +188,11 @@ class AdminOrgController extends AbstractController
 	}
 
 
-	/**
-	 * @Route("/admin/organisation/create", name="admin.org.new")
-	 * @param Request $request
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-	 */
-	public function new(Request $request)
-	{
-		$org = new Organisation();
-		$form = $this->createForm(OrganisationType::class, $org);
-		$form->handleRequest($request);
-
-		if($form->isSubmitted() && $form->isValid())
-		{
-			$this->em->persist($org);
-			$this->em->flush();
-			$this->addFlash('success','Organisation Created' );
-
-			return $this->redirectToRoute('admin.organlist.index');
-		}
-		return $this->render('Admin/Organisation/edit.html.twig',  [
-			'property' => $org,
-			'form' => $form->createView()
-		]);
-	}
-
-	/**
-	 * @Route("/admin/organisation/{id}", name="admin.org.edit")
-	 * @param Organisation $organisation
-	 * @param Request $request
-	 * @return Response
-	 */
-	public function edit(Organisation $organisation, Request $request)
-	{
-		$form =$this->createForm(OrganisationType::class, $organisation);
-
-		$form->handleRequest($request);
-
-		if($form->isSubmitted() && $form->isValid())
-		{
-			$this->em->flush();
-			$this->addFlash('success','Organisation was Edited' );
-			return $this->redirectToRoute('admin.organlist.index');
-		}
-
-		return $this->render('Admin/Organisation/edit.html.twig',  [
-			'org' => $organisation,
-			'form' => $form->createView() ]);
-	}
-
-
-	/**
-	 * @Route("/admin/organisation/{id}", name="admin.org.delete", methods="DELETE")
-	 * @param Organisation $organisation
-	 * @param Request $request
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
-	 */
-	public function delete(Organisation $organisation, Request $request)
-	{
-		if ($this->isCsrfTokenValid('delete' . $organisation->getId(), $request->get('_token')))
-		{
-			$this->em->remove($organisation);
-			$this->em->flush();
-			$this->addFlash('success','Organisation was removed' );
-
-		}
-
-
-		return $this->redirectToRoute('admin.organlist.index');
-	}
-
 
 
 
 	/**
-	 * @Route("/admin/{name}", name="cb.organisations")
+	 * @Route("/admin/organisationlist/{name}", name="cb.organisations")
 	 * @param CB $cborganisation
 	 * @return Response
 	 */
