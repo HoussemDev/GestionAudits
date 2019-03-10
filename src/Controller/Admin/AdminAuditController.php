@@ -81,9 +81,9 @@ class AdminAuditController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/audit/create", name="admin.audit.new")
+	 * @Route("/admin/audit/create/{name}", name="admin.audit.new")
 	 */
-	public function new(Request $request)
+	public function new(Request $request, $name)
 	{
 		$audit = new Audit();
 		$form = $this->createForm(AuditType::class, $audit);
@@ -91,11 +91,12 @@ class AdminAuditController extends AbstractController
 
 		if($form->isSubmitted() && $form->isValid())
 		{
+			$audit->setOrg($this->em->getRepository(Organisation::class)->findOneBy(array("name" => $name)));
 			$this->em->persist($audit);
 			$this->em->flush();
-			$this->addFlash('success','Audit Created' );
+			$msgAddAudit = $this->addFlash('success','Audit Created' );
 
-			return $this->redirectToRoute('admin.auditlist.index');
+			return $this->redirectToRoute('audits_org2',array("name" => $name, "success" => $msgAddAudit ) );
 		}
 		return $this->render('Admin/Audit/edit.html.twig',  [
 			'audit' => $audit,

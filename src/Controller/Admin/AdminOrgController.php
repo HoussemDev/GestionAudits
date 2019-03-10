@@ -104,12 +104,12 @@ class AdminOrgController extends AbstractController
 
 			$this->em->persist($org);
 			$this->em->flush();
-			$maddedorg = $this->addFlash('success','Organisation Created' );
+			$msgAddOrg = $this->addFlash('success','Organisation Created' );
 
-			return $this->redirectToRoute('cb.organisations', array("name" => $name, "success" => $maddedorg ));
+			return $this->redirectToRoute('cb.organisations', array("name" => $name, "success" => $msgAddOrg ));
 		}
 		return $this->render('Admin/Organisation/edit.html.twig',  [
-			'property' => $org,
+			'org' => $org,
 			'form' => $form->createView()
 		]);
 	}

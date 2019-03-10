@@ -7,6 +7,10 @@
     <div class="container theme-showcase" role="main">
 
     <div class="jumbotron">
+    <div class="text-right">
+        <a href="{{ path('admin.audit.new', {name: org.name}) }}" class="btn btn-primary">Create New Audit</a>
+
+    </div>
     <div class="row">
     <div class="col-sm-4 dropdown-menu-sm-left">
         {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
