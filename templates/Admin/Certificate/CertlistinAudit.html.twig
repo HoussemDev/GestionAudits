@@ -14,12 +14,12 @@
 
     <div class="jumbotron">
     <div class="text-right">
-        <a href="{{ path('admin.audit.new', {name: org.name}) }}" class="btn btn-primary">Create New Audit</a>
+        <a href="{{ path('admin.cert.new', {title: audits.title}) }}" class="btn btn-primary">Create New Certificat</a>
 
     </div>
     <div class="row">
     <div class="col-sm-4 dropdown-menu-sm-left">
-        {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
+        {{ include('Admin/Audit/auditleftmenu.html.twig') }}
     </div>
     <div class="col-sm-8">
 
@@ -27,17 +27,16 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Audits List </th>
+            <th>Certificates List </th>
 
         </tr>
         </thead>
         <tbody>
-        {% for audit in audits %}
+        {% for cert in certs %}
             <tr>
 
 
-                <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.title }} </a></td>
-                {#{{ audit.Status }}#}
+                <td> <a href="{{ path('cert.show', {id: cert.id, slug: cert.slug}) }}" >{{ cert.title }} </a></td>
 
             </tr>
         {% endfor %}

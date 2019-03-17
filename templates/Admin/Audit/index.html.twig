@@ -20,6 +20,7 @@
             <thead>
             <tr>
                 <th>Nom</th>
+                <th>Organisation</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -27,6 +28,7 @@
             {% for audit in audits %}
                 <tr>
                     <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.Title }} </a></td>
+                    <td> <a href="#" >{{ audit.org.name }} </a></td>
 
 
                     <td>

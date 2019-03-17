@@ -5,12 +5,22 @@
 {% block body %}
     <div class="container mt-4" >
 
-        <div class="row">
-            <div class="col -md-8">
-                <h2> {{ audits.title }}</h2>
-                <br>
+
+        <div class="jumbotron">
+            <div class="row">
+
+
+                <div class="col-sm-4 dropdown-menu-sm-left">
+                    {{ include('Admin/Audit/auditleftmenu.html.twig') }}
+                </div>
+                <div class="col -md-8">
+
 
                 <table class="table table-striped">
+                    <tr>
+                        <td>Audit Name</td>
+                        <td>{{ audits.title }}</td>
+                    </tr>
                     <tr>
                         <td>Audit Status</td>
                         <td>{{ audits.status }}</td>
@@ -44,6 +54,8 @@
 
         </div>
     </div>
+    </div>
+
 
 {% endblock %}
 

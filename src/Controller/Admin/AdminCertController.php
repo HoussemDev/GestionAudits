@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Audit;
 use App\Entity\Certificat;
 use App\Form\CertificatType;
 use App\Repository\CertificatRepository;
@@ -29,11 +30,16 @@ class AdminCertController extends AbstractController
 	 * @var ObjectManager
 	 */
 	private $em;
+	/**
+	 * @var \Twig_Environment
+	 */
+	private $twig;
 
-	public function __construct(CertificatRepository $repository, ObjectManager $em)
+	public function __construct(CertificatRepository $repository, ObjectManager $em, \Twig_Environment $twig)
 	{
 		$this->repository = $repository;
 		$this->em = $em;
+		$this->twig = $twig;
 	}
 
 	/**
@@ -47,7 +53,7 @@ class AdminCertController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/certificate/{slug}.{id}", name="cert.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/admin/certificate/profile/{slug}.{id}", name="cert.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Certificat $certificat
 	 * @return Response
 	 */
@@ -63,6 +69,7 @@ class AdminCertController extends AbstractController
 
 		return $this->render('Admin/Certificate/show.html.twig', [
 			'certs' => $certificat,
+			'audits' => $certificat->getAudit(),
 			'current_menu' => 'Certificate'
 
 		]);
@@ -71,9 +78,9 @@ class AdminCertController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/certificate/create", name="admin.cert.new")
+	 * @Route("/admin/certificate/create/{title}", name="admin.cert.new")
 	 */
-	public function new(Request $request)
+	public function new(Request $request, $title)
 	{
 		$cert = new Certificat();
 		$form = $this->createForm(CertificatType::class, $cert);
@@ -81,11 +88,16 @@ class AdminCertController extends AbstractController
 
 		if($form->isSubmitted() && $form->isValid())
 		{
+			$cert->setAudit($this->em->getRepository(Audit::class)->findOneBy(array("Title" => $title)));
+
 			$this->em->persist($cert);
 			$this->em->flush();
-			$this->addFlash('success','Certificat Created' );
+			$msgAddCert = $this->addFlash('success','Certificat Created' );
 
-			return $this->redirectToRoute('admin.certlist.index');
+			$id = $cert->getId();
+			$slug = $cert->getSlug();
+
+			return $this->redirectToRoute('cert.show', array("id" => $id, "slug"=> $slug, "success" => $msgAddCert ));
 		}
 		return $this->render('Admin/Certificate/edit.html.twig',  [
 			'certs' => $cert,
@@ -94,7 +106,7 @@ class AdminCertController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/certificate/{id}", name="admin.cert.delete", methods="DELETE")
+	 * @Route("/admin/certificate/delete/{id}", name="admin.cert.delete", methods="DELETE")
 	 * @param Certificat $certificat
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -115,7 +127,7 @@ class AdminCertController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/certificate/{id}", name="admin.cert.edit")
+	 * @Route("/admin/certificate/edit/{id}", name="admin.cert.edit")
 	 * @param Certificat $certificat
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
@@ -137,6 +149,9 @@ class AdminCertController extends AbstractController
 			'certs' => $certificat,
 			'form' => $form->createView() ]);
 	}
+
+
+
 
 
 

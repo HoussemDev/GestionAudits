@@ -58,7 +58,7 @@ class AdminAuditController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/audit/{slug}.{id}", name="audit.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/admin/audit/profile/{slug}.{id}", name="audit.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Audit $audit
 	 * @return Response
 	 */
@@ -74,6 +74,8 @@ class AdminAuditController extends AbstractController
 
 		return $this->render('Admin/Audit/show.html.twig', [
 			'audits' => $audit,
+			'org' => $audit->getOrg(),
+
 			'current_menu' => 'audit'
 
 		]);
@@ -100,6 +102,7 @@ class AdminAuditController extends AbstractController
 		}
 		return $this->render('Admin/Audit/edit.html.twig',  [
 			'audit' => $audit,
+			'org' => $audit->getOrg(),
 			'form' => $form->createView()
 		]);
 	}
@@ -128,7 +131,7 @@ class AdminAuditController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/audit/{id}", name="admin.audit.edit")
+	 * @Route("/admin/audit/edit/{id}", name="admin.audit.edit")
 	 * @param Audit $audit
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
@@ -153,6 +156,36 @@ class AdminAuditController extends AbstractController
 
 
 
+	/**
+	 * @Route("/admin/audit/Certlist/{id}.{slug}", name="certs_audit")
+	 * @param Audit $audit
+	 * @return Response
+	 */
+	public function AuditCertificates (Audit $audit)
+	{
+//		dump(Audit);
+//		die();
+		$html = $this->twig->render('Admin/Certificate/CertlistinAudit.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'certs' => $audit->getCertificates(),
+				'id' => $audit->getId(),
+				'slug' => $audit->getSlug(),
+				'audit' => $audit->getTitle(),
+				'audits' => $audit,
+				'org' => $audit->getOrg()
+
+
+
+
+			]);
+		return new Response($html);
+
+	}
 
 
 

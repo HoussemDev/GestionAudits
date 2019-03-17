@@ -5,21 +5,34 @@ namespace App\DataFixtures;
 use App\Entity\Audit;
 use App\Entity\CB;
 use App\Entity\Organisation;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+	/**
+	 * @var UserPasswordEncoderInterface
+	 */
+	private $passwordEncoder;
+
+	public function __construct(UserPasswordEncoderInterface $passwordEncoder )
+	{
+		$this->passwordEncoder = $passwordEncoder;
+	}
+
+	public function load(ObjectManager $manager)
     {
         // $product = new Product();
         // $manager->persist($product);
 
 
 
-		    $this->loadCBS($manager);
-			$this->loadOrganisations($manager);
-			$this->loadAudits($manager);
+//		    $this->loadCBS($manager);
+//			$this->loadOrganisations($manager);
+//			$this->loadAudits($manager);
+		   $this->loadUsers($manager);
     }
 
 	private function loadOrganisations(ObjectManager $manager)
@@ -80,4 +93,20 @@ class AppFixtures extends Fixture
 
 		$manager->flush();
 	}
+
+
+	private function loadUsers(ObjectManager $manager)
+	{
+
+			$user = new User();
+			$user->setName('Houssem');
+			$user->setUsername('Houssem');
+			$user->setEmail('Houssem@l.com');
+			$user->setPasswword($this->passwordEncoder->encodePassword($user, 'Houssem123'));
+
+
+			$manager->persist($user);
+			$manager->flush();
+	}
+
 }

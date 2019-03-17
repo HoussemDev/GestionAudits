@@ -57,6 +57,29 @@ class Certificat
      */
     private $initialcertdate;
 
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Audit", inversedBy="certificates")
+	 * @ORM\JoinColumn()
+	 */
+    private $audit;
+
+	/**
+	 * @return mixed
+	 */
+	public function getAudit()
+	{
+		return $this->audit;
+	}
+
+	/**
+	 * @param mixed $audit
+	 */
+	public function setAudit($audit)
+	{
+		$this->audit = $audit;
+	}
+
     public function getId(): ?int
     {
         return $this->id;
