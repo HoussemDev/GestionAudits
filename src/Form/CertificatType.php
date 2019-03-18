@@ -13,29 +13,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CertificatType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('title')
-            ->add('scopestatment', TextareaType::class, [
-            	'label' => 'Scope Statement',
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('title')
+			->add('scopestatment', TextareaType::class, [
+				'label' => 'Scope Statement',
 				'attr' => ['class' => 'tinymce'],
 			])
-            ->add('Certificatstatus',  ChoiceType::class, [
-            'label' => 'Certificat Status',
-			'choices'  => [
-			'Valid' => 1,
-			'Suspended' => 2,
-			'Withdrawn' => 3,
-			'Cancelled' => 4,
-			'Transferred' => 5,
-		]])
-            ->add('issuedate', DateType::class, [
+			->add('Certificatstatus', ChoiceType::class, [
+				'label' => 'Certificat Status',
+				'choices' => [
+					'Valid' => 1,
+					'Suspended' => 2,
+					'Withdrawn' => 3,
+					'Cancelled' => 4,
+					'Transferred' => 5,
+				]])
+			->add('issuedate', DateType::class, [
 				'label' => 'Issue Date',
 				'placeholder' => [
 					'year' => 'Year', 'month' => 'Month', 'day' => 'Day']
-	])
-            ->add('validuntil', DateType::class, [
+			])
+			->add('validuntil', DateType::class, [
 				'label' => 'Valid Until',
 				'placeholder' => [
 					'year' => 'Year', 'month' => 'Month', 'day' => 'Day']
@@ -45,13 +45,13 @@ class CertificatType extends AbstractType
 				'placeholder' => [
 					'year' => 'Year', 'month' => 'Month', 'day' => 'Day']
 			])
-            ->add('scope');
-    }
+			->add('scope');
+	}
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Certificat::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+			'data_class' => Certificat::class,
+		]);
+	}
 }
