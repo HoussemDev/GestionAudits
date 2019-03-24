@@ -6,6 +6,21 @@
     <div class="container mt-4" >
 
         <div class="jumbotron">
+            <div class="text-right">
+
+
+                <a href="{{ path('admin.cert.edit', {id: certs.id}) }}" class="btn btn-info btn-sm">EDIT</a>
+                <form method="post" action="{{ path('admin.cert.delete', {id: certs.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ certs.id) }}">
+                    <button class="btn btn-danger btn-sm">DELETE</button>
+
+
+                </form>
+
+
+            </div>
         <div class="row">
             <div class="col-sm-4 dropdown-menu-sm-left">
                 {{ include('Admin/Audit/auditleftmenu.html.twig') }}

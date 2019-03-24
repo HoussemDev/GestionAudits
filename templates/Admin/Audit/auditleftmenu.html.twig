@@ -1,19 +1,16 @@
-
-
 {% block body %}
 
-    {#<div class="jumbotron jumbotron-fluid">#}
-    <div class="container mt-4 bg-white">
-<nav class="nav flex-column">
-    <a class="nav-link" href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}">Audit Folder</a>
-    {#<a class="nav-link" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>#}
-    {#<a class="nav-link" href="#">Link</a>#}
-    <a class="nav-link" href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}">Certificates List</a>
+    <div id="list-example" class="list-group">
 
-    {#<a class="nav-link disabled" href="#">Disabled</a>#}
-</nav>
+        <a class="list-group-item list-group-item-action"
+           href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}">Audit Folder</a>
+        {#<a class="nav-link" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>#}
+        {#<a class="nav-link" href="#">Link</a>#}
+        <a class="list-group-item list-group-item-action"
+           href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}">Certificates List</a>
+
+
     </div>
-    {#</div>#}
 
 
 

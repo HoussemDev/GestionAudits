@@ -3,143 +3,88 @@
 
 
 {% block body %}
-
-
-    {#<div class="container-fluid col-sm-8">#}
-        {#<div class="row">#}
-
-            {#<div class="col -md-4">#}
-                {#<div class="row">#}
-                    {#<div class="col-sm-4 dropdown-menu-sm-left">#}
-                        {#{{ include('Admin/CB/cbleftmenu.html.twig') }}#}
-                    {#</div>#}
-                {#</div>#}
-            {#<div class="col -md-8">#}
-                {#<h4>Certification Body {{ cb.name }}</h4>#}
-                {#<br>#}
-
-                {#<table class="table table-striped">#}
-                    {#<tr>#}
-                        {#<td>Certification Body Name</td>#}
-                        {#<td>{{ cb.name }}</td>#}
-                    {#</tr>#}
-
-                    {#<tr>#}
-                        {#<td>Certification Body Number</td>#}
-                        {#<td>{{ cb.number }}</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body Number</td>#}
-                        {#<td>{{ cb.number }}</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body Name</td>#}
-                        {#<td>{{ cb.name }}</td>#}
-
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body City</td>#}
-                        {#<td>{{ cb.city }}</td>#}
-                    {#</tr>#}
-
-                    {#<tr>#}
-                        {#<td>Certification Body Adress</td>#}
-                        {#<td>{{ cb.adress }}</td>#}
-
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body Country</td>#}
-                        {#<td>{{ cb.country }}</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body Contact Person</td>#}
-                        {#<td>{{ cb.contactperson }}</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Certification Body Contact Website</td>#}
-                        {#<td>{{ cb.website }}</td>#}
-                    {#</tr>#}
-
-
-                {#</table>#}
-
-            {#</div>#}
-
-        {#</div>#}
-    {#</div>#}
-    {#</div>#}
-
     <div class="container mt-4">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
-    </div>}
+    </div>
 
     <div class="container theme-showcase" role="main">
 
         <div class="jumbotron">
+
+            <div class="text-right">
+
+
+                <a href="{{ path('admin.cb.edit', {id: cb.id}) }}" class="btn btn-info btn-sm">EDIT</a>
+                <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cb.id) }}">
+                    <button class="btn btn-danger btn-sm">DELETE</button>
+
+
+                </form>
+
+
+            </div>
             <div class="row">
                 <div class="col-sm-4 dropdown-menu-sm-left">
                     {{ include('Admin/CB/cbleftmenu.html.twig') }}
                 </div>
                 <div class="col-sm-8">
 
-                <table class="table table-striped">
-                    <tr>
-                        <td>Certification Body Name</td>
-                        <td>{{ cb.name }}</td>
-                    </tr>
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Certification Body Name</td>
+                            <td>{{ cb.name }}</td>
+                        </tr>
 
-                    <tr>
-                        <td>Certification Body Number</td>
-                        <td>{{ cb.number }}</td>
-                    </tr>
-                    <tr>
-                        <td>Certification Body Number</td>
-                        <td>{{ cb.number }}</td>
-                    </tr>
-                    <tr>
-                        <td>Certification Body Name</td>
-                        <td>{{ cb.name }}</td>
+                        <tr>
+                            <td>Certification Body Number</td>
+                            <td>{{ cb.number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Certification Body Number</td>
+                            <td>{{ cb.number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Certification Body Name</td>
+                            <td>{{ cb.name }}</td>
 
-                    </tr>
-                    <tr>
-                        <td>Certification Body City</td>
-                        <td>{{ cb.city }}</td>
-                    </tr>
+                        </tr>
+                        <tr>
+                            <td>Certification Body City</td>
+                            <td>{{ cb.city }}</td>
+                        </tr>
 
-                    <tr>
-                        <td>Certification Body Adress</td>
-                        <td>{{ cb.adress }}</td>
+                        <tr>
+                            <td>Certification Body Adress</td>
+                            <td>{{ cb.adress }}</td>
 
-                    </tr>
-                    <tr>
-                        <td>Certification Body Country</td>
-                        <td>{{ cb.country }}</td>
-                    </tr>
-                    <tr>
-                        <td>Certification Body Contact Person</td>
-                        <td>{{ cb.contactperson }}</td>
-                    </tr>
-                    <tr>
-                        <td>Certification Body Contact Website</td>
-                        <td>{{ cb.website }}</td>
-                    </tr>
-
-
-                </table>
+                        </tr>
+                        <tr>
+                            <td>Certification Body Country</td>
+                            <td>{{ cb.country }}</td>
+                        </tr>
+                        <tr>
+                            <td>Certification Body Contact Person</td>
+                            <td>{{ cb.contactperson }}</td>
+                        </tr>
+                        <tr>
+                            <td>Certification Body Contact Website</td>
+                            <td>{{ cb.website }}</td>
+                        </tr>
 
 
+                    </table>
 
 
-
-
-
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 {% endblock %}

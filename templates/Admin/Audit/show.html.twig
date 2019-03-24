@@ -3,10 +3,38 @@
 
 
 {% block body %}
-    <div class="container mt-4" >
+
+
+    <div class="container mt-4">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container theme-showcase" role="main">
 
 
         <div class="jumbotron">
+
+
+
+            <div class="text-right">
+
+
+                <a href="{{ path('admin.audit.edit', {id: audits.id}) }}" class="btn btn-info btn-sm">EDIT</a>
+                <form method="post" action="{{ path('admin.audit.delete', {id: audits.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ audits.id) }}">
+                    <button class="btn btn-danger btn-sm">DELETE</button>
+
+
+                </form>
+
+
+            </div>
             <div class="row">
 
 

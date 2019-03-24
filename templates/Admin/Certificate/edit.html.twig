@@ -3,6 +3,28 @@
 {% block body %}
 
 
+
+<div class="container mt-4">
+
+
+
+</div>
+
+
+
+<div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+        <div class="text-right">
+            {% if certs.id  %}
+                <a href="{{ path('cert.show', {id: certs.id, slug: certs.slug}) }}" class="btn btn-info btn-sm">VIEW</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-sm-4 dropdown-menu-sm-left">
+                {#{{ include('Admin/CB/cbleftmenu.html.twig') }}#}
+            </div>
+
     <div class="container mt-4">
 
         {{ include('Admin/Certificate/_formcert.html.twig', {form: form, button: 'Save'}) }}

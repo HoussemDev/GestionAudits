@@ -10,67 +10,88 @@
                 {{ message }}
             </div>
         {% endfor %}
-    </div>}
-    <div class="container mt-4" >
+    </div>
+    <div class="container mt-4">
 
 
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-sm-4 dropdown-menu-sm-left">
-                        {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
-                    </div>
-            <div class="col -md-8">
-
-                <table class="table table-striped">
-                    <tr>
-                        <td>Organisation Certification Body</td>
-                        <td>{{ org.cb.name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Organisation Name</td>
-                        <td>{{ org.name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Organisation Number</td>
-                        <td>{{ org.number }}</td>
-                    </tr>
-                    <tr>
-                    <td>Organisation Name</td>
-                    <td>{{ org.name }}</td>
-
-                    </tr>
-                    <tr>
-                    <td>Organisation City</td>
-                    <td>{{ org.city }}</td>
-
-                    </tr>
-                    <tr>
-
-                    <td>Organisation Adress</td>
-                    <td>{{ org.adress }}</td>
-                    </tr>
-                    <tr>
-
-                    <td>Organisation Country</td>
-                    <td>{{ org.country }}</td>
-                    </tr>
-                    <tr>
-                    <td>Organisation Contact Person</td>
-                    <td>{{ org.contactperson }}</td>
-
-                    </tr>
+        <div class="jumbotron">
 
 
+            <div class="text-right">
 
 
-                </table>
+                <a href="{{ path('admin.org.edit', {id: org.id}) }}" class="btn btn-info btn-sm">Edit</a>
+                <form method="post" action="{{ path('admin.org.delete', {id: org.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ org.id) }}">
+                    <button class="btn btn-danger btn-sm">DELETE</button>
 
+
+                </form>
+
+
+                </form>
 
 
             </div>
+            <div class="row">
+                <div class="col-sm-4 dropdown-menu-sm-left">
+                    {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
+                </div>
+                <div class="col -md-8">
 
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Organisation Certification Body</td>
+                            <td>{{ org.cb.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organisation Name</td>
+                            <td>{{ org.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organisation Number</td>
+                            <td>{{ org.number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organisation Name</td>
+                            <td>{{ org.name }}</td>
+
+                        </tr>
+                        <tr>
+                            <td>Organisation City</td>
+                            <td>{{ org.city }}</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Organisation Adress</td>
+                            <td>{{ org.adress }}</td>
+                        </tr>
+                        <tr>
+
+                            <td>Organisation Country</td>
+                            <td>{{ org.country }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organisation Contact Person</td>
+                            <td>{{ org.contactperson }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organisation Contact Person</td>
+                            <td>{{ org.website }}</td>
+
+                        </tr>
+
+
+                    </table>
+
+
+                </div>
+
+            </div>
         </div>
-            </div>
     </div>
 
 {% endblock %}

@@ -13,13 +13,17 @@
     <div class="container theme-showcase" role="main">
 
         <div class="jumbotron">
+            <div class="text-right">
+                {% if cb.id  %}
+                <a href="{{ path('cb.show', {id: cb.id, slug: cb.slug}) }}" class="btn btn-info btn-sm">VIEW</a>
+                {% endif %}
+            </div>
             <div class="row">
                 <div class="col-sm-4 dropdown-menu-sm-left">
                     {#{{ include('Admin/CB/cbleftmenu.html.twig') }}#}
                 </div>
 
                 <div class="col-sm-8">
-                    <h2>  Certification Body</h2>
 
                     {{ include('Admin/CB/_formcb.html.twig', {form: form, button: 'Save'}) }}
                 </div>

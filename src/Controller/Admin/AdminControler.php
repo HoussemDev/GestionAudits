@@ -53,9 +53,10 @@ class AdminControler extends AbstractController
 			10/*limit per page*/
 		);
 
+
 		return $this->render('Admin/CB/index.html.twig', [
 			'cbs' => $cbs,
-			'current_menu' => 'CB'
+			'current_menu' => 'CB',
 
 		]);
 	}

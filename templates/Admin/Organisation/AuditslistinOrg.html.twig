@@ -4,11 +4,11 @@
 
 
     <div class="container mt-4">
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>
     <div class="container theme-showcase" role="main">
 
@@ -27,16 +27,14 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Audits List </th>
+            <th>Audits List</th>
 
         </tr>
         </thead>
         <tbody>
         {% for audit in audits %}
             <tr>
-
-
-                <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.title }} </a></td>
+                <td><a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}">{{ audit.title }} </a></td>
                 {#{{ audit.Status }}#}
 
             </tr>

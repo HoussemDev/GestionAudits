@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
     {% if error %}
         <div class="alert alert-danger">
@@ -7,9 +6,7 @@
         </div>
     {% endif %}
 
-<div class="col-sm-8 text-md-center">
-<form  action="{{ path('security_login') }}" method="post">
-        <div>
+       <form class="form-control-sm" action="{{ path('security_login') }}" method="post">
             <div class="form-group">
                 <label class="form-control-label required" for="username">Username</label>
                 <input type="text" id="username" name="_username" required="required" class="form-control"
@@ -24,7 +21,7 @@
             </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
-        </div>
-    </form>
-    </div>
+       </form>
+
+
 {% endblock %}
