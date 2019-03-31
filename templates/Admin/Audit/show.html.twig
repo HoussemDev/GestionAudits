@@ -46,6 +46,11 @@
 
                 <table class="table table-striped">
                     <tr>
+                        <td>Organisation Name</td>
+                        <td> <a href="{{ path('org.show', {id: org.id, slug: org.slug}) }}" >{{ org.name }} </a></td>
+
+                    </tr>
+                    <tr>
                         <td>Audit Name</td>
                         <td>{{ audits.title }}</td>
                     </tr>

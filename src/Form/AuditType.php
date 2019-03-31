@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Audit;
+use App\Entity\Auditor;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -22,7 +24,12 @@ class AuditType extends AbstractType
 					'In progress' => 1,
 					'Validated certification body' => 2,
 
+
 				]])
+//			->add('Status', EntityType::class, [
+//				'class' => Auditor::class,
+//				'choice_label' => 'username',
+//				])
 			->add('Numberfte', NumberType::class, [
 				'label' => 'Number of FTE'])
 			->add('audittype', ChoiceType::class, [

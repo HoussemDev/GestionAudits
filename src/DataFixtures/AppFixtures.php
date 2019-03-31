@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Audit;
+use App\Entity\Auditor;
 use App\Entity\CB;
 use App\Entity\Organisation;
 use App\Entity\User;
@@ -32,8 +33,10 @@ class AppFixtures extends Fixture
 //		    $this->loadCBS($manager);
 //			$this->loadOrganisations($manager);
 //			$this->loadAudits($manager);
-		   $this->loadUsers($manager);
-    }
+//		   $this->loadUsers($manager);
+		   $this->loadAuditors($manager);
+
+	}
 
 	private function loadOrganisations(ObjectManager $manager)
 	{
@@ -107,6 +110,24 @@ class AppFixtures extends Fixture
 
 			$manager->persist($user);
 			$manager->flush();
+	}
+
+	private function loadAuditors(ObjectManager $manager)
+	{
+
+		$auditor = new Auditor();
+		$auditor->setFirstname('auditor1');
+		$auditor->setLastname('lastnameauditor1');
+		$auditor->setEmail('auditor@l.com');
+		$auditor->setGender('male');
+		$auditor->setUsername('auditor1');
+		$auditor->setPassword($this->passwordEncoder->encodePassword($auditor, 'auditor1'));
+
+//		$auditor->setPassword('test');
+
+
+		$manager->persist($auditor);
+		$manager->flush();
 	}
 
 }

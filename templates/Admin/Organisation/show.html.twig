@@ -44,7 +44,7 @@
                     <table class="table table-striped">
                         <tr>
                             <td>Organisation Certification Body</td>
-                            <td>{{ org.cb.name }}</td>
+                            <td> <a href="{{ path('cb.show', {id: cb.id, slug: cb.slug}) }}" >{{ cb.name }} </a></td>
                         </tr>
                         <tr>
                             <td>Organisation Name</td>

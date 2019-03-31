@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+
+    <div class="container mt-4">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+    <div class="text-right">
+        {#<a href="{{ path('admin.audit.new', {name: org.name}) }}" class="btn btn-primary">Create New Audit</a>#}
+
+    </div>
+    <div class="row">
+    <div class="col-sm-4 dropdown-menu-sm-left">
+        {{ include('Admin/Organisation/orgleftmenu.html.twig') }}
+    </div>
+    <div class="col-sm-8">
+
+    <div class="container-fluid col-sm-8">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Certificates List</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for audit in audits %}
+
+            {% for cert in audit.certificates %}
+            <tr>
+                <td><a href="{{ path('cert.show', {id: cert.id, slug: cert.slug}) }}">{{ cert.title}} </a></td>
+
+
+            </tr>
+        {% endfor %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

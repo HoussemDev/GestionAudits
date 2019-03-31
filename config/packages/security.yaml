@@ -1,10 +1,23 @@
 security:
     encoders:
         App\Entity\User: bcrypt
+        App\Entity\Auditor: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
          database_users:
-                    entity: { class: App\Entity\User, property: username }
+                  entity: { class: App\Entity\User, property: username }
+#    providers:
+#            chainprovider:
+#                chain:
+##                    providers: [database_users, database_auditors]
+#          database_users:
+#                  entity: { class: App\Entity\User, property: username }
+#          database_auditors:
+#                  entity: { class: App\Entity\Auditor, property: username }
+#          all_users:
+#              chain:
+#                  providers: ['database_users', 'database_auditors']
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,6 +32,7 @@ security:
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
             form_login:
+#                provider: ['database_users', 'database_auditors']
                 check_path: security_login
                 login_path: security_login
 #                csrf_token_generator: security.csrf.token_manager
@@ -26,6 +40,8 @@ security:
             logout:
                  path: security_logout
                  target: security_login
+
+
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site

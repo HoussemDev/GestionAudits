@@ -79,6 +79,7 @@ class AdminOrgController extends AbstractController
 
 		return $this->render('Admin/Organisation/show.html.twig', [
 			'org' => $organisation,
+			'cb' => $organisation->getCb(),
 			'current_menu' => 'org'
 
 		]);
@@ -178,6 +179,39 @@ class AdminOrgController extends AbstractController
 				'slug' => $audits->getSlug(),
 				'organisation' => $audits,
 				'org' => $audits
+
+
+
+
+			]);
+		return new Response($html);
+
+	}
+
+
+	/**
+	 * @Route("/admin/organisation/Certlist/{name}", name="Certs_org")
+	 * @param Organisation $audits
+	 * @return Response
+	 */
+	public function orgCerts (Organisation $audits)
+	{
+
+		$html = $this->twig->render('Admin/Organisation/CertlistinOrg.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'audits' => $audits->getAudits(),
+				'id' => $audits->getId(),
+				'slug' => $audits->getSlug(),
+				'organisation' => $audits,
+				'org' => $audits,
+				'certs' => $audits->getAudits(),
+
+
 
 
 

@@ -5,6 +5,8 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
 
     {% block stylesheets %}{% endblock %}
 </head>
@@ -32,6 +34,9 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('admin.certlist.index') }}">Certificates <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('admin.auditorlist.index') }}">Auditors <span class="sr-only">(current)</span></a>
             </li>
 
             {#<li class="nav-item dropdown">#}
@@ -95,6 +100,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+</script>
+
 {% endblock %}
 
 </body>

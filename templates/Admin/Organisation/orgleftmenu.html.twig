@@ -6,7 +6,7 @@
             Profile</a>
         <a class="list-group-item list-group-item-action" href="{{ path('audits_org2', {name: org.name}) }}">Audits</a>
 
-        <a class="list-group-item list-group-item-action" href="#">Certificates</a>
+        <a class="list-group-item list-group-item-action" href="{{ path('Certs_org', {name: org.name}) }}">Certificates</a>
     </div>
 
 {% endblock %}

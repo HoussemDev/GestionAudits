@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title'Manage Certifications Body' %}
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Audit List</h1>
+        {#{% for message in app.flashes('success') %}#}
+            {#<div class="alert alert-success">#}
+                {#{{ message }}#}
+            {#</div>#}
+        {#{% endfor %}#}
+        <div class="text-right">
+            <a href="{{ path('admin.auditor.new') }}" class="btn btn-primary">Create New Auditor</a>
+
+        </div>
+
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for auditor in auditors %}
+                <tr>
+                    <td> <a href="{{ path('auditor.show', {id: auditor.id, slug: auditor.slug}) }}" >{{ auditor.firstname }} </a></td>
+
+
+                    <td>
+                        <a href="{{ path('admin.auditor.edit', {id: auditor.id}) }}" class="btn btn-success">Edit</a>
+                        <form method="post" action="{{ path('admin.auditor.delete', {id: auditor.id }) }}" style="display: inline-block"
+                              onsubmit="return confirm('Wanna really delete this Auditor')" >
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ auditor.id) }}">
+                            <button class="btn btn btn-danger">DELETE</button>
+
+
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+{% endblock %}
