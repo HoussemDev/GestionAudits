@@ -20,7 +20,7 @@
 
                 <a href="{{ path('admin.cb.edit', {id: cb.id}) }}" class="btn btn-info btn-sm">EDIT</a>
                 <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"
-                      onsubmit="return confirm('Wanna really delete')" >
+                      onsubmit="return confirm('Wanna really delete')">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cb.id) }}">
                     <button class="btn btn-danger btn-sm">DELETE</button>
@@ -36,16 +36,12 @@
                 </div>
                 <div class="col-sm-8">
 
-                    <table class="table table-striped" >
+                    <table class="table table-striped">
                         <tr>
                             <td>Certification Body Name</td>
                             <td>{{ cb.name }}</td>
                         </tr>
 
-                        <tr>
-                            <td>Certification Body Number</td>
-                            <td>{{ cb.number }}</td>
-                        </tr>
                         <tr>
                             <td>Certification Body Number</td>
                             <td>{{ cb.number }}</td>

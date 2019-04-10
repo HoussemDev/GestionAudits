@@ -211,6 +211,33 @@ class AdminOrgController extends AbstractController
 				'org' => $audits,
 				'certs' => $audits->getAudits(),
 
+			]);
+		return new Response($html);
+
+	}
+
+	/**
+	 * @Route("/admin/organisation/Findinglist/{name}", name="finds_org")
+	 * @param Organisation $audits
+	 * @return Response
+	 */
+	public function orgFinding (Organisation $audits)
+	{
+
+		$html = $this->twig->render('Admin/Organisation/FindinglistinOrg.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'audits' => $audits->getAudits(),
+				'id' => $audits->getId(),
+				'slug' => $audits->getSlug(),
+				'organisation' => $audits,
+				'org' => $audits,
+				'finds' => $audits->getAudits(),
+
 
 
 

@@ -1,17 +1,30 @@
 {% block body %}
 
-    <div id="list-example" class="list-group">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div id="list-example" class="list-group">
+            <div class="text-center">
 
-        <a class="list-group-item list-group-item-action"
-           href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}">Audit Folder</a>
-        {#<a class="nav-link" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>#}
-        {#<a class="nav-link" href="#">Link</a>#}
-        <a class="list-group-item list-group-item-action"
-           href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}">Certificates List</a>
-
+                <a class="list-group-item list-group-item-action"
+                   href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}">Audit Folder</a>
+                <a class="list-group-item list-group-item-action"
+                   href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}">Certificates</a>
+                <a class="list-group-item list-group-item-action"
+                   href="{{ path('finds_audit', {id: audits.id, slug: audits.slug}) }}">Findings</a>
+            </div>
+        </div>
 
     </div>
 
+    {#<div class="bg-white">#}
+    {#<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">#}
+    {#<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}" role="tab"#}
+    {#aria-controls="v-pills-home" aria-selected="true">Audit Folder</a>#}
+    {#<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}"#}
+    {#role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>#}
+    {#<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="{{ path('finds_audit', {id: audits.id, slug: audits.slug}) }}"#}
+    {#role="tab" aria-controls="v-pills-messages" aria-selected="false">Findings</a>#}
+    {#</div>#}
+    {#</div>#}
 
 
 

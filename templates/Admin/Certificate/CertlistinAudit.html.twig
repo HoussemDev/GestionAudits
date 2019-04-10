@@ -15,7 +15,8 @@
     <div class="jumbotron">
     <div class="text-right">
         <a href="{{ path('admin.cert.new', {title: audits.title}) }}" class="btn btn-primary">Create New Certificat</a>
-
+     <br>
+        <br>
     </div>
     <div class="row">
     <div class="col-sm-4 dropdown-menu-sm-left">
@@ -24,10 +25,14 @@
     <div class="col-sm-8">
 
     <div class="container-fluid col-sm-8">
-    <table class="table table-striped">
+    <table class="table table-hover">
         <thead>
         <tr>
-            <th>Certificates List </th>
+            <th>Title </th>
+            <th>Status </th>
+            <th>Issue date </th>
+            <th>Valid Until </th>
+
 
         </tr>
         </thead>
@@ -37,6 +42,9 @@
 
 
                 <td> <a href="{{ path('cert.show', {id: cert.id, slug: cert.slug}) }}" >{{ cert.title }} </a></td>
+                <td> {{ cert.Certificatstatus }} </td>
+                <td> {{ cert.issuedate|date('d-m-Y') }} </td>
+                <td> {{ cert.validuntil|date('d-m-Y') }} </td>
 
             </tr>
         {% endfor %}

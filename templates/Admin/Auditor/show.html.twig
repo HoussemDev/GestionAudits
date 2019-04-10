@@ -23,15 +23,15 @@
             <div class="text-right">
 
 
-                {#<a href="{{ path('admin.audit.edit', {id: audits.id}) }}" class="btn btn-info btn-sm">EDIT</a>#}
-                {#<form method="post" action="{{ path('admin.audit.delete', {id: audits.id }) }}" style="display: inline-block"#}
-                      {#onsubmit="return confirm('Wanna really delete')" >#}
-                    {#<input type="hidden" name="_method" value="DELETE">#}
-                    {#<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ audits.id) }}">#}
-                    {#<button class="btn btn-danger btn-sm">DELETE</button>#}
+                <a href="{{ path('admin.auditor.edit', {id: auditor.id}) }}" class="btn btn-success">Edit</a>
+                <form method="post" action="{{ path('admin.auditor.delete', {id: auditor.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete this Auditor')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ auditor.id) }}">
+                    <button class="btn btn btn-danger">DELETE</button>
 
 
-                {#</form>#}
+                </form>
 
 
             </div>

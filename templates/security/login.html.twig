@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
     {% if error %}
         <div class="alert alert-danger">
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
+    <div class="d-flex justify-content-center">
 
-       <form class="form-control-sm" action="{{ path('security_login') }}" method="post">
+
+    <form action="{{ path('security_login') }}" method="post" class="align-items-center">
+
             <div class="form-group">
+
                 <label class="form-control-label required" for="username">Username</label>
                 <input type="text" id="username" name="_username" required="required" class="form-control"
                        value="{{ last_username }}">
@@ -21,7 +26,10 @@
             </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
-       </form>
+        </form>
+    </div>
+    </div>
+
 
 
 {% endblock %}

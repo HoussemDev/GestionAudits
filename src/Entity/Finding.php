@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FindingRepository")
@@ -55,6 +57,37 @@ class Finding
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Audit", inversedBy="findings")
+	 */
+	private $auditInFinding;
+
+	/**
+	 * @return mixed
+	 */
+	public function getAuditInFinding()
+	{
+		return $this->auditInFinding;
+	}
+
+	/**
+	 * @param mixed $auditInFinding
+	 */
+	public function setAuditInFinding($auditInFinding)
+	{
+		$this->auditInFinding = $auditInFinding;
+	}
+
+	public function getSlug(): string
+	{
+		return(new Slugify())->slugify($this->title);
+	}
 
     public function getId(): ?int
     {
@@ -153,6 +186,18 @@ class Finding
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

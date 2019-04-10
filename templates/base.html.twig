@@ -3,109 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
 
 
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
+
+
+        <!-- Custom fonts for this template-->
+        <link href="{{ asset('sb-admin/vendor/fontawesome-free/css/all.min.css') }}"
+              rel="stylesheet" type="text/css">
+
+        <!-- Page level plugin CSS-->
+        <link href="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}"
+              rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('sb-admin/css/sb-admin.css') }}"
+              rel="stylesheet">
+
+        <link href="{{ asset('sb-admin/vendor/fontawesome-free/css/all.min.css') }}"
+              rel="stylesheet" type="text/css">
+
+
+        <!-- Page level plugin CSS-->
+        <link href="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}"
+              rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('sb-admin/css/sb-admin.css') }}"
+              rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
+
+
+    {% endblock %}
 </head>
-<body>
-<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark p-0">
+<body class="bg-light">
+
+<nav class="navbar navbar-dark navbar-expand-md sticky-top  p-0" style="background-color: #212529">
+
+    {#<div class="align-content-lg-end">#}
+    {#<a class="navbar-brand" href="#">ViaSyst</a>#}
+    {#</div>#}
+    {#<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"#}
+    {#aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
+    {#<span class="navbar-toggler-icon"></span>#}
+    {#</button>#}
+
+    {#<div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+    {#<ul class="navbar-nav mr-auto">#}
+    {#{% if is_granted('ROLE_USER') %}#}
+
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.cblist.index') }}">Certification Body <span#}
+    {#class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.organlist.index') }}">Organisations <span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.auditlist.index') }}">Audits <span#}
+    {#class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.certlist.index') }}">Certificates <span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.auditorlist.index') }}">Auditors <span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item active">#}
+    {#<a class="nav-link" href="{{ path('admin.findinglist.index') }}">Finding <span#}
+    {#class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#{% endif %}#}
 
 
-    <a class="navbar-brand" href="#">Gestion des Audits</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    {#</ul>#}
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.cblist.index') }}">Certification Body <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.organlist.index') }}">Organisations <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.auditlist.index') }}">Audits <span
-                            class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.certlist.index') }}">Certificates <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.auditorlist.index') }}">Auditors <span class="sr-only">(current)</span></a>
-            </li>
+    {#</div>#}
 
-            {#<li class="nav-item dropdown">#}
-            {#<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-            {#Dropdown#}
-            {#</a>#}
-            {#<div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-            {#<a class="dropdown-item" href="#">Action</a>#}
-            {#<a class="dropdown-item" href="#">Another action</a>#}
-            {#<div class="dropdown-divider"></div>#}
-            {#<a class="dropdown-item" href="#">Something else here</a>#}
-            {#</div>#}
-            {#</li>#}
-            {#<li class="nav-item">#}
-            {#<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
-            {#</li>#}
-        </ul>
-        {#<li class="nav-item">#}
-        {#<a class="navbar-dark" href="#">Link</a>#}
-        {#</li>#}
-        {#<form class="form-inline my-2 my-lg-0" action="{{ path('security_logout') }}" method="post">#}
-        {#<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
-        {#<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>#}
-        {#</form>#}
-    </div>
-
-    <div class="order-2 order-md-1">
-        <ul class="navbar-nav px-3">
-            {% if is_granted('ROLE_USER') %}
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link"
-                       href="#">{{ app.user.name }}</a>
-                </li>
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link"
-                       href="{{ path('security_logout') }}">Sign out</a>
-                </li>
-            {% else %}
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link"
-                       href="{{ path('security_login') }}">Sign in</a>
-                </li>
-            {% endif %}
-        </ul>
+    <div class="ml-auto p-0">
+        <div class="order-2 order-md-1">
+            <ul class="navbar-nav px-3">
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link"
+                           href="#">{{ app.user.name }}</a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link"
+                           href="{{ path('security_logout') }}">Sign out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link"
+                           href="{{ path('security_login') }}">Sign in</a>
+                    </li>
+                {% endif %}
+            </ul>
+           </div>
     </div>
 </nav>
 
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        {% block body %}
-        {% endblock %}
-    </div>
-</main>
+
+
+    <div id="wrapper">
+
+    <ul class="sidebar navbar-nav">
+        {% if is_granted('ROLE_USER') %}
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        {#<li class="nav-item dropdown">#}
+        {#<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+        {#<i class="fas fa-fw fa-folder"></i>#}
+        {#<span>Pages</span>#}
+        {#</a>#}
+        {#<div class="dropdown-menu" aria-labelledby="pagesDropdown">#}
+        {#<h6 class="dropdown-header">Login Screens:</h6>#}
+        {#<a class="dropdown-item" href="login.html">Login</a>#}
+        {#<a class="dropdown-item" href="register.html">Register</a>#}
+        {#<a class="dropdown-item" href="forgot-password.html">Forgot Password</a>#}
+        {#<div class="dropdown-divider"></div>#}
+        {#<h6 class="dropdown-header">Other Pages:</h6>#}
+        {#<a class="dropdown-item" href="404.html">404 Page</a>#}
+        {#<a class="dropdown-item" href="blank.html">Blank Page</a>#}
+        {#</div>#}
+        {#</li>#}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.cblist.index') }}">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>Certification Body</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.organlist.index') }}">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <span>Organisations</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.auditlist.index') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Audits</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.certlist.index') }}">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                <span>Certificates</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.auditorlist.index') }}">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Auditors</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
+                <i class="fa fa-cubes" aria-hidden="true"></i>
+                <span>Findings</span></a>
+        </li>
+
+
+            <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+                <i class="fas fa-bars fa-2x"></i>
+            </button>
+
+
+
+
+            {#<li class="nav-item">#}
+        {#<a class="nav-link" href="charts.html">#}
+        {#<i class="fas fa-fw fa-chart-area"></i>#}
+        {#<span>Charts</span></a>#}
+        {#</li>#}
+        {#<li class="nav-item">#}
+        {#<a class="nav-link" href="tables.html">#}
+        {#<i class="fas fa-fw fa-table"></i>#}
+        {#<span>Tables</span></a>#}
+        {#</li>#}
+        {% endif %}
+    </ul>
+
+
+
+    <main role="main" class="container">
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+
+
+            {% block body %}
+
+
+
+            {% endblock %}
+        </div>
+    </main>
+</div>
+
 {% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script>
-    $(document).ready( function () {
-        $('#table_id').DataTable();
-    } );
-</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+
+    <script>
+
+        var url = window.location;
+        // Will only work if string in href matches with location
+        $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
+
+    </script>
+    <script type="text/javascript">
+        (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
+        css.rel = 'stylesheet'; css.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script
+            src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}"
+    ></script>
+    <script
+            src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"
+    ></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('sb-admin/js/sb-admin.min.js') }}"></script>
+
+
+
+    <!-- Demo scripts for this page-->
+    <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.jss') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('sb-admin/js/sb-admin.min.js') }}"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('sb-admin/js/demo/chart-bar-demo.js') }}"></script>
+    <script src="{{ asset('sb-admin/js/demo/chart-pie-demo.js') }}"></script>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}" ></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/jquery.dataTables.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.js') }}" ></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('sb-admin/js/sb-admin.min.js') }}"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}" ></script>
+    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}" ></script>
+
+
 
 {% endblock %}
 

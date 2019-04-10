@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+
+    <div class="container mt-4">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container theme-showcase" role="main">
+
+
+        <div class="jumbotron">
+
+
+
+            <div class="text-right">
+
+
+                <a href="{{ path('admin_finding_edit', {id: finding.id}) }}" class="btn btn-success">Edit</a>
+                <form method="post" action="{{ path('admin_finding_delete', {id: finding.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete this Finding')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ finding.id) }}">
+                    <button class="btn btn btn-danger">DELETE</button>
+
+
+                </form>
+
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-sm-4 dropdown-menu-sm-left">
+                    {{ include('Admin/Audit/auditleftmenu.html.twig') }}
+                </div>
+                <div class="col -md-8">
+
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Finding Title</td>
+                        <td>{{ finding.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Finding Standard</td>
+                        <td>{{ finding.standard }}</td>
+                    </tr>
+                    <tr>
+                        <td>Interpretation</td>
+                        <td>{{ finding.interpretation }}</td>
+                    </tr>
+                    <tr>
+                        <td>Clause</td>
+                        <td>{{ finding.clause }}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{ finding.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cause Analysis</td>
+                        <td>{{ finding.causeanalysis }}</td>
+                    </tr>
+                    <tr>
+                        <td>Planned Corrective Action</td>
+                        <td>{{ finding.plannedcorrectiveaction }}</td>
+                    </tr>
+                    <tr>
+                        <td>Time Schedule For Action</td>
+                        <td>{{ finding.timescheduleforaction }}</td>
+                    </tr>
+                    <tr>
+                        <td>Finding Status</td>
+                        <td>{{ finding.status }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}
+
+
+

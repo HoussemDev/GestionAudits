@@ -187,6 +187,42 @@ class AdminAuditController extends AbstractController
 
 	}
 
+	/**
+	 * @Route("/admin/audit/findingslist/{id}.{slug}", name="finds_audit")
+	 * @param Audit $audit
+	 * @return Response
+	 */
+	public function AuditFinding (Audit $audit)
+	{
+//		dump($audit);
+//		die();
+		$html = $this->twig->render('Admin/Finding/FindinglistinAudit.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+				'Findings' => $audit->getFindings(),
+				'id' => $audit->getId(),
+				'slug' => $audit->getSlug(),
+				'audit' => $audit->getTitle(),
+				'audits' => $audit,
+				'org' => $audit->getOrg()
+
+
+
+
+
+
+			]);
+//
+//		dump($audit->getFindings());
+//		die();
+		return new Response($html);
+
+	}
+
+
 
 
 

@@ -24,11 +24,11 @@ class CertificatType extends AbstractType
 			->add('Certificatstatus', ChoiceType::class, [
 				'label' => 'Certificat Status',
 				'choices' => [
-					'Valid' => 1,
-					'Suspended' => 2,
-					'Withdrawn' => 3,
-					'Cancelled' => 4,
-					'Transferred' => 5,
+					'Valid' => 'Valid',
+					'Suspended' => 'Suspended',
+					'Withdrawn' => 'Withdrawn',
+					'Cancelled' => 'Cancelled',
+					'Transferred' => 'Transferred',
 				]])
 			->add('issuedate', DateType::class, [
 				'label' => 'Issue Date',

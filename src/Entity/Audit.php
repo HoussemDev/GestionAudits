@@ -67,10 +67,25 @@ class Audit
 		return $this->certificates;
 	}
 
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\Finding", mappedBy="auditInFinding")
+	 */
+	private $findings;
+
+	/**
+	 * @return mixed
+	 */
+	public function getFindings()
+	{
+		return $this->findings;
+	}
+
 
 	public function __construct()
 	{
 		$this->certificates = new ArrayCollection();
+		$this->findings = new ArrayCollection();
+
 	}
 
 	/**
