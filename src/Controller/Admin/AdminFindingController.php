@@ -47,7 +47,7 @@ class AdminFindingController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/finding", name="admin.findinglist.index")
+	 * @Route("/finding", name="admin.findinglist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function index()
@@ -57,7 +57,7 @@ class AdminFindingController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/finding/profile/{slug}.{id}", name="finding_show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/finding/profile/{slug}.{id}", name="finding_show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Finding $finding
 	 * @return Response
 	 */
@@ -88,7 +88,7 @@ class AdminFindingController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/finding/create/{title}", name="admin_finding_new")
+	 * @Route("/finding/create/{title}", name="admin_finding_new")
 	 */
 	public function new(Request $request, $title)
 	{
@@ -117,7 +117,7 @@ class AdminFindingController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/finding/edit/{id}", name="admin_finding_edit")
+	 * @Route("/finding/edit/{id}", name="admin_finding_edit")
 	 * @param Finding $finding
 	 * @param Request $request
 	 * @return Response
@@ -137,11 +137,12 @@ class AdminFindingController extends AbstractController
 
 		return $this->render('Admin/Finding/edit.html.twig',  [
 			'finding' => $finding,
+			'audits' => $finding->getAuditInFinding(),
 			'form' => $form->createView() ]);
 	}
 
 	/**
-	 * @Route("/admin/finding/delete/{id}", name="admin_finding_delete", methods="DELETE")
+	 * @Route("/finding/delete/{id}", name="admin_finding_delete", methods="DELETE")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */

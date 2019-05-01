@@ -53,7 +53,7 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisation", name="admin.organlist.index")
+	 * @Route("/organisation", name="admin.organlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function index()
@@ -63,14 +63,13 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisation/profile/{slug}.{id}", name="org.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/organisation/profile/{slug}.{id}", name="org.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Organisation $organisation
 	 * @return Response
 	 */
-	public function show(Organisation $organisation, string $slug):Response
+	public function show(Organisation $organisation, string $slug): Response
 	{
-		if ($organisation->getSlug() !== $slug)
-		{
+		if ($organisation->getSlug() !== $slug) {
 			return $this->redirectToRoute('org.show', [
 				'id' => $organisation->getId(),
 				'slug' => $organisation->getSlug()
@@ -88,71 +87,68 @@ class AdminOrgController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/organisationlist/create/{name}", name="admin.org.new")
+	 * @Route("/organisationlist/create/{name}", name="admin.org.new")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
 	 */
-	public function new(Request $request,  $name )
+	public function new(Request $request, $name)
 	{
 		$org = new Organisation();
 
 		$form = $this->createForm(OrganisationType::class, $org);
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$org->setCb($this->em->getRepository(CB::class)->findOneBy(array("name" => $name)));
 
 			$this->em->persist($org);
 			$this->em->flush();
-			$msgAddOrg = $this->addFlash('success','Organisation Created' );
+			$msgAddOrg = $this->addFlash('success', 'Organisation Created');
 
-			return $this->redirectToRoute('cb.organisations', array("name" => $name, "success" => $msgAddOrg ));
+			return $this->redirectToRoute('cb.organisations', array("name" => $name, "success" => $msgAddOrg));
 		}
-		return $this->render('Admin/Organisation/edit.html.twig',  [
+		return $this->render('Admin/Organisation/edit.html.twig', [
 			'org' => $org,
 			'form' => $form->createView()
 		]);
 	}
 
 	/**
-	 * @Route("/admin/organisation/edit/{id}", name="admin.org.edit")
+	 * @Route("/organisation/edit/{id}", name="admin.org.edit")
 	 * @param Organisation $organisation
 	 * @param Request $request
 	 * @return Response
 	 */
 	public function edit(Organisation $organisation, Request $request)
 	{
-		$form =$this->createForm(OrganisationType::class, $organisation);
+		$form = $this->createForm(OrganisationType::class, $organisation);
 
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$this->em->flush();
-			$this->addFlash('success','Organisation was Edited' );
+			$this->addFlash('success', 'Organisation was Edited');
 			return $this->redirectToRoute('admin.organlist.index');
 		}
 
-		return $this->render('Admin/Organisation/edit.html.twig',  [
+		return $this->render('Admin/Organisation/edit.html.twig', [
 			'org' => $organisation,
-			'form' => $form->createView() ]);
+			'form' => $form->createView()]);
 	}
 
 
 	/**
-	 * @Route("/admin/organisation/delete/{id}", name="admin.org.delete", methods="DELETE")
+	 * @Route("/organisation/delete/{id}", name="admin.org.delete", methods="DELETE")
 	 * @param Organisation $organisation
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	public function delete(Organisation $organisation, Request $request)
 	{
-		if ($this->isCsrfTokenValid('delete' . $organisation->getId(), $request->get('_token')))
-		{
+		if ($this->isCsrfTokenValid('delete' . $organisation->getId(), $request->get('_token'))) {
 			$this->em->remove($organisation);
 			$this->em->flush();
-			$this->addFlash('success','Organisation was removed' );
+			$this->addFlash('success', 'Organisation was removed');
 
 		}
 
@@ -161,11 +157,11 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisation/auditlist/{name}", name="audits_org2")
+	 * @Route("/organisation/auditlist/{name}", name="audits_org2")
 	 * @param Organisation $audits
 	 * @return Response
 	 */
-	public function orgAudits (Organisation $audits)
+	public function orgAudits(Organisation $audits)
 	{
 		$html = $this->twig->render('Admin/Organisation/AuditslistinOrg.html.twig',
 			[
@@ -180,9 +176,6 @@ class AdminOrgController extends AbstractController
 				'organisation' => $audits,
 				'org' => $audits
 
-
-
-
 			]);
 		return new Response($html);
 
@@ -190,11 +183,11 @@ class AdminOrgController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/organisation/Certlist/{name}", name="Certs_org")
+	 * @Route("/organisation/Certlist/{name}", name="Certs_org")
 	 * @param Organisation $audits
 	 * @return Response
 	 */
-	public function orgCerts (Organisation $audits)
+	public function orgCerts(Organisation $audits)
 	{
 
 		$html = $this->twig->render('Admin/Organisation/CertlistinOrg.html.twig',
@@ -217,11 +210,11 @@ class AdminOrgController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/organisation/Findinglist/{name}", name="finds_org")
+	 * @Route("/organisation/Findinglist/{name}", name="finds_org")
 	 * @param Organisation $audits
 	 * @return Response
 	 */
-	public function orgFinding (Organisation $audits)
+	public function orgFinding(Organisation $audits)
 	{
 
 		$html = $this->twig->render('Admin/Organisation/FindinglistinOrg.html.twig',
@@ -239,25 +232,18 @@ class AdminOrgController extends AbstractController
 				'finds' => $audits->getAudits(),
 
 
-
-
-
-
 			]);
 		return new Response($html);
 
 	}
 
 
-
-
-
 	/**
-	 * @Route("/admin/organisationlist/{name}", name="cb.organisations")
+	 * @Route("/organisationlist/{name}", name="cb.organisations")
 	 * @param CB $cborganisation
 	 * @return Response
 	 */
-	public function cbOrganisation (CB $cborganisation)
+	public function cbOrganisation(CB $cborganisation)
 	{
 		$html = $this->twig->render('Admin/CB/cborg.html.twig',
 			[
@@ -266,22 +252,16 @@ class AdminOrgController extends AbstractController
 //					['time' => 'DESC']
 //				),
 //				'cbs' => $cborganisation,
-			'organisations' => $cborganisation->getOrganisations(),
+				'organisations' => $cborganisation->getOrganisations(),
 //				'id' => $cborganisation->getId(),
 //				'slug' => $cborganisation->getSlug(),
 				'cb' => $cborganisation
-
 
 
 			]);
 		return new Response($html);
 
 	}
-
-
-
-
-
 
 
 }

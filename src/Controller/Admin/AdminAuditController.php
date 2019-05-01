@@ -44,7 +44,7 @@ class AdminAuditController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/audit", name="admin.auditlist.index")
+	 * @Route("/audit", name="admin.auditlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function index()
@@ -54,18 +54,14 @@ class AdminAuditController extends AbstractController
 	}
 
 
-
-
-
 	/**
-	 * @Route("/admin/audit/profile/{slug}.{id}", name="audit.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/audit/profile/{slug}.{id}", name="audit.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Audit $audit
 	 * @return Response
 	 */
-	public function show(Audit $audit, string $slug):Response
+	public function show(Audit $audit, string $slug): Response
 	{
-		if ($audit->getSlug() !== $slug)
-		{
+		if ($audit->getSlug() !== $slug) {
 			return $this->redirectToRoute('audit.show', [
 				'id' => $audit->getId(),
 				'slug' => $audit->getSlug()
@@ -79,11 +75,11 @@ class AdminAuditController extends AbstractController
 			'current_menu' => 'audit'
 
 		]);
-}
+	}
 
 
 	/**
-	 * @Route("/admin/audit/create/{name}", name="admin.audit.new")
+	 * @Route("/audit/create/{name}", name="admin.audit.new")
 	 */
 	public function new(Request $request, $name)
 	{
@@ -91,16 +87,15 @@ class AdminAuditController extends AbstractController
 		$form = $this->createForm(AuditType::class, $audit);
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$audit->setOrg($this->em->getRepository(Organisation::class)->findOneBy(array("name" => $name)));
 			$this->em->persist($audit);
 			$this->em->flush();
-			$msgAddAudit = $this->addFlash('success','Audit Created' );
+			$msgAddAudit = $this->addFlash('success', 'Audit Created');
 
-			return $this->redirectToRoute('audits_org2',array("name" => $name, "success" => $msgAddAudit ) );
+			return $this->redirectToRoute('audits_org2', array("name" => $name, "success" => $msgAddAudit));
 		}
-		return $this->render('Admin/Audit/edit.html.twig',  [
+		return $this->render('Admin/Audit/edit.html.twig', [
 			'audit' => $audit,
 			'org' => $audit->getOrg(),
 			'form' => $form->createView()
@@ -108,20 +103,18 @@ class AdminAuditController extends AbstractController
 	}
 
 
-
 	/**
-	 * @Route("/admin/audit/{id}", name="admin.audit.delete", methods="DELETE")
+	 * @Route("/audit/{id}", name="admin.audit.delete", methods="DELETE")
 	 * @param Audit $audit
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	public function delete(Audit $audit, Request $request)
 	{
-		if ($this->isCsrfTokenValid('delete' . $audit->getId(), $request->get('_token')))
-		{
+		if ($this->isCsrfTokenValid('delete' . $audit->getId(), $request->get('_token'))) {
 			$this->em->remove($audit);
 			$this->em->flush();
-			$this->addFlash('success','Audit removed' );
+			$this->addFlash('success', 'Audit removed');
 
 		}
 
@@ -131,37 +124,36 @@ class AdminAuditController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/audit/edit/{id}", name="admin.audit.edit")
+	 * @Route("/audit/edit/{id}", name="admin.audit.edit")
 	 * @param Audit $audit
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function edit(Audit $audit, Request $request)
 	{
-		$form =$this->createForm(AuditType::class, $audit);
+		$form = $this->createForm(AuditType::class, $audit);
 
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$this->em->flush();
-			$this->addFlash('success','Audit  Edited' );
+			$this->addFlash('success', 'Audit  Edited');
 			return $this->redirectToRoute('admin.auditlist.index');
 		}
 
-		return $this->render('Admin/Audit/edit.html.twig',  [
+		return $this->render('Admin/Audit/edit.html.twig', [
 			'audit' => $audit,
-			'form' => $form->createView() ]);
+			'audits'=>$audit,
+			'form' => $form->createView()]);
 	}
 
 
-
 	/**
-	 * @Route("/admin/audit/Certlist/{id}.{slug}", name="certs_audit")
+	 * @Route("/audit/Certlist/{id}.{slug}", name="certs_audit")
 	 * @param Audit $audit
 	 * @return Response
 	 */
-	public function AuditCertificates (Audit $audit)
+	public function AuditCertificates(Audit $audit)
 	{
 //		dump(Audit);
 //		die();
@@ -180,19 +172,17 @@ class AdminAuditController extends AbstractController
 				'org' => $audit->getOrg()
 
 
-
-
 			]);
 		return new Response($html);
 
 	}
 
 	/**
-	 * @Route("/admin/audit/findingslist/{id}.{slug}", name="finds_audit")
+	 * @Route("/audit/findingslist/{id}.{slug}", name="finds_audit")
 	 * @param Audit $audit
 	 * @return Response
 	 */
-	public function AuditFinding (Audit $audit)
+	public function AuditFinding(Audit $audit)
 	{
 //		dump($audit);
 //		die();
@@ -209,11 +199,6 @@ class AdminAuditController extends AbstractController
 				'audits' => $audit,
 				'org' => $audit->getOrg()
 
-
-
-
-
-
 			]);
 //
 //		dump($audit->getFindings());
@@ -221,11 +206,6 @@ class AdminAuditController extends AbstractController
 		return new Response($html);
 
 	}
-
-
-
-
-
 
 
 }

@@ -15,13 +15,16 @@
 
         <div class="jumbotron">
             <div class="text-right">
-                {#{% if audit.id  %}#}
-                    {#<a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" class="btn btn-info btn-sm">VIEW</a>#}
-                {#{% endif %}#}
+                {% if finding.id  %}
+                    <a href="{{ path('finding_show', {id: finding.id, slug: finding.slug}) }}" class="btn btn-info btn-sm">VIEW</a>
+                {% endif %}
             </div>
             <div class="row">
                 <div class="col-sm-4 dropdown-menu-sm-left">
-                    {#{{ include('Admin/CB/cbleftmenu.html.twig') }}#}
+                    {% if finding.id  %}
+
+                    {{ include('Admin/Audit/auditleftmenu.html.twig') }}
+                    {% endif %}
                 </div>
 
                 <div class="col-sm-8">

@@ -14,37 +14,52 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class OrganisationRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, Organisation::class);
-    }
+	public function __construct(RegistryInterface $registry)
+	{
+		parent::__construct($registry, Organisation::class);
+	}
 
-    // /**
-    //  * @return Organisation[] Returns an array of Organisation objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+	// /**
+	//  * @return Organisation[] Returns an array of Organisation objects
+	//  */
+	/*
+	public function findByExampleField($value)
+	{
+		return $this->createQueryBuilder('o')
+			->andWhere('o.exampleField = :val')
+			->setParameter('val', $value)
+			->orderBy('o.id', 'ASC')
+			->setMaxResults(10)
+			->getQuery()
+			->getResult()
+		;
+	}
+	*/
 
-    /*
-    public function findOneBySomeField($value): ?Organisation
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+	/*
+	public function findOneBySomeField($value): ?Organisation
+	{
+		return $this->createQueryBuilder('o')
+			->andWhere('o.exampleField = :val')
+			->setParameter('val', $value)
+			->getQuery()
+			->getOneOrNullResult()
+		;
+	}
+	*/
+
+
+	public function countOrgInCb()
+	{
+		$qb = $this->createQueryBuilder('o')
+			->Join('o.cb', 'c')
+			->select('c.name, count(o.id)')
+			->groupBy('o.cb')
+			->getQuery()
+			->getResult();
+
+		return $qb;
+
+	}
+
 }

@@ -1,7 +1,14 @@
 {{ form_start(form) }}
+
+        {% set scopestatment = audit.scopestatment %}
+
 <div class="row">
     <div class="col-md-12">{{ form_row(form.title) }}</div>
+    {% if audit.scopestatment %}
+    <div class="col-md-12">{{ form_row(form.scopestatment ,{'value' : scopestatment }) }}</div>
+    {% else %}
     <div class="col-md-12">{{ form_row(form.scopestatment) }}</div>
+{% endif %}
     <div class="col-md-12">{{ form_row(form.scope) }}</div>
     <div class="col-md-12">{{ form_row(form.issuedate) }}</div>
     <div class="col-md-12">{{ form_row(form.validuntil) }}</div>

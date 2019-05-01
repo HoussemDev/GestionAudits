@@ -43,7 +43,7 @@ class AdminCertController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/certificate", name="admin.certlist.index")
+	 * @Route("/certificate", name="admin.certlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function index()
@@ -53,7 +53,7 @@ class AdminCertController extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/certificate/profile/{slug}.{id}", name="cert.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/certificate/profile/{slug}.{id}", name="cert.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param Certificat $certificat
 	 * @return Response
 	 */
@@ -78,13 +78,16 @@ class AdminCertController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/certificate/create/{title}", name="admin.cert.new")
+	 * @Route("/certificate/create/{title}", name="admin.cert.new")
 	 */
 	public function new(Request $request, $title)
 	{
 		$cert = new Certificat();
 		$form = $this->createForm(CertificatType::class, $cert);
 		$form->handleRequest($request);
+
+
+		$audit = $this->em->getRepository(Audit::class)->findOneBy(array('Title'=> $title));
 
 		if($form->isSubmitted() && $form->isValid())
 		{
@@ -97,16 +100,18 @@ class AdminCertController extends AbstractController
 			$id = $cert->getId();
 			$slug = $cert->getSlug();
 
+
 			return $this->redirectToRoute('cert.show', array("id" => $id, "slug"=> $slug, "success" => $msgAddCert ));
 		}
 		return $this->render('Admin/Certificate/edit.html.twig',  [
 			'certs' => $cert,
+			'audit' => $audit,
 			'form' => $form->createView()
 		]);
 	}
 
 	/**
-	 * @Route("/admin/certificate/delete/{id}", name="admin.cert.delete", methods="DELETE")
+	 * @Route("/certificate/delete/{id}", name="admin.cert.delete", methods="DELETE")
 	 * @param Certificat $certificat
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -127,7 +132,7 @@ class AdminCertController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/certificate/edit/{id}", name="admin.cert.edit")
+	 * @Route("/certificate/edit/{id}", name="admin.cert.edit")
 	 * @param Certificat $certificat
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
@@ -144,9 +149,10 @@ class AdminCertController extends AbstractController
 			$this->addFlash('success','Certificat Edited' );
 			return $this->redirectToRoute('admin.certlist.index');
 		}
-
 		return $this->render('Admin/Certificate/edit.html.twig',  [
 			'certs' => $certificat,
+			'audit' => $certificat->getAudit(),
+			'audits' => $certificat->getAudit(),
 			'form' => $form->createView() ]);
 	}
 

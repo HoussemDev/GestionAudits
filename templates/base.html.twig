@@ -45,48 +45,7 @@
     {% endblock %}
 </head>
 <body class="bg-light">
-
 <nav class="navbar navbar-dark navbar-expand-md sticky-top  p-0" style="background-color: #212529">
-
-    {#<div class="align-content-lg-end">#}
-    {#<a class="navbar-brand" href="#">ViaSyst</a>#}
-    {#</div>#}
-    {#<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"#}
-    {#aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
-    {#<span class="navbar-toggler-icon"></span>#}
-    {#</button>#}
-
-    {#<div class="collapse navbar-collapse" id="navbarSupportedContent">#}
-    {#<ul class="navbar-nav mr-auto">#}
-    {#{% if is_granted('ROLE_USER') %}#}
-
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.cblist.index') }}">Certification Body <span#}
-    {#class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.organlist.index') }}">Organisations <span class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.auditlist.index') }}">Audits <span#}
-    {#class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.certlist.index') }}">Certificates <span class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.auditorlist.index') }}">Auditors <span class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#<li class="nav-item active">#}
-    {#<a class="nav-link" href="{{ path('admin.findinglist.index') }}">Finding <span#}
-    {#class="sr-only">(current)</span></a>#}
-    {#</li>#}
-    {#{% endif %}#}
-
-
-    {#</ul>#}
-
-    {#</div>#}
 
     <div class="ml-auto p-0">
         <div class="order-2 order-md-1">
@@ -107,18 +66,26 @@
                     </li>
                 {% endif %}
             </ul>
-           </div>
+        </div>
     </div>
 </nav>
 
 
 
+{% if is_granted('ROLE_USER') %}
+
     <div id="wrapper">
 
-    <ul class="sidebar navbar-nav">
-        {% if is_granted('ROLE_USER') %}
 
-        <li class="nav-item active">
+
+
+
+    <ul class="sidebar navbar-nav">
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle">
+            <i class="fas fa-bars fa-1x"></i>
+        </button>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ path('index') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
@@ -172,13 +139,6 @@
         </li>
 
 
-            <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-                <i class="fas fa-bars fa-2x"></i>
-            </button>
-
-
-
-
             {#<li class="nav-item">#}
         {#<a class="nav-link" href="charts.html">#}
         {#<i class="fas fa-fw fa-chart-area"></i>#}
@@ -189,9 +149,9 @@
         {#<i class="fas fa-fw fa-table"></i>#}
         {#<span>Tables</span></a>#}
         {#</li>#}
-        {% endif %}
-    </ul>
 
+    </ul>
+        {% endif %}
 
 
     <main role="main" class="container">

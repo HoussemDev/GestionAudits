@@ -62,7 +62,7 @@ class AdminControler extends AbstractController
 	}
 
 	/**
-	 * @Route("/admin/cb/{slug}.{id}", name="cb.show", requirements={"slug": "[a-z0-9\-]*"})
+	 * @Route("/cb/{slug}.{id}", name="cb.show", requirements={"slug": "[a-z0-9\-]*"})
 	 * @param CB $CB
 	 * @return Response
 	 */
@@ -112,7 +112,7 @@ class AdminControler extends AbstractController
 
 
 	/**
-	 * @Route("/admin/cb/{id}", name="admin.cb.edit")
+	 * @Route("/cb/{id}", name="admin.cb.edit")
 	 * @param CB $cb
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
