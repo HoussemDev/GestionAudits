@@ -52,29 +52,34 @@ class HomeContoller extends AbstractController
 	 */
 	public function indexAction()
 	{
+
+
+
+
+
 		$datas = $this->em->getRepository(Organisation::class)->countOrgInCb();
 //		$datas = $this->em->getRepository(Organisation::class)->find(109);
 
 
 		$pieChart = new PieChart();
-
-		$cbName =  array();
-		$orgNumber = array();
-
-
-
-		foreach ($datas as $item) {
-			array_push($cbName, $item['name']);
-			array_push($orgNumber, $item[1]);
-
-		}
-
-		$dataToDisplay=  array( ['CB',    $cbName[1]],  ['Organisation Name',      $orgNumber[1]] );
-
-		dump($dataToDisplay);
-		die();
-
-		$pieChart->getData()->setArrayToDataTable( $dataToDisplay);
+//
+//		$cbName =  array();
+//		$orgNumber = array();
+//
+//
+//
+//		foreach ($datas as $item) {
+//			array_push($cbName, $item['name']);
+//			array_push($orgNumber, $item[1]);
+//
+//		}
+//
+//		$dataToDisplay=  array( ['CB',    $cbName[1]],  ['Organisation Name',      $orgNumber[1]] );
+//
+//		dump($dataToDisplay);
+//		die();
+//
+//		$pieChart->getData()->setArrayToDataTable( $dataToDisplay);
 
 
 
@@ -87,14 +92,14 @@ class HomeContoller extends AbstractController
 //				['Test2', $datas->getCb()],
 //			]
 //		);
-//		$pieChart->getData()->setArrayToDataTable(
-//			[['Task', 'Hours per Day'],
-//
-//				['Test2', 5],
-//				['Test2', 5],
-//				['Test2', 5],
-//			]
-//		);
+		$pieChart->getData()->setArrayToDataTable(
+			[['Task', 'Hours per Day'],
+
+				['Test2', 5],
+				['Test2', 5],
+				['Test2', 5],
+			]
+		);
 
 		$pieChart->getOptions()->setTitle('My Daily Activities');
 		$pieChart->getOptions()->setHeight(500);

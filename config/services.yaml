@@ -30,3 +30,9 @@ services:
         tags: ['controller.service_arguments']
         arguments:
              $twig: '@twig'
+#    app.chart.data:
+#        class: App\Controller\Chart\ChartData
+#        arguments: ['@doctrine.orm.entity_manager'  ]
+#    app.chart:
+#        class: App\Controller\Chart\Chart
+#        arguments: ['@app.chart.data']
