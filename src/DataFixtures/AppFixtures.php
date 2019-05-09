@@ -18,6 +18,41 @@ class AppFixtures extends Fixture
 	 */
 	private $passwordEncoder;
 
+
+
+
+	private const USERS = [
+		[
+			'username' => 'john_doe',
+			'email' => 'john_doe@doe.com',
+			'password' => 'john123',
+			'fullName' => 'John Doe',
+			'roles' => [User::ROLE_USER]
+		],
+		[
+			'username' => 'rob_smith',
+			'email' => 'rob_smith@smith.com',
+			'password' => 'rob12345',
+			'fullName' => 'Rob Smith',
+			'roles' => [User::ROLE_USER]
+
+		],
+		[
+			'username' => 'super_admin',
+			'email' => 'super_admin@admin.com',
+			'password' => 'admin12345',
+			'fullName' => 'Micro Admin',
+			'roles' => [User::ROLE_ADMIN]
+		],
+		[
+			'username' => 'marry_gold',
+			'email' => 'marry_gold@gold.com',
+			'password' => 'marry12345',
+			'fullName' => 'Marry Gold',
+			'roles' => [User::ROLE_USER]
+		],
+	];
+
 	public function __construct(UserPasswordEncoderInterface $passwordEncoder )
 	{
 		$this->passwordEncoder = $passwordEncoder;
@@ -33,8 +68,8 @@ class AppFixtures extends Fixture
 //		    $this->loadCBS($manager);
 //			$this->loadOrganisations($manager);
 //			$this->loadAudits($manager);
-//		   $this->loadUsers($manager);
-		   $this->loadAuditors($manager);
+		   $this->loadUsers($manager);
+//		   $this->loadAuditors($manager);
 
 	}
 
@@ -101,16 +136,30 @@ class AppFixtures extends Fixture
 	private function loadUsers(ObjectManager $manager)
 	{
 
-			$user = new User();
-			$user->setName('Houssem');
-			$user->setUsername('Houssem');
-			$user->setEmail('Houssem@l.com');
-			$user->setPasswword($this->passwordEncoder->encodePassword($user, 'Houssem123'));
 
+		foreach (self::USERS as $userData)
+		{
+			$user = new User();
+			$user->setUsername($userData['username']);
+			$user->setName($userData['fullName']);
+			$user->setEmail($userData['email']);
+			$user->setPasswword(
+				$this->passwordEncoder->encodePassword(
+					$user,
+					$userData['password']
+				)
+			);
+			$user->setRoles($userData['roles']);
+			$this->addReference($userData['username'],
+				$user
+			);
 
 			$manager->persist($user);
 			$manager->flush();
+		}
+
 	}
+
 
 	private function loadAuditors(ObjectManager $manager)
 	{
