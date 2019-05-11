@@ -1,0 +1,19 @@
+{% block body %}
+
+    <div id="list-example" class="list-group">
+
+        <a class="list-group-item list-group-item-action"
+           href="{{ path('audit.show', {id: audits.id, slug: audits.slug}) }}">Audit Folder</a>
+        {#<a class="nav-link" href="{{ path('org.show', {id: org.id, slug: org.slug}) }}">Organisation Profile</a>#}
+        {#<a class="nav-link" href="#">Link</a>#}
+        <a class="list-group-item list-group-item-action"
+           href="{{ path('certs_audit', {id: audits.id, slug: audits.slug}) }}">Certificates List</a>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

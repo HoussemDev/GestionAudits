@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title 'User' %}
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Users List</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="text-right">
+            <a href="{{ path('admin_user_new') }}" class="btn btn-primary">Create New User</a>
+
+        </div>
+
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>User name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td> <a href="{{ path('user_show', {id: user.id, slug: user.slug}) }}" >{{ user.name }} </a></td>
+
+
+                    <td>
+                        <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-success">Edit</a>
+                        <form method="post" action="{{ path('admin_user_delete', {id: user.id }) }}" style="display: inline-block"
+                              onsubmit="return confirm('Wanna really delete this User')" >
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button class="btn btn btn-danger">DELETE</button>
+
+
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+{% endblock %}

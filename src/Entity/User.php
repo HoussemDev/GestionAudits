@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -45,6 +46,11 @@ class User implements UserInterface, \Serializable
 	 * @ORM\Column(type="simple_array")
 	 */
     private $roles;
+
+	public function getSlug(): string
+	{
+		return(new Slugify())->slugify($this->name);
+	}
 
     public function getId(): ?int
     {
