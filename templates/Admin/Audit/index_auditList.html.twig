@@ -35,13 +35,13 @@
                         <td><a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}">{{ audit.Title }} </a>
                         </td>
                         <td>
-                            {#{{ audit.Status }}#}
+                            {{ audit.standard }}
                         </td>
                         <td>
                             {{ audit.Status }}
                         </td>
                         <td>
-                            {#{{ audit.Status }}#}
+                            {{ audit.auditdate|date('Y-m-d') }}
                         </td>
 
                     </tr>

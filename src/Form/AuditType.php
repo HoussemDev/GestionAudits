@@ -7,6 +7,7 @@ use App\Entity\Auditor;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,8 +24,6 @@ class AuditType extends AbstractType
 				'choices' => [
 					'In progress' => 'In progress' ,
 					'Validated certification body' => 'Validated certification body',
-
-
 				]])
 //			->add('Status', EntityType::class, [
 //				'class' => Auditor::class,
@@ -40,6 +39,19 @@ class AuditType extends AbstractType
 					'Surveillance audit' => 'Surveillance audit',
 					'Recertification' => 'Recertification',
 				]])
+
+			->add('standard', ChoiceType::class, [
+				'label' => 'Standard',
+				'choices' => [
+					'Qualikita' => 'Qualikita',
+					'FAMI-QS' => 'FAMI-QS',
+					'FSSC V3' => 'FSSC V3',
+				]])
+			->add('auditdate', DateType::class, [
+				'label' => 'Audit Date',
+				'placeholder' => [
+					'year' => 'Year', 'month' => 'Month', 'day' => 'Day']
+			])
 			->add('scopestatment', TextareaType::class, [
 				'label' => 'Scope Statement',
 				'attr' => ['class' => 'tinymce'],

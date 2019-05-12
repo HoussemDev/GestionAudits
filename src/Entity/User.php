@@ -52,17 +52,17 @@ class User implements UserInterface, \Serializable
 	 * @return mixed
 	 */
 	public function getUsercb()
-	{
-		return $this->usercb;
-	}
+                  	{
+                  		return $this->usercb;
+                  	}
 
 	/**
 	 * @param mixed $usercb
 	 */
 	public function setUsercb($usercb)
-	{
-		$this->usercb = $usercb;
-	}
+                  	{
+                  		$this->usercb = $usercb;
+                  	}
 
 	/**
 	 * @var array
@@ -70,10 +70,20 @@ class User implements UserInterface, \Serializable
 	 */
     private $roles;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
 	public function getSlug(): string
-	{
-		return(new Slugify())->slugify($this->name);
-	}
+                  	{
+                  		return(new Slugify())->slugify($this->name);
+                  	}
 
     public function getId(): ?int
     {
@@ -143,17 +153,17 @@ class User implements UserInterface, \Serializable
 	 * @return (Role|string)[] The user roles
 	 */
 	public function getRoles()
-	{
-		return $this->roles;
-	}
+                  	{
+                  		return $this->roles;
+                  	}
 
 	/**
 	 * @param array $roles
 	 */
 	public function setRoles(array $roles)
-	{
-		$this->roles = $roles;
-	}
+                  	{
+                  		$this->roles = $roles;
+                  	}
 
 	/**
 	 * Returns the password used to authenticate the user.
@@ -164,9 +174,9 @@ class User implements UserInterface, \Serializable
 	 * @return string The password
 	 */
 	public function getPassword()
-	{
-		return $this->passwword;
-	}
+                  	{
+                  		return $this->passwword;
+                  	}
 
 	/**
 	 * Returns the salt that was originally used to encode the password.
@@ -176,9 +186,9 @@ class User implements UserInterface, \Serializable
 	 * @return string|null The salt
 	 */
 	public function getSalt()
-	{
-	return null;
-	}
+                  	{
+                  	return null;
+                  	}
 
 	/**
 	 * Removes sensitive data from the user.
@@ -187,9 +197,9 @@ class User implements UserInterface, \Serializable
 	 * the plain-text password is stored on this object.
 	 */
 	public function eraseCredentials()
-	{
-
-	}
+                  	{
+                  
+                  	}
 
 	/**
 	 * String representation of object
@@ -198,16 +208,16 @@ class User implements UserInterface, \Serializable
 	 * @since 5.1.0
 	 */
 	public function serialize()
-	{
-		return serialize([
-			$this->id,
-			$this->name,
-			$this->username,
-			$this->email,
-			$this->passwword
-		]);
-
-	}
+                  	{
+                  		return serialize([
+                  			$this->id,
+                  			$this->name,
+                  			$this->username,
+                  			$this->email,
+                  			$this->passwword
+                  		]);
+                  
+                  	}
 
 	/**
 	 * Constructs the object
@@ -219,14 +229,38 @@ class User implements UserInterface, \Serializable
 	 * @since 5.1.0
 	 */
 	public function unserialize($serialized)
-	{
-		list(
-			$this->id,
-			$this->name,
-			$this->username,
-			$this->email,
-			$this->passwword
-		) = unserialize($serialized);
+                  	{
+                  		list(
+                  			$this->id,
+                  			$this->name,
+                  			$this->username,
+                  			$this->email,
+                  			$this->passwword
+                  		) = unserialize($serialized);
+                  
+                  	}
 
-	}
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
 }

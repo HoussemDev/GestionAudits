@@ -70,11 +70,13 @@
                         <td>Scope Statemeent</td>
                         <td>{{ audits.scopestatment }}</td>
                     </tr>
-                    {#<tr>#}
-                        {#<td>Audit Finding</td>#}
-                        {#<td>{{ audits.auditdfinding }}</td>#}
-                    {#</tr>#}
-
+                    <tr>
+                        <td>Standard</td>
+                        <td>{{ audits.standard }}</td>
+                    </tr><tr>
+                        <td>Audit Date</td>
+                        <td>{{ audits.auditdate|date('Y-m-d') }}</td>
+                    </tr>
 
 
 

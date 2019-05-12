@@ -140,7 +140,10 @@ class AdminAuditController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$this->em->flush();
 			$this->addFlash('success', 'Audit  Edited');
-			return $this->redirectToRoute('admin.auditlist.index');
+			return $this->redirectToRoute('audit.show', [
+				'id' => $audit->getId(),
+				'slug' => $audit->getSlug()
+			], 301);
 		}
 
 		return $this->render('Admin/Audit/edit.html.twig', [
