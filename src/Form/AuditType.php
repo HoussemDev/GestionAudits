@@ -21,8 +21,8 @@ class AuditType extends AbstractType
 			->add('Status', ChoiceType::class, [
 				'label' => 'Audit Status',
 				'choices' => [
-					'In progress' => 1,
-					'Validated certification body' => 2,
+					'In progress' => 'In progress' ,
+					'Validated certification body' => 'Validated certification body',
 
 
 				]])
@@ -35,19 +35,19 @@ class AuditType extends AbstractType
 			->add('audittype', ChoiceType::class, [
 				'label' => 'Audit Type',
 				'choices' => [
-					'Certiication Audit Stage 1' => 1,
-					'Certiication Audit Stage 2' => 2,
-					'Surveillance audit' => 3,
-					'Recertification' => 4,
+					'Certiication Audit Stage 1' => 'Certiication Audit Stage 1' ,
+					'Certiication Audit Stage 2' => 'Certiication Audit Stage 2',
+					'Surveillance audit' => 'Surveillance audit',
+					'Recertification' => 'Recertification',
 				]])
 			->add('scopestatment', TextareaType::class, [
 				'label' => 'Scope Statement',
 				'attr' => ['class' => 'tinymce'],
-			])
-			->add('auditdfinding', TextareaType::class, [
-				'label' => 'Audit Finding',
-				'attr' => ['class' => 'tinymce'],
 			]);
+//			->add('auditdfinding', TextareaType::class, [
+//				'label' => 'Audit Finding',
+//				'attr' => ['class' => 'tinymce'],
+//			]);
 	}
 
 	public function configureOptions(OptionsResolver $resolver)

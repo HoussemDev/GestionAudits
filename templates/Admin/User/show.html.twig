@@ -23,24 +23,27 @@
             <div class="text-right">
 
 
-                {#<a href="{{ path('admin.auditor.edit', {id: auditor.id}) }}" class="btn btn-success">Edit</a>#}
-                {#<form method="post" action="{{ path('admin.auditor.delete', {id: auditor.id }) }}" style="display: inline-block"#}
-                      {#onsubmit="return confirm('Wanna really delete this Auditor')" >#}
-                    {#<input type="hidden" name="_method" value="DELETE">#}
-                    {#<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ auditor.id) }}">#}
-                    {#<button class="btn btn btn-danger">DELETE</button>#}
+                <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-success">Edit</a>
+                {% if is_granted('ROLE_ADMIN') %}
+
+                <form method="post" action="{{ path('admin_user_delete', {id: user.id }) }}" style="display: inline-block"
+                      onsubmit="return confirm('Wanna really delete this User')" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button class="btn btn btn-danger">DELETE</button>
 
 
-                {#</form>#}
+                </form>
+                {% endif %}
 
 
             </div>
             <div class="row">
 
 
-                <div class="col-sm-4 dropdown-menu-sm-left">
+                {#<div class="col-sm-4 dropdown-menu-sm-left">#}
                     {#{{ include('Admin/Audit/auditleftmenu.html.twig') }}#}
-                </div>
+                {#</div>#}
                 <div class="col -md-8">
 
 

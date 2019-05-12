@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class AdminControler extends AbstractController
 {
@@ -32,11 +33,16 @@ class AdminControler extends AbstractController
 	 * @var ObjectManager
 	 */
 	private $em;
+	/**
+	 * @var AuthorizationCheckerInterface
+	 */
+	private $authorizationChecker;
 
-	public function __construct(CBRepository $repository, ObjectManager $em)
+	public function __construct(CBRepository $repository, ObjectManager $em, AuthorizationCheckerInterface $authorizationChecker)
 	{
 		$this->repository = $repository;
 		$this->em = $em;
+		$this->authorizationChecker = $authorizationChecker;
 	}
 
 
@@ -47,11 +53,37 @@ class AdminControler extends AbstractController
 	 */
 	public function index(PaginatorInterface $paginator, Request $request): Response
 	{
-		$cbs = $paginator->paginate(
-			$this->repository->findAll(),
-			$request->query->getInt('page', 1)/*page number*/,
-			10/*limit per page*/
-		);
+
+
+		if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+			$cbs = $paginator->paginate(
+				$this->repository->findAll(),
+				$request->query->getInt('page', 1)/*page number*/,
+				10/*limit per page*/
+			);
+
+			return $this->render('Admin/CB/index.html.twig', [
+				'cbs' => $cbs,
+				'current_menu' => 'CB',
+
+			]);
+
+		}
+
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
+		{
+			$a = $this->getUser();
+			$id = $a->usercb;
+			$id = $id->getid();
+
+
+			$cbs = $paginator->paginate(
+				$this->repository->findBy(array('id'=>$id)),
+				$request->query->getInt('page', 1)/*page number*/,
+				10/*limit per page*/
+			);
+
+		}
 
 
 		return $this->render('Admin/CB/index.html.twig', [

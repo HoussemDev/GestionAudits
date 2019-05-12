@@ -50,10 +50,10 @@
     <div class="ml-auto p-0">
         <div class="order-2 order-md-1">
             <ul class="navbar-nav px-3">
-                {% if is_granted('ROLE_USER') %}
+                {% if is_granted('ROLE_CBADMIN') %}
                     <li class="nav-item text-nowrap">
                         <a class="nav-link"
-                           href="#">{{ app.user.name }}</a>
+                           href="{{ path('user_show', {id: app.user.id, slug: app.user.slug}) }}">{{ app.user.name }}</a>
                     </li>
                     <li class="nav-item text-nowrap">
                         <a class="nav-link"
@@ -71,13 +71,9 @@
 </nav>
 
 
+{% if is_granted('ROLE_CBADMIN') %}
 
-{% if is_granted('ROLE_USER') %}
-
-    <div id="wrapper">
-
-
-
+<div id="wrapper">
 
 
     <ul class="sidebar navbar-nav">
@@ -118,38 +114,57 @@
                 <span>Organisations</span></a>
         </li>
         <li class="nav-item">
+            {% if is_granted('ROLE_ADMIN') %}
             <a class="nav-link" href="{{ path('admin.auditlist.index') }}">
+
+            {% else %}
+            <a class="nav-link" href="{{ path('admin_audit_index') }}">
+
+                {% endif %}
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Audits</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin.certlist.index') }}">
-                <i class="fa fa-id-card" aria-hidden="true"></i>
-                <span>Certificates</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin.auditorlist.index') }}">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span>Auditors</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
-                <i class="fa fa-cubes" aria-hidden="true"></i>
-                <span>Findings</span></a>
-        </li> <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
-                <i class="fa fa-cubes" aria-hidden="true"></i>
-                <span>Knowledge Base</span></a>
-        </li>
 
-         <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_users_index') }}">
-                <i class="fa fa-cubes" aria-hidden="true"></i>
-                <span>Users</span></a>
-        </li>
+        {% if is_granted('ROLE_ADMIN') %}
 
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin.certlist.index') }}">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                    <span>Certificates</span></a>
+            </li>
             {#<li class="nav-item">#}
+            {#<a class="nav-link" href="{{ path('admin.auditorlist.index') }}">#}
+            {#<i class="fa fa-user" aria-hidden="true"></i>#}
+            {#<span>Auditors</span></a>#}
+            {#</li>#}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    <span>Findings</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    <span>Knowledge Base</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin_users_index') }}">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    <span>Users</span></a>
+            </li>
+
+        {% endif %}
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('user_show', {id: app.user.id, slug: app.user.slug}) }}">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>My Profile</span></a>
+        </li>
+
+
+        {#<li class="nav-item">#}
         {#<a class="nav-link" href="charts.html">#}
         {#<i class="fas fa-fw fa-chart-area"></i>#}
         {#<span>Charts</span></a>#}
@@ -161,7 +176,7 @@
         {#</li>#}
 
     </ul>
-        {% endif %}
+    {% endif %}
 
 
     <main role="main" class="container">
@@ -203,9 +218,13 @@
 
     </script>
     <script type="text/javascript">
-        (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
-        css.rel = 'stylesheet'; css.type = 'text/css';
-        document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+        (function () {
+            var css = document.createElement('link');
+            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
+            css.rel = 'stylesheet';
+            css.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(css);
+        })(); </script>
 
 
 
@@ -258,23 +277,23 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}" ></script>
-    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}" ></script>
-    <script src="{{ asset('sb-admin/vendor/datatables/jquery.dataTables.js') }}" ></script>
-    <script src="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.js') }}" ></script>
+    <script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('sb-admin/js/sb-admin.min.js') }}"></script>
 
     <!-- Demo scripts for this page-->
-    <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}" ></script>
-    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}" ></script>
+    <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>
 
 
 

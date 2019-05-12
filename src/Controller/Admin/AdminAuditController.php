@@ -49,6 +49,8 @@ class AdminAuditController extends AbstractController
 	 */
 	public function index()
 	{
+
+
 		$audits = $this->repository->findAll();
 		return $this->render('Admin/Audit/index.html.twig', compact('audits'));
 	}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block title 'Audit' %}
+{% block body %}
+
+    <div class="container mt-4">
+        {#<h1>Audit List</h1>#}
+        {#{% for message in app.flashes('success') %}#}
+        {#<div class="alert alert-success">#}
+        {#{{ message }}#}
+        {#</div>#}
+        {#{% endfor %}#}
+        {#<div class="text-right">#}
+        {#<a href="{{ path('admin.audit.new') }}" class="btn btn-primary">Create New Audit</a>#}
+
+        {#</div>#}
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Organisation</th>
+                <th>Audit Title</th>
+                <th>Standard</th>
+                <th>Audit Status</th>
+                <th>Audit Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for organisation in orgs %}
+                {% for audit in organisation.audits %}
+                    <tr>
+                        <td>
+                        <a href="{{ path('org.show', {id: organisation.id, slug: organisation.slug}) }}" >{{ organisation.name }} </a>
+                        </>
+                        <td><a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}">{{ audit.Title }} </a>
+                        </td>
+                        <td>
+                            {#{{ audit.Status }}#}
+                        </td>
+                        <td>
+                            {{ audit.Status }}
+                        </td>
+                        <td>
+                            {#{{ audit.Status }}#}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+{% endblock %}

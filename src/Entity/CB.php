@@ -60,9 +60,23 @@ class CB
 	 */
     private $organisations;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="usercb")
+	 */
+    private $cbuser;
+
+	/**
+	 * @return mixed
+	 */
+	public function getCbuser()
+	{
+		return $this->cbuser;
+	}
+
     public function __construct()
 	{
 		$this->organisations = new ArrayCollection();
+		$this->cbuser = new ArrayCollection();
 	}
 
 	public function getId(): ?int

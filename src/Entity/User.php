@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
-	const ROLE_USER = 'ROLE_USER';
+	const ROLE_CBADMIN = 'ROLE_CBADMIN';
 	const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
@@ -40,6 +40,29 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      */
     private $passwword;
+
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\CB", inversedBy="cbuser")
+	 * @ORM\JoinColumn(nullable=true)
+	 */
+    public $usercb;
+
+	/**
+	 * @return mixed
+	 */
+	public function getUsercb()
+	{
+		return $this->usercb;
+	}
+
+	/**
+	 * @param mixed $usercb
+	 */
+	public function setUsercb($usercb)
+	{
+		$this->usercb = $usercb;
+	}
 
 	/**
 	 * @var array
@@ -110,7 +133,7 @@ class User implements UserInterface, \Serializable
 	 *
 	 *     public function getRoles()
 	 *     {
-	 *         return ['ROLE_USER'];
+	 *         return ['ROLE_CBADMIN'];
 	 *     }
 	 *
 	 * Alternatively, the roles might be stored on a ``roles`` property,

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+
+    <div class="container mt-4">
+        {#{% for message in app.flashes('success') %}#}
+            {#<div class="alert alert-success">#}
+                {#{{ message }}#}
+            {#</div>#}
+        {#{% endfor %}#}
+    </div>
+
+
+    <div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+    <div class="text-right">
+
+
+        <a href="{{ path('admin_cbuser_new', {name: cb.name}) }}" class="btn btn-primary">Create New Auditor</a>
+    </div>
+    <div class="row">
+    <div class="col-sm-4 dropdown-menu-sm-left">
+        {{ include('Admin/CB/cbleftmenu.html.twig') }}
+    </div>
+
+    <div class="col-sm-8">
+
+    <div class="container-fluid col-sm-8">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Auditors</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+
+
+                <td> <a href="{{ path('user_show', {id: user.id, slug: user.slug}) }}" >{{ user.name }} </a></td>
+                    {#{{ user.name }}#}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @property  twig
@@ -37,6 +38,10 @@ class AdminOrgController extends AbstractController
 	 * @var \Twig_Environment
 	 */
 	private $twig;
+	/**
+	 * @var AuthorizationCheckerInterface
+	 */
+	private $authorizationChecker;
 
 
 	/**
@@ -45,11 +50,13 @@ class AdminOrgController extends AbstractController
 	 * @param ObjectManager $em
 	 * @param \Twig_Environment $twig
 	 */
-	public function __construct(OrganisationRepository $repository, ObjectManager $em, \Twig_Environment $twig)
+	public function __construct(OrganisationRepository $repository, ObjectManager $em,
+								\Twig_Environment $twig, AuthorizationCheckerInterface $authorizationChecker)
 	{
 		$this->repository = $repository;
 		$this->em = $em;
 		$this->twig = $twig;
+		$this->authorizationChecker = $authorizationChecker;
 	}
 
 	/**
@@ -58,7 +65,25 @@ class AdminOrgController extends AbstractController
 	 */
 	public function index()
 	{
+
+	   if ($this->authorizationChecker->isGranted('ROLE_ADMIN'))
+	   {
 		$orgs = $this->repository->findAll();
+		return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
+
+	   }
+
+
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
+		{
+			$a = $this->getUser();
+			$id = $a->usercb;
+			$id = $id->getid();
+
+			$orgs = $this->repository->findBy(array('cb'=>$id));
+
+		}
+
 		return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
 	}
 
@@ -69,6 +94,7 @@ class AdminOrgController extends AbstractController
 	 */
 	public function show(Organisation $organisation, string $slug): Response
 	{
+
 		if ($organisation->getSlug() !== $slug) {
 			return $this->redirectToRoute('org.show', [
 				'id' => $organisation->getId(),
@@ -180,6 +206,37 @@ class AdminOrgController extends AbstractController
 		return new Response($html);
 
 	}
+
+	/**
+	 * @Route("/Audits-list", name="admin_audit_index")
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function AuditMenuList()
+	{
+
+//		if ($this->authorizationChecker->isGranted('ROLE_ADMIN'))
+//		{
+//			$orgs = $this->repository->findAll();
+//			return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
+//
+//		}
+
+
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
+		{
+			$a = $this->getUser();
+			$id = $a->usercb;
+			$id = $id->getid();
+
+			$orgs = $this->repository->findBy(array('cb'=>$id));
+
+		}
+
+		return $this->render('Admin/Audit/index_auditList.html.twig', compact('orgs'));
+	}
+
+
+
 
 
 	/**

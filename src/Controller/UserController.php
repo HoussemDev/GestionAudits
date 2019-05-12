@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\CB;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -108,6 +109,37 @@ class UserController extends AbstractController
 		]);
 	}
 
+
+	/**
+	 * @Route("/cbuser/create/{name}", name="admin_cbuser_new")
+	 */
+	public function newCbuser(Request $request, UserPasswordEncoderInterface $passwordEncoder, $name )
+	{
+		$User = new User();
+		$form = $this->createForm(UserType::class, $User);
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() && $form->isValid())
+		{
+			$User->setUsercb($this->em->getRepository(CB::class)->findOneBy(array("name" => $name)));
+
+			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
+			$User->setRoles( array('ROLE_CBADMIN') );
+
+			$User->setPasswword($password);
+			$this->em->persist($User);
+
+			$this->em->flush();
+			$this->addFlash('success','User Created' );
+
+			return $this->redirectToRoute('admin_users_index');
+		}
+		return $this->render('Admin/User/edit.html.twig',  [
+			'user' => $User,
+			'form' => $form->createView()
+		]);
+	}
+
 	/**
 	 * @Route("/user/edit/{id}", name="admin_user_edit")
 	 * @param User $User
@@ -151,6 +183,34 @@ class UserController extends AbstractController
 
 		return $this->redirectToRoute('admin_users_index');
 	}
+
+
+
+	/**
+	 * @Route("/cbuserslist/{name}", name="cb_users_list")
+	 * @param CB $cbusers
+	 * @return Response
+	 */
+	public function cbOrganisation(CB $cbusers)
+	{
+		$html = $this->twig->render('Admin/CB/cbuser.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'users' => $cbusers->getCbuser(),
+//				'id' => $cborganisation->getId(),
+//				'slug' => $cborganisation->getSlug(),
+				'cb' => $cbusers
+
+
+			]);
+		return new Response($html);
+
+	}
+
 
 
 }

@@ -27,14 +27,14 @@ class AppFixtures extends Fixture
 			'email' => 'john_doe@doe.com',
 			'password' => 'john123',
 			'fullName' => 'John Doe',
-			'roles' => [User::ROLE_USER]
+			'roles' => [User::ROLE_CBADMIN]
 		],
 		[
 			'username' => 'rob_smith',
 			'email' => 'rob_smith@smith.com',
 			'password' => 'rob12345',
 			'fullName' => 'Rob Smith',
-			'roles' => [User::ROLE_USER]
+			'roles' => [User::ROLE_CBADMIN]
 
 		],
 		[
@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
 			'email' => 'marry_gold@gold.com',
 			'password' => 'marry12345',
 			'fullName' => 'Marry Gold',
-			'roles' => [User::ROLE_USER]
+			'roles' => [User::ROLE_CBADMIN]
 		],
 	];
 

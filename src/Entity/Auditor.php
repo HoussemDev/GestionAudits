@@ -136,7 +136,7 @@ class Auditor implements UserInterface, \Serializable
 	 *
 	 *     public function getRoles()
 	 *     {
-	 *         return ['ROLE_USER'];
+	 *         return ['ROLE_CBADMIN'];
 	 *     }
 	 *
 	 * Alternatively, the roles might be stored on a ``roles`` property,
