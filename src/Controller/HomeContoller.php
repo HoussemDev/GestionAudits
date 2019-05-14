@@ -54,13 +54,14 @@ class HomeContoller extends AbstractController
 	{
 
 
+//		$datas = $this->em->getRepository(Organisation::class)->countOrgInCb();
+		$datas = $this->em->getRepository(Organisation::class)->findOneBy(array('id'=>109));
+		$datas = $datas->getAudits();
 
-
-
-		$datas = $this->em->getRepository(Organisation::class)->countOrgInCb();
-//		$datas = $this->em->getRepository(Organisation::class)->find(109);
-
-
+//		$dataname= $datas->getName();
+//		$datacountry= $datas->getCountry();
+		dump($datas);
+		die();
 		$pieChart = new PieChart();
 //
 //		$cbName =  array();
@@ -82,9 +83,6 @@ class HomeContoller extends AbstractController
 //		$pieChart->getData()->setArrayToDataTable( $dataToDisplay);
 
 
-
-
-
 //		$pieChart->getData()->setArrayToDataTable(
 //			[['Task', 'Hours per Day'],
 //				['Test2', ],
@@ -95,9 +93,10 @@ class HomeContoller extends AbstractController
 		$pieChart->getData()->setArrayToDataTable(
 			[['Task', 'Hours per Day'],
 
-				['Test2', 5],
-				['Test2', 5],
-				['Test2', 5],
+				['Organisation name', $dataname],
+				['Country', $datacountry],
+//				['Test2', 5],
+//				['Test2', 5],
 			]
 		);
 
