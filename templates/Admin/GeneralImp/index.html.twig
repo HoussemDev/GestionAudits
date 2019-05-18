@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block title 'General Impression' %}
+{% block body %}
+
+    <div class="container mt-4">
+        {#<h1>Audit List</h1>#}
+        {#{% for message in app.flashes('success') %}#}
+            {#<div class="alert alert-success">#}
+                {#{{ message }}#}
+            {#</div>#}
+        {#{% endfor %}#}
+        <div class="text-right">
+            <a href="{{ path('admin_generalimp_new') }}" class="btn btn-primary">Create New General Imp</a>
+
+        </div>
+
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for genralimp in genralimps %}
+                <tr>
+                    <td> <a href="{{ path('genimp_show', {id: genralimp.id, slug: genralimp.slug}) }}" >{{ genralimp.titlegeneralimp }} </a></td>
+
+
+
+                    <td>
+                        <a href="{{ path('admin_generalimp_edit', {id: genralimp.id}) }}" class="btn btn-success">Edit</a>
+                        <form method="post" action="{{ path('admin_generalim_delete', {id: genralimp.id }) }}" style="display: inline-block"
+                              onsubmit="return confirm('Wanna really delete this General Impression')" >
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ genralimp.id) }}">
+                            <button class="btn btn btn-danger">DELETE</button>
+
+
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{{ form_start(form) }}
+
+<form>
+    <div class="form-row">
+        <div class="col-md-8 mb-8">
+            <div class="row">
+
+                <div class="col-md-12">{{ form_row(form.capabilitymanagementsystem) }}</div>
+
+                {#<div class="col-md-12">{{ form_row(form.titlegeneralimp) }}</div>#}
+                <div class="col-md-12">{{ form_row(form.contextorganisation) }}</div>
+                <div class="col-md-12">{{ form_row(form.leadership) }}</div>
+                <div class="col-md-12">{{ form_row(form.planning) }}</div>
+                <div class="col-md-12">{{ form_row(form.support) }}</div>
+                <div class="col-md-12">{{ form_row(form.operation) }}</div>
+                <div class="col-md-12">{{ form_row(form.haccpplancomment) }}</div>
+                <div class="col-md-12">{{ form_row(form.haccpplanprocess) }}</div>
+                <div class="col-md-12">{{ form_row(form.opportunityimprovement) }}</div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    {{ form_widget(form) }}
+
+    <button class="btn btn-primary"> {{ button|default('Save') }} </button>
+
+
+    {{ form_end(form) }}
+
+</form>

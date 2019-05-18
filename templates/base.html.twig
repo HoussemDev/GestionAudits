@@ -76,8 +76,7 @@
 <div id="wrapper">
 
 
-    <
-  class="sidebar navbar-nav">
+    <ul class="sidebar navbar-nav">
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle">
             <i class="fas fa-bars fa-1x"></i>
         </button>
@@ -85,9 +84,10 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('index') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Home</span>
+                <span>Dashboard</span>
             </a>
         </li>
+
         {#<li class="nav-item dropdown">#}
         {#<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
         {#<i class="fas fa-fw fa-folder"></i>#}
@@ -110,6 +110,11 @@
                 <span>Certification Body</span></a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_generalimp_index') }}">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>GenImpression</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ path('admin.organlist.index') }}">
                 <i class="fa fa-database" aria-hidden="true"></i>
                 <span>Organisations</span></a>
@@ -125,8 +130,6 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Audits</span></a>
         </li>
-
-
 
         {% if is_granted('ROLE_ADMIN') %}
 
