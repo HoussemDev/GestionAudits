@@ -10,10 +10,13 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Audit;
+use App\Entity\AuditSearch;
 use App\Entity\Organisation;
+use App\Form\AuditSearchType;
 use App\Form\AuditType;
 use App\Repository\AuditRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,12 +50,31 @@ class AdminAuditController extends AbstractController
 	 * @Route("/audit", name="admin.auditlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function index()
+	public function index(PaginatorInterface $paginator, Request $request)
 	{
+		$search = new AuditSearch();
+		$form = $this->createForm(AuditSearchType::class, $search);
+		$form->handleRequest($request);
+//		$audits = $this->repository->findAll();
+
+		$audits = $paginator->paginate(
+			$this->repository->findAllVisibleQuery($search),
+			$request->query->getInt('page',1),
+			12
+		);
 
 
-		$audits = $this->repository->findAll();
-		return $this->render('Admin/Audit/index.html.twig', compact('audits'));
+
+//		dump($audits);
+//		die();
+//		return $this->render('Admin/Audit/index.html.twig', compact('audits'));
+		return $this->render('Admin/Audit/index.html.twig', [
+			'audits' => $audits,
+			'current_menu' => 'audit',
+			'form' => $form->createView()
+
+		]);
+
 	}
 
 

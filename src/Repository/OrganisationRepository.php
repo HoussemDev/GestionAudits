@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\AuditSearch;
+use App\Entity\CB;
 use App\Entity\Organisation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -61,5 +64,64 @@ class OrganisationRepository extends ServiceEntityRepository
 		return $qb;
 
 	}
+
+	/**
+	 * @return array
+	 */
+
+	public function countorg(): array
+	{
+		$qb = $this->createQueryBuilder('l')
+
+			->select('COUNT(l)')
+
+			->getQuery();
+
+
+		return $qb->getArrayResult();
+
+	}
+
+
+
+
+//	/**
+//	 * @return array
+//	 */
+
+//	public function findAllVisibleAuditCb( $cb ,AuditSearch $search): array
+//	{
+//
+//		$this->createQueryBuilder('p');
+////			->where('p.cb = true');
+//		$query = $this->findBy($cb);
+//
+//		if ($search->getAudittitle()) {
+//			$audittitle = $search->getAudittitle();
+//			$query = $query
+//				->andWhere('p.cb LIKE :audittitle')
+//				->setParameter('audittitle', '%' . $audittitle . '%');
+//		}
+////
+////		if ($search->getAuditstandard()) {
+////			$auditstandard = $search->getAuditstandard();
+////			$query = $query
+////				->andWhere('p.standard LIKE :auditstandard')
+////				->setParameter('auditstandard', '%' . $auditstandard . '%');
+////		}
+//
+//
+//		return $query;
+//
+//	}
+//
+//
+//	private function findVisibleQuery(): QueryBuilder
+//	{
+//		return $this->createQueryBuilder('p')
+//			->where('p. = true');
+//
+//	}
+
 
 }

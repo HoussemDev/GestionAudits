@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\UserSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -47,4 +50,37 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+	/**
+	 * @return Query
+	 */
+
+	public function findAllVisibleQuery(UserSearch $search): Query
+	{
+		$query = $this->findAllUsers();
+
+		if ($search->getUsername()) {
+			$username = $search->getUsername();
+
+//			dump($username);
+//			die();
+
+
+			$query = $query
+				->andWhere('p.username LIKE :username')
+				->setParameter('username', '%' . $username . '%');
+		}
+
+
+
+		return $query->getQuery();
+
+	}
+
+	private function findAllUsers(): QueryBuilder
+	{
+		return $this->createQueryBuilder('p');
+//			->where('p.id = true');
+
+	}
 }

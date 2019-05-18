@@ -9,11 +9,14 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\AuditSearch;
 use App\Entity\CB;
 use App\Entity\Organisation;
+use App\Form\AuditSearchType;
 use App\Form\OrganisationType;
 use App\Repository\OrganisationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -211,7 +214,7 @@ class AdminOrgController extends AbstractController
 	 * @Route("/Audits-list", name="admin_audit_index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function AuditMenuList()
+	public function AuditMenuList(Request $request, PaginatorInterface $paginator)
 	{
 
 //		if ($this->authorizationChecker->isGranted('ROLE_ADMIN'))
@@ -220,6 +223,9 @@ class AdminOrgController extends AbstractController
 //			return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
 //
 //		}
+		$search = new AuditSearch();
+		$form = $this->createForm(AuditSearchType::class, $search);
+		$form->handleRequest($request);
 
 
 		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
@@ -228,11 +234,29 @@ class AdminOrgController extends AbstractController
 			$id = $a->usercb;
 			$id = $id->getid();
 
-			$orgs = $this->repository->findBy(array('cb'=>$id));
+//			$orgs = $this->repository->findAllVisibleAuditCb(array('cb'=>$id), $search);
+//			$orgs = $this->repository->findBy(array('cb'=>$id));
+
+			$orgs = $paginator->paginate(
+				$this->repository->findBy(array('cb'=>$id)),
+				$request->query->getInt('page',1),
+				12
+			);
+
+//			dump($orgs);
+//			die();
+
 
 		}
 
-		return $this->render('Admin/Audit/index_auditList.html.twig', compact('orgs'));
+//		return $this->render('Admin/Audit/index_auditList.html.twig', compact('orgs'));
+
+		return $this->render('Admin/Audit/index_auditList.html.twig', [
+			'orgs' => $orgs,
+			'current_menu' => 'audit',
+			'form' => $form->createView()
+
+		]);
 	}
 
 

@@ -19,6 +19,25 @@ class CBRepository extends ServiceEntityRepository
         parent::__construct($registry, CB::class);
     }
 
+
+
+	/**
+	 * @return array
+	 */
+
+	public function countCb(): array
+	{
+		$qb = $this->createQueryBuilder('l')
+
+			->select('COUNT(l)')
+
+			->getQuery();
+
+
+		return $qb->getArrayResult();
+
+	}
+
     // /**
     //  * @return CB[] Returns an array of CB objects
     //  */

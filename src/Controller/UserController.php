@@ -11,9 +11,12 @@ namespace App\Controller;
 
 use App\Entity\CB;
 use App\Entity\User;
+use App\Entity\UserSearch;
+use App\Form\UserSearchType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,10 +52,25 @@ class UserController extends AbstractController
 	 * @Route("/admin/user", name="admin_users_index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function index()
+	public function index(Request $request, PaginatorInterface $paginator)
 	{
-		$users = $this->repository->findAll();
-		return $this->render('Admin/User/index.html.twig', compact('users'));
+		$search = new UserSearch();
+		$form = $this->createForm(UserSearchType::class, $search);
+		$form->handleRequest($request);
+
+		$users = $paginator->paginate(
+			$this->repository->findAllVisibleQuery($search),
+			$request->query->getInt('page',1),
+			12
+		);
+
+
+		return $this->render('Admin/User/index.html.twig', [
+			'users' => $users,
+			'current_menu' => 'audit',
+			'form' => $form->createView()
+
+		]);
 	}
 
 	/**
@@ -146,14 +164,20 @@ class UserController extends AbstractController
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function edit(User $User, Request $request)
+	public function edit(User $User, Request $request , UserPasswordEncoderInterface $passwordEncoder)
 	{
+
+
 		$form =$this->createForm(UserType::class, $User);
 
 		$form->handleRequest($request);
 
 		if($form->isSubmitted() && $form->isValid())
 		{
+			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
+			$User->setPasswword($password);
+
+
 			$this->em->flush();
 			$this->addFlash('success','User profile Edited' );
 			return $this->redirectToRoute('admin_users_index');

@@ -13,7 +13,27 @@
         {#<a href="{{ path('admin.audit.new') }}" class="btn btn-primary">Create New Audit</a>#}
 
         {#</div>#}
+        {#<div class="jumbotron">#}
+            {#<div class="container">#}
+                {#{{ form_start(form) }}#}
+                {#<div class="form-row">#}
+                    {#<div class="col">#}
+                        {#{{ form_row(form.audittitle) }}#}
+                        {#{{ form_row(form.auditstandard) }}#}
+                    {#</div>#}
+                    {#<div class="col">#}
+                        {#<button class="btn btn-primary">#}
+                            {#Search#}
+                        {#</button>#}
 
+                    {#</div>#}
+                {#</div>#}
+                {#{{ form_end(form) }}#}
+
+            {#</div>#}
+
+
+        {#</div>#}
 
         <table class="table table-striped">
             <thead>
@@ -50,7 +70,10 @@
             </tbody>
 
         </table>
+        <div class="pagination">
+            {{ knp_pagination_render(orgs) }}
 
+        </div>
 
     </div>
 

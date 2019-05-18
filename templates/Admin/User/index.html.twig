@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Users List</h1>
+        {#<h1>Users List</h1>#}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -15,11 +15,31 @@
         </div>
 
 
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.username) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>User name</th>
+                <th>Role</th>
+                {#<th>CB name</th>#}
                 <th>Actions</th>
             </tr>
             </thead>
@@ -27,6 +47,9 @@
             {% for user in users %}
                 <tr>
                     <td> <a href="{{ path('user_show', {id: user.id, slug: user.slug}) }}" >{{ user.name }} </a></td>
+                   <td> {{ user.roles[0]}}  </td>
+                   {#<td> {{ user.usercb}}  </td>#}
+                    {#{{ dump(user) }}#}
 
 
                     <td>
@@ -46,7 +69,10 @@
             </tbody>
 
         </table>
+        <div class="pagination">
+            {{ knp_pagination_render(users) }}
 
+        </div>
 
 
     </div>

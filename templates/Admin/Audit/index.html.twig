@@ -14,13 +14,33 @@
 
         {#</div>#}
 
+        <div class="jumbotron">
+            <div class="container">
+                {{ form_start(form) }}
+                <div class="form-row">
+                    <div class="col">
+                        {{ form_row(form.audittitle) }}
+                        {{ form_row(form.auditstandard) }}
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">
+                            Search
+                        </button>
+
+                    </div>
+                    </div>
+                {{ form_end(form) }}
+
+            </div>
 
 
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nom</th>
+                <th>Audit Title</th>
                 <th>Organisation</th>
+                <th>Standard</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -29,6 +49,9 @@
                 <tr>
                     <td> <a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}" >{{ audit.Title }} </a></td>
                     <td> <a href="#" >{{ audit.org.name }} </a></td>
+                    <td>
+                        {{ audit.standard }}
+                    </td>
 
 
                     <td>
@@ -49,7 +72,10 @@
 
         </table>
 
+        <div class="pagination">
+            {{ knp_pagination_render(audits) }}
 
+        </div>
 
     </div>
 

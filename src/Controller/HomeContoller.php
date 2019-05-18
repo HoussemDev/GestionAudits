@@ -54,14 +54,15 @@ class HomeContoller extends AbstractController
 	{
 
 
-//		$datas = $this->em->getRepository(Organisation::class)->countOrgInCb();
-		$datas = $this->em->getRepository(Organisation::class)->findOneBy(array('id'=>109));
-		$datas = $datas->getAudits();
+		$NbrOrg = $this->em->getRepository(Organisation::class)->countorg();
+		$NbrCb = $this->em->getRepository(CB::class)->countCb();
+
+//		$datas = $this->em->getRepository(Organisation::class)->findOneBy(array('id'=>109));
+//		$datas = $datas->getAudits();
 
 //		$dataname= $datas->getName();
 //		$datacountry= $datas->getCountry();
-		dump($datas);
-		die();
+
 		$pieChart = new PieChart();
 //
 //		$cbName =  array();
@@ -90,19 +91,22 @@ class HomeContoller extends AbstractController
 //				['Test2', $datas->getCb()],
 //			]
 //		);
+
+//		dump($NbrOrg[0][1]);
+//		die();
 		$pieChart->getData()->setArrayToDataTable(
 			[['Task', 'Hours per Day'],
 
-				['Organisation name', $dataname],
-				['Country', $datacountry],
+				['Organisation Number', (int) $NbrOrg[0][1]],
+				['Certification Body Number', (int) $NbrCb[0][1]],
 //				['Test2', 5],
 //				['Test2', 5],
 			]
 		);
 
-		$pieChart->getOptions()->setTitle('My Daily Activities');
-		$pieChart->getOptions()->setHeight(500);
-		$pieChart->getOptions()->setWidth(900);
+//		$pieChart->getOptions()->setTitle('My Daily Activities');
+		$pieChart->getOptions()->setHeight(200);
+		$pieChart->getOptions()->setWidth(600);
 		$pieChart->getOptions()->getTitleTextStyle()->setBold(true);
 		$pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
 		$pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
