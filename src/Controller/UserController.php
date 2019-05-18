@@ -48,6 +48,7 @@ class UserController extends AbstractController
 		$this->em = $em;
 		$this->twig = $twig;
 	}
+
 	/**
 	 * @Route("/admin/user", name="admin_users_index")
 	 * @return \Symfony\Component\HttpFoundation\Response
@@ -60,7 +61,7 @@ class UserController extends AbstractController
 
 		$users = $paginator->paginate(
 			$this->repository->findAllVisibleQuery($search),
-			$request->query->getInt('page',1),
+			$request->query->getInt('page', 1),
 			12
 		);
 
@@ -78,10 +79,9 @@ class UserController extends AbstractController
 	 * @param User $User
 	 * @return Response
 	 */
-	public function show(User $User, string $slug):Response
+	public function show(User $User, string $slug): Response
 	{
-		if ($User->getSlug() !== $slug)
-		{
+		if ($User->getSlug() !== $slug) {
 			return $this->redirectToRoute('user_show', [
 				'id' => $User->getId(),
 				'slug' => $User->getSlug()
@@ -98,30 +98,28 @@ class UserController extends AbstractController
 	}
 
 
-
 	/**
 	 * @Route("/user/create", name="admin_user_new")
 	 */
-	public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder )
+	public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder)
 	{
 		$User = new User();
 		$form = $this->createForm(UserType::class, $User);
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
-			$User->setRoles( array('ROLE_ADMIN') );
+			$User->setRoles(array('ROLE_ADMIN'));
 
 			$User->setPasswword($password);
 			$this->em->persist($User);
 
 			$this->em->flush();
-			$this->addFlash('success','User Created' );
+			$this->addFlash('success', 'User Created');
 
 			return $this->redirectToRoute('admin_users_index');
 		}
-		return $this->render('Admin/User/edit.html.twig',  [
+		return $this->render('Admin/User/edit.html.twig', [
 			'user' => $User,
 			'form' => $form->createView()
 		]);
@@ -131,28 +129,62 @@ class UserController extends AbstractController
 	/**
 	 * @Route("/cbuser/create/{name}", name="admin_cbuser_new")
 	 */
-	public function newCbuser(Request $request, UserPasswordEncoderInterface $passwordEncoder, $name )
+	public function newCbuser(Request $request, UserPasswordEncoderInterface $passwordEncoder, $name)
 	{
 		$User = new User();
 		$form = $this->createForm(UserType::class, $User);
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+		if ($form->isSubmitted() && $form->isValid()) {
 			$User->setUsercb($this->em->getRepository(CB::class)->findOneBy(array("name" => $name)));
 
 			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
-			$User->setRoles( array('ROLE_CBADMIN') );
+
+			$User->setRoles(array('ROLE_CBADMIN'));
 
 			$User->setPasswword($password);
 			$this->em->persist($User);
 
 			$this->em->flush();
-			$this->addFlash('success','User Created' );
+			$this->addFlash('success', 'User Created');
 
 			return $this->redirectToRoute('admin_users_index');
 		}
-		return $this->render('Admin/User/edit.html.twig',  [
+		return $this->render('Admin/User/edit.html.twig', [
+			'user' => $User,
+			'form' => $form->createView()
+		]);
+	}
+
+
+	/**
+	 * @Route("/cbauditor/create/{name}", name="admin_cbauditor_new")
+	 */
+	public function newCbauditor(Request $request, UserPasswordEncoderInterface $passwordEncoder, $name)
+	{
+		$User = new User();
+		$form = $this->createForm(UserType::class, $User);
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$User->setUsercb($this->em->getRepository(CB::class)->findOneBy(array("name" => $name)));
+
+			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
+
+			$User->setRoles(array('ROLE_AUDITOR'));
+
+			$User->setPasswword($password);
+			$this->em->persist($User);
+
+			$this->em->flush();
+			$this->addFlash('success', 'Auditor Created');
+
+			return $this->redirectToRoute('user_show', [
+				'id' => $User->getId(),
+				'slug' => $User->getSlug()
+			], 301);
+		}
+		return $this->render('Admin/User/edit.html.twig', [
 			'user' => $User,
 			'form' => $form->createView()
 		]);
@@ -164,28 +196,34 @@ class UserController extends AbstractController
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function edit(User $User, Request $request , UserPasswordEncoderInterface $passwordEncoder)
+	public function edit(User $User, Request $request, UserPasswordEncoderInterface $passwordEncoder)
 	{
 
 
-		$form =$this->createForm(UserType::class, $User);
+		$form = $this->createForm(UserType::class, $User);
 
 		$form->handleRequest($request);
 
-		if($form->isSubmitted() && $form->isValid())
-		{
+
+		if ($form->isSubmitted() && $form->isValid()) {
 			$password = $passwordEncoder->encodePassword($User, $User->getPassword());
 			$User->setPasswword($password);
 
 
 			$this->em->flush();
-			$this->addFlash('success','User profile Edited' );
-			return $this->redirectToRoute('admin_users_index');
+			$this->addFlash('success', 'User profile Edited');
+//			return $this->redirectToRoute('user_show');
+//			return $this->redirect($request->getUri());
+			return $this->redirectToRoute('user_show', [
+				'id' => $User->getId(),
+				'slug' => $User->getSlug()
+			], 301);
+
 		}
 
-		return $this->render('Admin/User/edit.html.twig',  [
+		return $this->render('Admin/User/edit.html.twig', [
 			'user' => $User,
-			'form' => $form->createView() ]);
+			'form' => $form->createView()]);
 	}
 
 	/**
@@ -196,18 +234,16 @@ class UserController extends AbstractController
 	 */
 	public function delete(User $User, Request $request)
 	{
-		if ($this->isCsrfTokenValid('delete' . $User->getId(), $request->get('_token')))
-		{
+		if ($this->isCsrfTokenValid('delete' . $User->getId(), $request->get('_token'))) {
 			$this->em->remove($User);
 			$this->em->flush();
-			$this->addFlash('success','User removed' );
+			$this->addFlash('success', 'User removed');
 
 		}
 
 
 		return $this->redirectToRoute('admin_users_index');
 	}
-
 
 
 	/**
@@ -217,6 +253,9 @@ class UserController extends AbstractController
 	 */
 	public function cbOrganisation(CB $cbusers)
 	{
+//		$cbusers = $cbusers->getCbuser();
+
+
 		$html = $this->twig->render('Admin/CB/cbuser.html.twig',
 			[
 //				'organisations' => $this->$cborganisation->findBy(
@@ -231,10 +270,50 @@ class UserController extends AbstractController
 
 
 			]);
+//    $a = $cbusers->getCbuser();
+//
+//
+//    $a = $a;
+//		dump($a);
+//		die();
 		return new Response($html);
 
 	}
 
+
+	/**
+	 * @Route("/cbauditorlist/{name}", name="cb_auditors_list")
+	 * @param CB $cbusers
+	 * @return Response
+	 */
+	public function CbAuditorsList(CB $cbusers)
+	{
+//		$cbusers = $cbusers->getCbuser();
+
+
+		$html = $this->twig->render('Admin/CB/cbauditor.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+//				'cbs' => $cborganisation,
+				'users' => $cbusers->getCbuser(),
+//				'id' => $cborganisation->getId(),
+//				'slug' => $cborganisation->getSlug(),
+				'cb' => $cbusers
+
+
+			]);
+//    $a = $cbusers->getCbuser();
+//
+//
+//    $a = $a;
+//		dump($a);
+//		die();
+		return new Response($html);
+
+	}
 
 
 }

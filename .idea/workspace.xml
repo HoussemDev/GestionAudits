@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="780b04d7-72e0-4461-8cc0-660dd55734f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/AuditSearch.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/UserSearch.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/Admin/User/auditleftmenu.html.twig" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/Admin/CB/cbauditor.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminOrgController.php" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminOrgController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/HomeContoller.php" afterPath="$PROJECT_DIR$/src/Controller/HomeContoller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/security.yaml" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/UserController.php" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/AuditRepository.php" afterPath="$PROJECT_DIR$/src/Repository/AuditRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/CBRepository.php" afterPath="$PROJECT_DIR$/src/Repository/CBRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/OrganisationRepository.php" afterPath="$PROJECT_DIR$/src/Repository/OrganisationRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/User.php" afterPath="$PROJECT_DIR$/src/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Form/UserType.php" afterPath="$PROJECT_DIR$/src/Form/UserType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/Audit/index.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/Audit/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/Audit/index_auditList.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/Audit/index_auditList.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Security/UserVoter.php" afterPath="$PROJECT_DIR$/src/Security/UserVoter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/CB/show.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/CB/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Admin/User/index.html.twig" afterPath="$PROJECT_DIR$/templates/Admin/User/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pages/home.html.twig" afterPath="$PROJECT_DIR$/templates/pages/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pages/test.html.twig" afterPath="$PROJECT_DIR$/templates/pages/test.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,22 +52,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cbleftmenu.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="2369">
+              <caret line="293" column="65" lean-forward="false" selection-start-line="293" selection-start-column="65" selection-end-line="293" selection-end-column="65" />
+              <folding>
+                <element signature="e#1517#1545#0#PHP" expanded="true" />
+                <element signature="e#1930#1941#0#PHP" expanded="true" />
+                <element signature="e#2044#2071#0#PHP" expanded="true" />
+                <element signature="e#2770#2789#1#PHP" expanded="true" />
+                <element signature="e#2819#2846#0#PHP" expanded="true" />
+                <element signature="e#3634#3653#1#PHP" expanded="true" />
+                <element signature="e#3683#3710#0#PHP" expanded="true" />
+                <element signature="e#4510#4521#0#PHP" expanded="true" />
+                <element signature="e#4623#4650#0#PHP" expanded="true" />
+                <element signature="e#5419#5430#0#PHP" expanded="true" />
+                <element signature="e#5534#5561#0#PHP" expanded="true" />
+                <element signature="e#6097#6116#1#PHP" expanded="true" />
+                <element signature="e#6352#6379#0#PHP" expanded="true" />
+                <element signature="e#7045#7075#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminAuditController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php">
+      <file leaf-file-name="cbuser.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="70" column="50" lean-forward="false" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="601">
+              <caret line="41" column="38" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="e#426#442#0#Twig" expanded="true" />
+                <element signature="e#1028#1037#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cbleftmenu.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="93" lean-forward="false" selection-start-line="15" selection-start-column="93" selection-end-line="15" selection-end-column="93" />
+              <folding>
+                <element signature="e#629#642#0#Twig" expanded="true" />
+                <element signature="e#773#789#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cbauditor.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbauditor.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+              <folding>
+                <element signature="e#458#477#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="128" column="0" lean-forward="true" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding>
+                <element signature="e#2237#2246#0#Twig" expanded="true" />
+                <element signature="e#2483#2498#0#Twig" expanded="true" />
+                <element signature="e#2711#2725#0#Twig" expanded="true" />
+                <element signature="e#3181#3186#0#Twig" expanded="true" />
+                <element signature="e#4325#4343#0#Twig" expanded="true" />
+                <element signature="e#4562#4583#0#Twig" expanded="true" />
+                <element signature="e#4841#4862#0#Twig" expanded="true" />
+                <element signature="e#4941#4958#0#Twig" expanded="true" />
+                <element signature="e#5237#5257#0#Twig" expanded="true" />
+                <element signature="e#5733#5756#0#Twig" expanded="true" />
+                <element signature="e#5980#6003#0#Twig" expanded="true" />
+                <element signature="e#6234#6251#0#Twig" expanded="true" />
+                <element signature="e#6486#6495#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,7 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/Admin/Audit/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/Certificate/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/Organisation/edit.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/Finding/edit.html.twig" />
@@ -115,31 +175,22 @@
         <option value="$PROJECT_DIR$/src/Entity/Organisation.php" />
         <option value="$PROJECT_DIR$/templates/Admin/CB/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/User/edit.html.twig" />
-        <option value="$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/CB.php" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/src/Controller/Admin/AdminControler.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" />
         <option value="$PROJECT_DIR$/src/Entity/Auditor.php" />
-        <option value="$PROJECT_DIR$/src/Security/UserVoter.php" />
         <option value="$PROJECT_DIR$/var/cache/dev/ContainerLC9Gx7J/srcApp_KernelDevDebugContainer.php" />
         <option value="$PROJECT_DIR$/var/cache/dev/srcApp_KernelDevDebugContainer.xml" />
         <option value="$PROJECT_DIR$/src/Entity/Audit.php" />
         <option value="$PROJECT_DIR$/templates/Admin/Audit/_formaudit.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/Audit/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/Form/UserType.php" />
-        <option value="$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/User/show.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/AuditSearch.php" />
         <option value="$PROJECT_DIR$/src/Form/AuditType.php" />
         <option value="$PROJECT_DIR$/src/Form/AuditSearchType.php" />
         <option value="$PROJECT_DIR$/templates/Admin/Audit/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/UserSearch.php" />
-        <option value="$PROJECT_DIR$/templates/Admin/User/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/UserSearchType.php" />
-        <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/src/Repository/AuditRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php" />
         <option value="$PROJECT_DIR$/src/Controller/Admin/AdminOrgController.php" />
@@ -150,9 +201,19 @@
         <option value="$PROJECT_DIR$/src/Controller/HomeContoller.php" />
         <option value="$PROJECT_DIR$/src/Form/CbType.php" />
         <option value="$PROJECT_DIR$/templates/Admin/CB/show.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/pages/home.html.twig" />
+        <option value="$PROJECT_DIR$/src/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/Security/UserVoter.php" />
+        <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
+        <option value="$PROJECT_DIR$/src/Form/UserType.php" />
+        <option value="$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig" />
+        <option value="$PROJECT_DIR$/templates/Admin/User/index.html.twig" />
+        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
+        <option value="$PROJECT_DIR$/templates/Admin/CB/cbauditor.html.twig" />
         <option value="$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig" />
+        <option value="$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
       </list>
     </option>
   </component>
@@ -311,6 +372,12 @@
             <path>
               <item name="gestionaudits" type="b2602c69:ProjectViewProjectNode" />
               <item name="gestionaudits" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="packages" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="gestionaudits" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gestionaudits" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -424,16 +491,16 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Sony\gestionaudits\templates\Admin" />
-      <recent name="C:\Users\Sony\gestionaudits\templates\CB" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Sony\gestionaudits\templates\Admin\Audit" />
       <recent name="C:\Users\Sony\gestionaudits\templates\Admin\CB" />
+      <recent name="C:\Users\Sony\gestionaudits\templates\Admin\Audit" />
       <recent name="C:\Users\Sony\gestionaudits\templates\Admin" />
       <recent name="C:\Users\Sony\gestionaudits\templates\pages" />
       <recent name="C:\Users\Sony\gestionaudits\templates\Admin\Organisation" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sony\gestionaudits\templates\Admin" />
+      <recent name="C:\Users\Sony\gestionaudits\templates\CB" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -538,12 +605,12 @@
       <workItem from="1557994729252" duration="281000" />
       <workItem from="1558035557745" duration="6460000" />
       <workItem from="1558092626981" duration="99000" />
-      <workItem from="1558182431819" duration="1390000" />
+      <workItem from="1558182431819" duration="7822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337865000" />
+    <option name="totallyTimeSpent" value="344297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-279" y="-1088" width="1936" height="1056" extended-state="6" />
@@ -553,7 +620,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14781217" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11846318" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11846318" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -589,43 +656,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="51" column="30" lean-forward="false" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Auditor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Security/UserVoter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="63" column="57" lean-forward="false" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/ContainerLBBhKoR/srcApp_KernelDevDebugContainer.php" />
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/ContainerLC9Gx7J/srcApp_KernelDevDebugContainer.php" />
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/b3/b31033fdaecf7d3fe91e2024f6cf1e81c77be303223d33eed6d732f3743acd58.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="94" column="93" lean-forward="false" selection-start-line="94" selection-start-column="93" selection-end-line="94" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/srcApp_KernelDevDebugContainer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="263" column="19" lean-forward="false" selection-start-line="263" selection-start-column="19" selection-end-line="263" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Organisation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -696,32 +726,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Admin/User/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/AuditorType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/UserType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -767,13 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/UserSearch.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -788,27 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="941">
-          <caret line="69" column="53" lean-forward="false" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Admin/User/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="49" column="32" lean-forward="false" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/AuditSearchType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
@@ -820,13 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
           <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminOrgController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="243" column="14" lean-forward="false" selection-start-line="243" selection-start-column="14" selection-end-line="243" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -905,10 +878,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/pages/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="104" column="17" lean-forward="false" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+        <state relative-caret-position="652">
+          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="70" column="50" lean-forward="false" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminControler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1020">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/CB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="70" column="20" lean-forward="false" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Security/UserVoter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="67" column="9" lean-forward="false" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="2" selection-end-line="107" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/User/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/User/_formuser.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="68" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/UserType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="50" column="24" lean-forward="false" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminOrgController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="243" column="14" lean-forward="false" selection-start-line="243" selection-start-column="14" selection-end-line="243" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/User/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -920,27 +989,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pages/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbleftmenu.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="15" column="93" lean-forward="false" selection-start-line="15" selection-start-column="93" selection-end-line="15" selection-end-column="93" />
+          <folding>
+            <element signature="e#629#642#0#Twig" expanded="true" />
+            <element signature="e#773#789#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbuser.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="41" column="38" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="e#426#442#0#Twig" expanded="true" />
+            <element signature="e#1028#1037#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2369">
+          <caret line="293" column="65" lean-forward="false" selection-start-line="293" selection-start-column="65" selection-end-line="293" selection-end-column="65" />
+          <folding>
+            <element signature="e#1517#1545#0#PHP" expanded="true" />
+            <element signature="e#1930#1941#0#PHP" expanded="true" />
+            <element signature="e#2044#2071#0#PHP" expanded="true" />
+            <element signature="e#2770#2789#1#PHP" expanded="true" />
+            <element signature="e#2819#2846#0#PHP" expanded="true" />
+            <element signature="e#3634#3653#1#PHP" expanded="true" />
+            <element signature="e#3683#3710#0#PHP" expanded="true" />
+            <element signature="e#4510#4521#0#PHP" expanded="true" />
+            <element signature="e#4623#4650#0#PHP" expanded="true" />
+            <element signature="e#5419#5430#0#PHP" expanded="true" />
+            <element signature="e#5534#5561#0#PHP" expanded="true" />
+            <element signature="e#6097#6116#1#PHP" expanded="true" />
+            <element signature="e#6352#6379#0#PHP" expanded="true" />
+            <element signature="e#7045#7075#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Admin/AdminAuditController.php">
+    <entry file="file://$PROJECT_DIR$/templates/Admin/CB/cbauditor.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="70" column="50" lean-forward="false" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="227">
+          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="e#458#477#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="128" column="0" lean-forward="true" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding>
+            <element signature="e#2237#2246#0#Twig" expanded="true" />
+            <element signature="e#2483#2498#0#Twig" expanded="true" />
+            <element signature="e#2711#2725#0#Twig" expanded="true" />
+            <element signature="e#3181#3186#0#Twig" expanded="true" />
+            <element signature="e#4325#4343#0#Twig" expanded="true" />
+            <element signature="e#4562#4583#0#Twig" expanded="true" />
+            <element signature="e#4841#4862#0#Twig" expanded="true" />
+            <element signature="e#4941#4958#0#Twig" expanded="true" />
+            <element signature="e#5237#5257#0#Twig" expanded="true" />
+            <element signature="e#5733#5756#0#Twig" expanded="true" />
+            <element signature="e#5980#6003#0#Twig" expanded="true" />
+            <element signature="e#6234#6251#0#Twig" expanded="true" />
+            <element signature="e#6486#6495#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -77,6 +77,37 @@ class UserRepository extends ServiceEntityRepository
 
 	}
 
+//	/**
+//	 * @return Query
+//	 */
+//
+//	public function findAllCBAdminUser(User $cbusers): Query
+//	{
+////		$query = $this->findAllUsers();
+//
+////		if ($search->getUsername()) {
+////			$username = $search->getUsername();
+//
+////			dump($username);
+////			die();
+//		return $this->createQueryBuilder('u')
+//			->andWhere('u.roles = :ROLE_CBADMIN')
+////			->setParameter('val', $value)
+//			->getQuery()
+//			->getOneOrNullResult();
+//
+////			$query = $query
+////				->andWhere('p.roles LIKE :ROLE_CBADMIN');
+////				->setParameter('username', '%' . $username . '%');
+////		}
+//
+//
+//
+////		return $query->getQuery();
+//
+//	}
+
+
 	private function findAllUsers(): QueryBuilder
 	{
 		return $this->createQueryBuilder('p');

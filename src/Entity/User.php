@@ -11,8 +11,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
-	const ROLE_CBADMIN = 'ROLE_CBADMIN';
+
 	const ROLE_ADMIN = 'ROLE_ADMIN';
+	const ROLE_CBADMIN = 'ROLE_CBADMIN';
+	const ROLE_AUDITOR = 'ROLE_AUDITOR';
 
 	/**
 	 * @ORM\Id()

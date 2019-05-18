@@ -64,6 +64,9 @@ class UserVoter extends Voter
 		if($this->decisionManager->decide($token, [User::ROLE_CBADMIN]))
 		{
 			return true;
+		}if($this->decisionManager->decide($token, [User::ROLE_AUDITOR]))
+		{
+			return true;
 		}
 		return false;
 	}

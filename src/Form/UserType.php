@@ -39,6 +39,21 @@ class UserType extends AbstractType
 					'Female' => 'Female',
 
 				]])
+//			->add('roles', ChoiceType::class, [
+//				'label' => 'Roles',
+//				'choices' => [
+//
+//					'choices' => array('ROLE_CBADMIN' => 'Admin', 'ROLE_AUDITOR' => 'Auditor'),
+//					'multiple' => false,
+//
+//				]])
+//
+//			->add('roles', ChoiceType::class, array(
+//				'multiple' => false,
+//
+//				'choices' => array('ROLE_CBADMIN' => 'Admin'),
+//				 'choices' => array('ROLE_AUDITOR' => 'Auditor'),
+//			));
         ;
     }
 
