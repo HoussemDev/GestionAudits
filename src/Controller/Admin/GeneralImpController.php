@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Audit;
 use App\Entity\GeneralImp;
 use App\Form\GeneralImpType;
 use App\Form\GenrEmpType;
@@ -71,6 +72,7 @@ class GeneralImpController extends AbstractController
 
 		return $this->render('Admin/GeneralImp/show.html.twig', [
 			'generalimp' => $generalImp,
+			'audits' => $generalImp->getGeneralimpaudit(),
 
 			'current_menu' => 'audit'
 
@@ -79,16 +81,18 @@ class GeneralImpController extends AbstractController
 
 
 	/**
-	 * @Route("/admin/generalimp/create", name="admin_generalimp_new")
+	 * @Route("/admin/generalimp/create/{title}", name="admin_generalimp_new")
 	 */
-	public function new(Request $request)
+	public function new(Request $request, $title)
 	{
 		$generalimp = new GeneralImp();
 		$form = $this->createForm(GenrEmpType::class, $generalimp);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			$generalimp->setTitlegeneralimp('GeneralImp');
+			$generalimp->setTitlegeneralimp('General Impression');
+			$generalimp->setGeneralimpaudit($this->em->getRepository(Audit::class)->findOneBy(array("Title" => $title)));
+
 
 			$this->em->persist($generalimp);
 			$this->em->flush();
@@ -121,8 +125,9 @@ class GeneralImpController extends AbstractController
 
 		}
 
+		return $this->render('pages/accessdenied.html.twig');
 
-		return $this->redirectToRoute('admin_generalimp_index');
+//		return $this->redirect('pages/accessdenied.html.twig');
 	}
 
 	/**
@@ -141,12 +146,15 @@ class GeneralImpController extends AbstractController
 			$this->addFlash('success','General Impression Edited' );
 			return $this->redirectToRoute('genimp_show', [
 				'id' => $generalImp->getId(),
+
 				'slug' => $generalImp->getSlug()
 			], 301);
 		}
 
 		return $this->render('Admin/GeneralImp/edit.html.twig',  [
 			'generalimp' => $generalImp,
+			'audits' => $generalImp->getGeneralimpaudit(),
+
 			'form' => $form->createView() ]);
 	}
 

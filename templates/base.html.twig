@@ -109,11 +109,11 @@
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <span>Certification Body</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_generalimp_index') }}">
-                <i class="fa fa-university" aria-hidden="true"></i>
-                <span>GenImpression</span></a>
-        </li>
+        {#<li class="nav-item">#}
+            {#<a class="nav-link" href="{{ path('admin_generalimp_index') }}">#}
+                {#<i class="fa fa-university" aria-hidden="true"></i>#}
+                {#<span>GenImpression</span></a>#}
+        {#</li>#}
         <li class="nav-item">
             <a class="nav-link" href="{{ path('admin.organlist.index') }}">
                 <i class="fa fa-database" aria-hidden="true"></i>
@@ -134,26 +134,26 @@
         {% if is_granted('ROLE_ADMIN') %}
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.certlist.index') }}">
-                    <i class="fa fa-id-card" aria-hidden="true"></i>
-                    <span>Certificates</span></a>
-            </li>
+            {#<li class="nav-item">#}
+                {#<a class="nav-link" href="{{ path('admin.certlist.index') }}">#}
+                    {#<i class="fa fa-id-card" aria-hidden="true"></i>#}
+                    {#<span>Certificates</span></a>#}
+            {#</li>#}
             {#<li class="nav-item">#}
             {#<a class="nav-link" href="{{ path('admin.auditorlist.index') }}">#}
             {#<i class="fa fa-user" aria-hidden="true"></i>#}
             {#<span>Auditors</span></a>#}
             {#</li>#}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
-                    <i class="fa fa-cubes" aria-hidden="true"></i>
-                    <span>Findings</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.findinglist.index') }}">
-                    <i class="fa fa-cubes" aria-hidden="true"></i>
-                    <span>Knowledge Base</span></a>
-            </li>
+            {#<li class="nav-item">#}
+                {#<a class="nav-link" href="{{ path('admin.findinglist.index') }}">#}
+                    {#<i class="fa fa-cubes" aria-hidden="true"></i>#}
+                    {#<span>Findings</span></a>#}
+            {#</li>#}
+            {#<li class="nav-item">#}
+                {#<a class="nav-link" href="{{ path('admin.findinglist.index') }}">#}
+                    {#<i class="fa fa-cubes" aria-hidden="true"></i>#}
+                    {#<span>Knowledge Base</span></a>#}
+            {#</li>#}
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('admin_users_index') }}">

@@ -16,6 +16,7 @@ class OrganisationType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+
 		$builder
 			->add('number', NumberType::class, [
 				'label' => 'Organisation Number'])
@@ -28,6 +29,7 @@ class OrganisationType extends AbstractType
 			])
 			->add('city')
 			->add('country', CountryType::class)
+
 			->add('website', UrlType::class)
 			->add('contactperson', TextareaType::class, [
 				'label' => 'Contact person for the Organosation',

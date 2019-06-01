@@ -12,7 +12,9 @@ namespace App\Controller\Admin;
 use App\Entity\AuditSearch;
 use App\Entity\CB;
 use App\Entity\Organisation;
+use App\Entity\OrganisationSearch;
 use App\Form\AuditSearchType;
+use App\Form\OrganisationSearchType;
 use App\Form\OrganisationType;
 use App\Repository\OrganisationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,6 +22,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -66,24 +69,40 @@ class AdminOrgController extends AbstractController
 	 * @Route("/organisation", name="admin.organlist.index")
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function index()
+	public function index(Request $request, PaginatorInterface $paginator)
 	{
 
-	   if ($this->authorizationChecker->isGranted('ROLE_ADMIN'))
-	   {
-		$orgs = $this->repository->findAll();
-		return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
+		$search = new OrganisationSearch();
+		$form = $this->createForm(OrganisationSearchType::class, $search);
+		$form->handleRequest($request);
 
-	   }
+		if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+			//$orgs = $this->repository->findAll();
 
 
-		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
-		{
+			$orgs = $paginator->paginate(
+				$this->repository->findAllVisibleQuery($search),
+				$request->query->getInt('page',1),
+				12
+			);
+
+		return $this->render('Admin/Organisation/index.html.twig',
+				[
+					'orgs' => $orgs,
+					'current_menu' => 'organisation',
+					'form' => $form->createView()
+
+				]);
+
+		}
+
+
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN')) {
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();
 
-			$orgs = $this->repository->findBy(array('cb'=>$id));
+			$orgs = $this->repository->findBy(array('cb' => $id));
 
 		}
 
@@ -99,6 +118,8 @@ class AdminOrgController extends AbstractController
 	{
 
 		if ($organisation->getSlug() !== $slug) {
+			$country = Intl::getRegionBundle()->getCountryName($this->getCountry());
+			$organisation->setCountry($country);
 			return $this->redirectToRoute('org.show', [
 				'id' => $organisation->getId(),
 				'slug' => $organisation->getSlug()
@@ -228,8 +249,7 @@ class AdminOrgController extends AbstractController
 		$form->handleRequest($request);
 
 
-		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
-		{
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN')) {
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();
@@ -238,8 +258,8 @@ class AdminOrgController extends AbstractController
 //			$orgs = $this->repository->findBy(array('cb'=>$id));
 
 			$orgs = $paginator->paginate(
-				$this->repository->findBy(array('cb'=>$id)),
-				$request->query->getInt('page',1),
+				$this->repository->findBy(array('cb' => $id)),
+				$request->query->getInt('page', 1),
 				12
 			);
 
@@ -258,9 +278,6 @@ class AdminOrgController extends AbstractController
 
 		]);
 	}
-
-
-
 
 
 	/**

@@ -14,13 +14,18 @@
 
     <div class="jumbotron">
     <div class="text-right">
+
+
         <a href="{{ path('admin_generalimp_new', {title: audits.title}) }}" class="btn btn-primary">Create General impression</a>
      <br>
         <br>
+
+
+
     </div>
     <div class="row">
     <div class="col-sm-4 dropdown-menu-sm-left">
-        {#{{ include('Admin/Audit/auditleftmenu.html.twig') }}#}
+        {{ include('Admin/Audit/auditleftmenu.html.twig') }}
     </div>
     <div class="col-sm-8">
 
@@ -28,22 +33,19 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Standard </th>
-            <th>Status </th>
+            <th>General Impression Title</th>
+
 
 
 
         </tr>
         </thead>
         <tbody>
-        {% for Finding in Findings %}
+        {% for generalimp in generalimps %}
             <tr>
 
 
-                <td> <a href="{{ path('finding_show', {id: Finding.id, slug: Finding.slug}) }}" >{{ Finding.title}} </a></td>
-                <td> {{ Finding.standard }} </td>
-                <td> {{ Finding.status }} </td>
+                <td> <a href="{{ path('genimp_show', {id: generalimp.id, slug: generalimp.slug}) }}" >{{ generalimp.titlegeneralimp}} </a></td>
 
 
             </tr>

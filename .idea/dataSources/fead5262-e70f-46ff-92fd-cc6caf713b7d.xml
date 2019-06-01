@@ -21,440 +21,459 @@
     <schema id="15" parent="1" name="symfony-01"/>
     <schema id="16" parent="1" name="sys"/>
     <schema id="17" parent="1" name="viasyst_preprod_v2"/>
-    <table id="18" parent="2" name="audit"/>
-    <table id="19" parent="2" name="auditor"/>
-    <table id="20" parent="2" name="cb"/>
-    <table id="21" parent="2" name="certificat"/>
-    <table id="22" parent="2" name="finding"/>
-    <table id="23" parent="2" name="general_imp"/>
-    <table id="24" parent="2" name="migration_versions"/>
-    <table id="25" parent="2" name="organisation"/>
-    <table id="26" parent="2" name="user"/>
-    <column id="27" parent="18" name="id">
+    <schema id="18" parent="1" name="testlink"/>
+    <table id="19" parent="2" name="audit"/>
+    <table id="20" parent="2" name="auditor"/>
+    <table id="21" parent="2" name="cb"/>
+    <table id="22" parent="2" name="certificat"/>
+    <table id="23" parent="2" name="finding"/>
+    <table id="24" parent="2" name="general_imp"/>
+    <table id="25" parent="2" name="migration_versions"/>
+    <table id="26" parent="2" name="organisation"/>
+    <table id="27" parent="2" name="user"/>
+    <column id="28" parent="19" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="28" parent="18" name="title">
+    <column id="29" parent="19" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="18" name="status">
+    <column id="30" parent="19" name="status">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="18" name="numberfte">
+    <column id="31" parent="19" name="numberfte">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="31" parent="18" name="audittype">
+    <column id="32" parent="19" name="audittype">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="32" parent="18" name="scopestatment">
+    <column id="33" parent="19" name="scopestatment">
       <Position>6</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="33" parent="18" name="auditdfinding">
+    <column id="34" parent="19" name="auditdfinding">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="34" parent="18" name="org_id">
+    <column id="35" parent="19" name="org_id">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="35" parent="18" name="standard">
+    <column id="36" parent="19" name="standard">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="36" parent="18" name="auditdate">
+    <column id="37" parent="19" name="auditdate">
       <Position>10</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <index id="37" parent="18" name="IDX_9218FF79F4837C1B">
+    <index id="38" parent="19" name="IDX_9218FF79F4837C1B">
       <ColNames>org_id</ColNames>
     </index>
-    <key id="38" parent="18" name="PRIMARY">
+    <key id="39" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="39" parent="18" name="FK_9218FF79F4837C1B">
+    <foreign-key id="40" parent="19" name="FK_9218FF79F4837C1B">
       <ColNames>org_id</ColNames>
       <RefSchemaName>gestionaudits</RefSchemaName>
       <RefTableName>organisation</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="40" parent="19" name="id">
+    <column id="41" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="41" parent="19" name="firstname">
+    <column id="42" parent="20" name="firstname">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="42" parent="19" name="lastname">
+    <column id="43" parent="20" name="lastname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="43" parent="19" name="username">
+    <column id="44" parent="20" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="19" name="password">
+    <column id="45" parent="20" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="19" name="gender">
+    <column id="46" parent="20" name="gender">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="46" parent="19" name="email">
+    <column id="47" parent="20" name="email">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="47" parent="19" name="PRIMARY">
+    <key id="48" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="48" parent="20" name="id">
+    <column id="49" parent="21" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="49" parent="20" name="number">
+    <column id="50" parent="21" name="number">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="50" parent="20" name="name">
+    <column id="51" parent="21" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="20" name="adress">
+    <column id="52" parent="21" name="adress">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="52" parent="20" name="city">
+    <column id="53" parent="21" name="city">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="53" parent="20" name="country">
+    <column id="54" parent="21" name="country">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="54" parent="20" name="website">
+    <column id="55" parent="21" name="website">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="55" parent="20" name="contactperson">
+    <column id="56" parent="21" name="contactperson">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="56" parent="20" name="PRIMARY">
+    <key id="57" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="57" parent="21" name="id">
+    <column id="58" parent="22" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="58" parent="21" name="title">
+    <column id="59" parent="22" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="21" name="scopestatment">
+    <column id="60" parent="22" name="scopestatment">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="21" name="scope">
+    <column id="61" parent="22" name="scope">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="61" parent="21" name="issuedate">
+    <column id="62" parent="22" name="issuedate">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="21" name="validuntil">
+    <column id="63" parent="22" name="validuntil">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="21" name="certificatstatus">
+    <column id="64" parent="22" name="certificatstatus">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="21" name="initialcertdate">
+    <column id="65" parent="22" name="initialcertdate">
       <Position>8</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="21" name="audit_id">
+    <column id="66" parent="22" name="audit_id">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="66" parent="21" name="IDX_27448F77BD29F359">
+    <index id="67" parent="22" name="IDX_27448F77BD29F359">
       <ColNames>audit_id</ColNames>
     </index>
-    <key id="67" parent="21" name="PRIMARY">
+    <key id="68" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="68" parent="21" name="FK_27448F77BD29F359">
+    <foreign-key id="69" parent="22" name="FK_27448F77BD29F359">
       <ColNames>audit_id</ColNames>
       <RefSchemaName>gestionaudits</RefSchemaName>
       <RefTableName>audit</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="69" parent="22" name="id">
+    <column id="70" parent="23" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="70" parent="22" name="standard">
+    <column id="71" parent="23" name="standard">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="71" parent="22" name="interpretation">
+    <column id="72" parent="23" name="interpretation">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="72" parent="22" name="clause">
+    <column id="73" parent="23" name="clause">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="73" parent="22" name="description">
+    <column id="74" parent="23" name="description">
       <Position>5</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="74" parent="22" name="causeanalysis">
+    <column id="75" parent="23" name="causeanalysis">
       <Position>6</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="75" parent="22" name="plannedcorrectiveaction">
+    <column id="76" parent="23" name="plannedcorrectiveaction">
       <Position>7</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="76" parent="22" name="timescheduleforaction">
+    <column id="77" parent="23" name="timescheduleforaction">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="77" parent="22" name="status">
+    <column id="78" parent="23" name="status">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="78" parent="22" name="title">
+    <column id="79" parent="23" name="title">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="79" parent="22" name="audit_in_finding_id">
+    <column id="80" parent="23" name="audit_in_finding_id">
       <Position>11</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="80" parent="22" name="IDX_A719133651768E4B">
+    <index id="81" parent="23" name="IDX_A719133651768E4B">
       <ColNames>audit_in_finding_id</ColNames>
     </index>
-    <key id="81" parent="22" name="PRIMARY">
+    <key id="82" parent="23" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="82" parent="22" name="FK_A719133651768E4B">
+    <foreign-key id="83" parent="23" name="FK_A719133651768E4B">
       <ColNames>audit_in_finding_id</ColNames>
       <RefSchemaName>gestionaudits</RefSchemaName>
       <RefTableName>audit</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="83" parent="23" name="id">
+    <column id="84" parent="24" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="84" parent="23" name="capabilitymanagementsystem">
+    <column id="85" parent="24" name="capabilitymanagementsystem">
       <Position>2</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="85" parent="23" name="contextorganisation">
+    <column id="86" parent="24" name="contextorganisation">
       <Position>3</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="86" parent="23" name="leadership">
+    <column id="87" parent="24" name="leadership">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="87" parent="23" name="planning">
+    <column id="88" parent="24" name="planning">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="88" parent="23" name="support">
+    <column id="89" parent="24" name="support">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="89" parent="23" name="operation">
+    <column id="90" parent="24" name="operation">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="90" parent="23" name="haccpplancomment">
+    <column id="91" parent="24" name="haccpplancomment">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="91" parent="23" name="haccpplanprocess">
+    <column id="92" parent="24" name="haccpplanprocess">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="92" parent="23" name="opportunityimprovement">
+    <column id="93" parent="24" name="opportunityimprovement">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="93" parent="23" name="PRIMARY">
+    <column id="94" parent="24" name="titlegeneralimp">
+      <Position>11</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="24" name="generalimpaudit_id">
+      <Position>12</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="96" parent="24" name="IDX_99AF05B65CDBAB9D">
+      <ColNames>generalimpaudit_id</ColNames>
+    </index>
+    <key id="97" parent="24" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="94" parent="24" name="version">
+    <foreign-key id="98" parent="24" name="FK_99AF05B65CDBAB9D">
+      <ColNames>generalimpaudit_id</ColNames>
+      <RefSchemaName>gestionaudits</RefSchemaName>
+      <RefTableName>audit</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="99" parent="25" name="version">
       <Position>1</Position>
       <DataType>varchar(14)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="24" name="executed_at">
+    <column id="100" parent="25" name="executed_at">
       <Position>2</Position>
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="96" parent="24" name="PRIMARY">
+    <key id="101" parent="25" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="97" parent="25" name="id">
+    <column id="102" parent="26" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="98" parent="25" name="number">
+    <column id="103" parent="26" name="number">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="25" name="name">
+    <column id="104" parent="26" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="100" parent="25" name="adress">
+    <column id="105" parent="26" name="adress">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="101" parent="25" name="city">
+    <column id="106" parent="26" name="city">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="102" parent="25" name="country">
+    <column id="107" parent="26" name="country">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="103" parent="25" name="website">
+    <column id="108" parent="26" name="website">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="104" parent="25" name="contactperson">
+    <column id="109" parent="26" name="contactperson">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="105" parent="25" name="cb_id">
+    <column id="110" parent="26" name="cb_id">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="106" parent="25" name="IDX_E6E132B4109FD92A">
+    <index id="111" parent="26" name="IDX_E6E132B4109FD92A">
       <ColNames>cb_id</ColNames>
     </index>
-    <key id="107" parent="25" name="PRIMARY">
+    <key id="112" parent="26" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="108" parent="25" name="FK_E6E132B4109FD92A">
+    <foreign-key id="113" parent="26" name="FK_E6E132B4109FD92A">
       <ColNames>cb_id</ColNames>
       <RefSchemaName>gestionaudits</RefSchemaName>
       <RefTableName>cb</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="109" parent="26" name="id">
+    <column id="114" parent="27" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="110" parent="26" name="name">
+    <column id="115" parent="27" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="26" name="email">
+    <column id="116" parent="27" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="112" parent="26" name="username">
+    <column id="117" parent="27" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="113" parent="26" name="passwword">
+    <column id="118" parent="27" name="passwword">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="114" parent="26" name="roles">
+    <column id="119" parent="27" name="roles">
       <Position>6</Position>
       <Comment>(DC2Type:simple_array)</Comment>
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="115" parent="26" name="usercb_id">
+    <column id="120" parent="27" name="usercb_id">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="116" parent="26" name="gender">
+    <column id="121" parent="27" name="gender">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="117" parent="26" name="lastname">
+    <column id="122" parent="27" name="lastname">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="118" parent="26" name="IDX_8D93D649373BE5F8">
+    <index id="123" parent="27" name="IDX_8D93D649373BE5F8">
       <ColNames>usercb_id</ColNames>
     </index>
-    <key id="119" parent="26" name="PRIMARY">
+    <key id="124" parent="27" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="120" parent="26" name="FK_8D93D649373BE5F8">
+    <foreign-key id="125" parent="27" name="FK_8D93D649373BE5F8">
       <ColNames>usercb_id</ColNames>
       <RefSchemaName>gestionaudits</RefSchemaName>
       <RefTableName>cb</RefTableName>

@@ -5,7 +5,9 @@ namespace App\Repository;
 use App\Entity\AuditSearch;
 use App\Entity\CB;
 use App\Entity\Organisation;
+use App\Entity\OrganisationSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -51,6 +53,38 @@ class OrganisationRepository extends ServiceEntityRepository
 	}
 	*/
 
+
+
+
+	public function findAllVisibleQuery(OrganisationSearch $search): Query
+	{
+		$query = $this->findVisibleQuery();
+
+		if ($search->getName()) {
+			$organisationname = $search->getName();
+			$query = $query
+				->andWhere('p.name LIKE :organisationname')
+				->setParameter('organisationname', '%' . $organisationname . '%');
+		}
+
+		if ($search->getCountry()) {
+			$contry = $search->getCountry();
+			$query = $query
+				->andWhere('p.country LIKE :contry')
+				->setParameter('contry', '%' . $contry . '%');
+		}
+
+
+		return $query->getQuery();
+
+	}
+
+	private function findVisibleQuery(): QueryBuilder
+	{
+		return $this->createQueryBuilder('p');
+//			->where('p.id = true');
+
+	}
 
 	public function countOrgInCb()
 	{

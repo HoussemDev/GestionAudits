@@ -55,19 +55,15 @@ class AdminAuditController extends AbstractController
 		$search = new AuditSearch();
 		$form = $this->createForm(AuditSearchType::class, $search);
 		$form->handleRequest($request);
-//		$audits = $this->repository->findAll();
 
 		$audits = $paginator->paginate(
 			$this->repository->findAllVisibleQuery($search),
-			$request->query->getInt('page',1),
+			$request->query->getInt('page', 1),
 			12
 		);
 
 
 
-//		dump($audits);
-//		die();
-//		return $this->render('Admin/Audit/index.html.twig', compact('audits'));
 		return $this->render('Admin/Audit/index.html.twig', [
 			'audits' => $audits,
 			'current_menu' => 'audit',
@@ -220,6 +216,36 @@ class AdminAuditController extends AbstractController
 //					['time' => 'DESC']
 //				),
 				'Findings' => $audit->getFindings(),
+				'id' => $audit->getId(),
+				'slug' => $audit->getSlug(),
+				'audit' => $audit->getTitle(),
+				'audits' => $audit,
+				'org' => $audit->getOrg()
+
+			]);
+//
+//		dump($audit->getFindings());
+//		die();
+		return new Response($html);
+
+	}
+
+	/**
+	 * @Route("/audit/generalimp/{id}.{slug}", name="generalimp_audit")
+	 * @param Audit $audit
+	 * @return Response
+	 */
+	public function AuditGeneralimp(Audit $audit)
+	{
+//		dump($audit);
+//		die();
+		$html = $this->twig->render('Admin/GeneralImp/GeneralImplistinAudit.html.twig',
+			[
+//				'organisations' => $this->$cborganisation->findBy(
+//					['cb' => $cborganisation],
+//					['time' => 'DESC']
+//				),
+				'generalimps' => $audit->getAuditgeneralimp(),
 				'id' => $audit->getId(),
 				'slug' => $audit->getSlug(),
 				'audit' => $audit->getTitle(),

@@ -68,6 +68,29 @@ class GeneralImp
      */
     private $titlegeneralimp;
 
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Audit", inversedBy="auditgeneralimp")
+	 * @ORM\JoinColumn()
+	 */
+	private $generalimpaudit;
+
+	/**
+	 * @return mixed
+	 */
+	public function getGeneralimpaudit()
+	{
+		return $this->generalimpaudit;
+	}
+
+	/**
+	 * @param mixed $generalimpaudit
+	 */
+	public function setGeneralimpaudit($generalimpaudit)
+	{
+		$this->generalimpaudit = $generalimpaudit;
+	}
+
     public function getId(): ?int
     {
         return $this->id;

@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Organisations List</h1>
+        {#<h1>Organisations List</h1>#}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -14,32 +14,63 @@
 
         </div>
 
+
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.country) }}
+                    {#{{ form_row(form.cbname) }}#}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nom</th>
+                <th>Number</th>
+                <th>Name</th>
                 <th>Certification Body Name</th>
-                <th>Actions</th>
+                <th>City</th>
+                <th>Country</th>
             </tr>
             </thead>
             <tbody>
             {% for org in orgs %}
                 <tr>
+                    <td>{{ org.number }}</td>
+
                     <td> <a href="{{ path('org.show', {id: org.id, slug: org.slug}) }}" >{{ org.name }} </a></td>
                     {#<td> <a href="{{ path('org.show', {id: org.id, slug: org.slug}) }}" >{{ org.name }} </a></td>#}
                     <td>{{ org.cb.name }}</td>
 
-                    <td>
-                        <a href="{{ path('admin.org.edit', {id: org.id}) }}" class="btn btn-success">Edit</a>
-                        <form method="post" action="{{ path('admin.org.delete', {id: org.id }) }}" style="display: inline-block"
-                              onsubmit="return confirm('Wanna really delete')" >
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ org.id) }}">
-                            <button class="btn btn btn-danger">DELETE</button>
+                    <td>{{ org.city }}</td>
 
 
-                        </form>
-                    </td>
+                    <td>{{ org.country }}</td>
+
+
+                    {#<td>#}
+                        {#<a href="{{ path('admin.org.edit', {id: org.id}) }}" class="btn btn-success">Edit</a>#}
+                        {#<form method="post" action="{{ path('admin.org.delete', {id: org.id }) }}" style="display: inline-block"#}
+                              {#onsubmit="return confirm('Wanna really delete')" >#}
+                            {#<input type="hidden" name="_method" value="DELETE">#}
+                            {#<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ org.id) }}">#}
+                            {#<button class="btn btn btn-danger">DELETE</button>#}
+
+
+                        {#</form>#}
+                    {#</td>#}
 
                 </tr>
             {% endfor %}
@@ -47,6 +78,10 @@
 
         </table>
 
+        <div class="pagination">
+            {{ knp_pagination_render(orgs) }}
+
+        </div>
 
 
     </div>

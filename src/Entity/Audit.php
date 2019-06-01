@@ -59,6 +59,21 @@ class Audit
 	 */
 	private $certificates;
 
+
+
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\GeneralImp", mappedBy="generalimpaudit")
+	 */
+	private $auditgeneralimp;
+
+	/**
+	 * @return mixed
+	 */
+	public function getAuditgeneralimp()
+	{
+		return $this->auditgeneralimp;
+	}
+
 	/**
 	 * @return mixed
 	 */
@@ -95,6 +110,7 @@ class Audit
 	{
 		$this->certificates = new ArrayCollection();
 		$this->findings = new ArrayCollection();
+		$this->auditgeneralimp = new ArrayCollection();
 
 	}
 
