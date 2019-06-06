@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Intl\Intl;
 
 
 /**
@@ -181,5 +182,22 @@ class CB
 	{
 		return $this->organisations;
 	}
+
+	/**
+	 * @var string|null
+	 */
+
+	private $CbfullCountryName;
+
+	/**
+	 * @return mixed
+	 */
+	public function getCbfullCountryName()
+	{
+		return Intl::getRegionBundle()->getCountryName($this->getCountry());
+	}
+
+
+
 
 }

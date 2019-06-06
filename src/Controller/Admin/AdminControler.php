@@ -20,6 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Intl\Intl;
+
 
 class AdminControler extends AbstractController
 {
@@ -56,6 +58,8 @@ class AdminControler extends AbstractController
 
 
 		if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+
+
 			$cbs = $paginator->paginate(
 				$this->repository->findAll(),
 				$request->query->getInt('page', 1)/*page number*/,
@@ -102,15 +106,24 @@ class AdminControler extends AbstractController
 	{
 		if ($CB->getSlug() !== $slug)
 		{
+
+
+
+
 			return $this->redirectToRoute('cb.show', [
 				'id' => $CB->getId(),
-				'slug' => $CB->getSlug()
+				'slug' => $CB->getSlug(),
+
 			], 301);
 		}
+		$Country = Intl::getRegionBundle()->getCountryName($CB->getCountry());
+
 
 		return $this->render('Admin/CB/show.html.twig', [
 			'cb' => $CB,
-			'current_menu' => 'CB'
+			'current_menu' => 'CB',
+			'Country' => $Country
+
 
 		]);
 

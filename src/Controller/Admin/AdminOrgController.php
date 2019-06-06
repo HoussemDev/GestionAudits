@@ -118,17 +118,18 @@ class AdminOrgController extends AbstractController
 	{
 
 		if ($organisation->getSlug() !== $slug) {
-			$country = Intl::getRegionBundle()->getCountryName($this->getCountry());
-			$organisation->setCountry($country);
 			return $this->redirectToRoute('org.show', [
 				'id' => $organisation->getId(),
 				'slug' => $organisation->getSlug()
 			], 301);
 		}
+		$Country = Intl::getRegionBundle()->getCountryName($organisation->getCountry());
 
 		return $this->render('Admin/Organisation/show.html.twig', [
 			'org' => $organisation,
 			'cb' => $organisation->getCb(),
+			'Country' => $Country,
+
 			'current_menu' => 'org'
 
 		]);
