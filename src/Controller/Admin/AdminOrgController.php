@@ -76,17 +76,17 @@ class AdminOrgController extends AbstractController
 		$form = $this->createForm(OrganisationSearchType::class, $search);
 		$form->handleRequest($request);
 
+
 		if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
-			//$orgs = $this->repository->findAll();
 
 
 			$orgs = $paginator->paginate(
 				$this->repository->findAllVisibleQuery($search),
-				$request->query->getInt('page',1),
+				$request->query->getInt('page', 1),
 				12
 			);
 
-		return $this->render('Admin/Organisation/index.html.twig',
+			return $this->render('Admin/Organisation/index.html.twig',
 				[
 					'orgs' => $orgs,
 					'current_menu' => 'organisation',
@@ -96,17 +96,32 @@ class AdminOrgController extends AbstractController
 
 		}
 
-
-		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN')) {
+		if 	 ($this->authorizationChecker->isGranted('ROLE_AUDITOR')) {
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();
 
-			$orgs = $this->repository->findBy(array('cb' => $id));
+			$orgs = $paginator->paginate(
+				$this->repository->findBy(array('cb' => $id)),
+				$request->query->getInt('page', 1),
+				12
+			);
+
+			//$orgs = $this->repository->findBy(array('cb' => $id));
+			return $this->render('Admin/Organisation/index.html.twig',
+				[
+					'orgs' => $orgs,
+					'current_menu' => 'organisation',
+					'form' => $form->createView()
+
+				]);
+
 
 		}
 
-		return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
+
+
+		//return $this->render('Admin/Organisation/index.html.twig', compact('orgs'));
 	}
 
 	/**
@@ -250,13 +265,11 @@ class AdminOrgController extends AbstractController
 		$form->handleRequest($request);
 
 
-		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN')) {
+		if ($this->authorizationChecker->isGranted('ROLE_AUDITOR')) {
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();
 
-//			$orgs = $this->repository->findAllVisibleAuditCb(array('cb'=>$id), $search);
-//			$orgs = $this->repository->findBy(array('cb'=>$id));
 
 			$orgs = $paginator->paginate(
 				$this->repository->findBy(array('cb' => $id)),
@@ -264,13 +277,11 @@ class AdminOrgController extends AbstractController
 				12
 			);
 
-//			dump($orgs);
-//			die();
+
 
 
 		}
 
-//		return $this->render('Admin/Audit/index_auditList.html.twig', compact('orgs'));
 
 		return $this->render('Admin/Audit/index_auditList.html.twig', [
 			'orgs' => $orgs,

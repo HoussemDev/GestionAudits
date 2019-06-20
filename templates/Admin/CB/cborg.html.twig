@@ -17,9 +17,13 @@
     <div class="jumbotron">
     <div class="text-right">
 
+    {% if is_granted('ROLE_CBADMIN') %}
 
         <a href="{{ path('admin.org.new', {name: cb.name}) }}" class="btn btn-primary">Create New Organisation</a>
-    </div>
+
+        {% endif %}
+        </div>
+
     <div class="row">
     <div class="col-sm-4 dropdown-menu-sm-left">
         {{ include('Admin/CB/cbleftmenu.html.twig') }}

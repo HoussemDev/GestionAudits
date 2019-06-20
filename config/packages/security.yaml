@@ -52,6 +52,8 @@ security:
 #         - { path: ^/, roles: ROLE_CBADMIN }
 
     role_hierarchy:
+        ROLE_CBADMIN: ROLE_AUDITOR
         ROLE_ADMIN: ROLE_CBADMIN
-        ROLE_AUDITOR: ROLE_CBADMIN
+       # ROLE_ADMIN: ROLE_CBADMIN
+       # ROLE_AUDITOR: ROLE_CBADMIN
 #        ROLE_CBADMIN: ROLE_AUDITOR

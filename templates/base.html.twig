@@ -6,12 +6,19 @@
 
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-              crossorigin="anonymous">
+        {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+              {#integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"#}
+              {#crossorigin="anonymous">#}
+        {#<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"#}
+              {#integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"#}
+              {#crossorigin="anonymous">#}
+
+
+        <link href="{{ asset('css/bootstrap.min.css') }}">
+        <link href="{{ asset('css/all.css') }}">
+
+        <!-- Custom styles made by Houssem-->
+        <link href="{{ asset('CustomCss/custom.css') }}">
 
 
         <!-- Custom fonts for this template-->
@@ -37,9 +44,9 @@
         <!-- Custom styles for this template-->
         <link href="{{ asset('sb-admin/css/sb-admin.css') }}"
               rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-              crossorigin="anonymous">
+        {#<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"#}
+              {#integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"#}
+              {#crossorigin="anonymous">#}
 
 
     {% endblock %}
@@ -50,7 +57,7 @@
     <div class="ml-auto p-0">
         <div class="order-2 order-md-1">
             <ul class="navbar-nav px-3">
-                {% if is_granted('ROLE_CBADMIN') %}
+                {% if is_granted('ROLE_AUDITOR') %}
                     <li class="nav-item text-nowrap">
                         <a class="nav-link"
                            href="{{ path('user_show', {id: app.user.id, slug: app.user.slug}) }}">{{ app.user.name }}</a>
@@ -71,7 +78,7 @@
 </nav>
 
 
-{% if is_granted('ROLE_CBADMIN') %}
+{% if is_granted('ROLE_AUDITOR') %}
 
 <div id="wrapper">
 
@@ -199,17 +206,37 @@
 </div>
 
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <script>
+        $('.navbar-nav .nav-link').click(function(){
+            $('.navbar-nav .nav-link').removeClass('active');
+            $(this).addClass('active');
+        })
+    </script>
+
+
+    {#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"#}
+            {#integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"#}
+            {#crossorigin="anonymous"></script>#}
+
+    <script
+            src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"
+    ></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"#}
+            {#integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"#}
+            {#crossorigin="anonymous"></script>#}
+
+
+
+
+    <script
+            src="{{ asset('js/bootstrap.min.js') }}"
+    ></script>
+    {#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"#}
+            {#integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"#}
+            {#crossorigin="anonymous"></script>#}
+
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable();
@@ -226,7 +253,8 @@
     <script type="text/javascript">
         (function () {
             var css = document.createElement('link');
-            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
+            css.href = {{ asset('css/all.css') }};
+            //            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
             css.rel = 'stylesheet';
             css.type = 'text/css';
             document.getElementsByTagName('head')[0].appendChild(css);
@@ -235,6 +263,22 @@
 
 
     <!-- Bootstrap core JavaScript-->
+
+
+    {#<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>#}
+
+
+
+
+    <script
+            src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"
+    ></script>
+
+    <script
+            src="{{ asset('js/popper.min.js') }}"
+    ></script>
+
     <script
             src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}"
     ></script>
@@ -256,15 +300,15 @@
 
 
 
-    <!-- Demo scripts for this page-->
-    <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}"></script>
-    <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>
+    {#<!-- Demo scripts for this page-->#}
+    {#<script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}"></script>#}
+    {#<script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>#}
 
 
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('sb-admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.jss') }}"></script>
+    <script src="{{ asset('sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -300,7 +344,10 @@
     <!-- Demo scripts for this page-->
     <script src="{{ asset('sb-admin/js/demo/datatables-demo.js') }}"></script>
     <script src="{{ asset('sb-admin/js/demo/chart-area-demo.js') }}"></script>
+<script>
 
+
+</script>
 
 
 {% endblock %}

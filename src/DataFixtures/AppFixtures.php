@@ -9,6 +9,7 @@ use App\Entity\Organisation;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -65,17 +66,17 @@ class AppFixtures extends Fixture
 
 
 
-//		    $this->loadCBS($manager);
+	    $this->loadCBS($manager);
 //			$this->loadOrganisations($manager);
 //			$this->loadAudits($manager);
-		   $this->loadUsers($manager);
+		//   $this->loadUsers($manager);
 //		   $this->loadAuditors($manager);
 
 	}
 
 	private function loadOrganisations(ObjectManager $manager)
 	{
-//		for ($i = 1; $i < 10; $i++) {
+      for ($i = 1; $i < 3; $i++) {
 			$organisation = new Organisation();
 			$organisation->setNumber(rand(0,100));
 			$organisation->setName('Organisation'. rand(0,100));
@@ -90,22 +91,23 @@ class AppFixtures extends Fixture
 			$organisation->setCb($this->getReference('CB_12'));
 			$manager->persist($organisation);
 
-//		}
+		}
 
 		$manager->flush();
 	}
 
 	private function loadCBS(ObjectManager $manager)
 	{
+		$faker = Factory::create('en_US');
 
 			$cb  = new CB();
-			$cb->setNumber(12);
-			$cb->setName('CB'. rand(0,100));
-		    $cb->setCity('City'. rand(0,100));
-		    $cb->setAdress('Adress'. rand(0,100));
-	     	$cb->setCountry('Country'. rand(0,100));
-		    $cb->setContactperson('Contact person CB'. rand(0,100));
-		    $cb->setWebsite('www.website.com'. rand(0,100));
+			$cb->setNumber($faker->numberBetween(6,8));
+			$cb->setName($faker->words(10, true));
+		    $cb->setCity($faker->words(10, true));
+		    $cb->setAdress($faker->words(10, true));
+	     	$cb->setCountry($faker->words(10, true));
+		    $cb->setContactperson($faker->words(10, true));
+		    $cb->setWebsite($faker->words(10, true));
 
 		$this->addReference('CB_12', $cb);
 

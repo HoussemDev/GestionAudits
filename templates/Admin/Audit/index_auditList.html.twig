@@ -35,6 +35,31 @@
 
         {#</div>#}
 
+
+
+        <div class="jumbotron">
+            <div class="container">
+                {{ form_start(form) }}
+                <div class="form-row">
+                    <div class="col">
+                        {{ form_row(form.audittitle) }}
+                        {{ form_row(form.auditstandard) }}
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">
+                            Search
+                        </button>
+                        <input class="btn btn-danger" type="reset" value="Reset">
+
+
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+
+
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -51,7 +76,7 @@
                     <tr>
                         <td>
                         <a href="{{ path('org.show', {id: organisation.id, slug: organisation.slug}) }}" >{{ organisation.name }} </a>
-                        </>
+                        </td>
                         <td><a href="{{ path('audit.show', {id: audit.id, slug: audit.slug}) }}">{{ audit.Title }} </a>
                         </td>
                         <td>

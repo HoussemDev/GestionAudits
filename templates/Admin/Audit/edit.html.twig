@@ -20,11 +20,13 @@
                 {% endif %}
             </div>
             <div class="row">
-                {% if audit.id  %}
+
                 <div class="col-sm-4 dropdown-menu-sm-left">
+                    {% if audit.id  %}
                     {{ include('Admin/Audit/auditleftmenu.html.twig') }}
+                    {% endif %}
                 </div>
-                {% endif %}
+
 
                 <div class="col-sm-8">
 

@@ -74,8 +74,8 @@ class AdminControler extends AbstractController
 
 		}
 
-		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN'))
-		{
+		if ($this->authorizationChecker->isGranted('ROLE_CBADMIN')|| $this->authorizationChecker->isGranted('ROLE_AUDITOR')
+		){
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();

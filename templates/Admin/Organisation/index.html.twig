@@ -9,6 +9,14 @@
                 {{ message }}
             </div>
         {% endfor %}
+
+
+    <div class="small">
+        {%  if is_granted('ROLE_ADMIN') %}
+
+            Total number of Organisations :  {{ orgs.getTotalItemCount }}
+        {% endif %}
+    </div>
         <div class="text-right">
             {#<a href="{{ path('admin.org.new') }}" class="btn btn-primary">Create New Organisation</a>#}
 

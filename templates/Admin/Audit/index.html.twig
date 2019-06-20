@@ -9,6 +9,13 @@
                 {{ message }}
             </div>
         {% endfor %}
+
+        <div class="small">
+            {%  if is_granted('ROLE_ADMIN') %}
+
+               Total number of Audits :  {{ audits.getTotalItemCount }}
+            {% endif %}
+        </div>
         {#<div class="text-right">#}
             {#<a href="{{ path('admin.audit.new') }}" class="btn btn-primary">Create New Audit</a>#}
 

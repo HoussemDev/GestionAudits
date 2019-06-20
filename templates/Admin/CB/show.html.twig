@@ -15,11 +15,18 @@
 
         <div class="jumbotron">
 
+
             <div class="text-right">
 
 
+                {%  if is_granted('ROLE_CBADMIN') %}
+
+
                 <a href="{{ path('admin.cb.edit', {id: cb.id}) }}" class="btn btn-info btn-sm">EDIT</a>
-                <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"
+                {% endif %}
+                {%  if is_granted('ROLE_ADMIN') %}
+
+                    <form method="post" action="{{ path('admin.cb.delete', {id: cb.id }) }}" style="display: inline-block"
                       onsubmit="return confirm('Wanna really delete')">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cb.id) }}">
@@ -27,6 +34,7 @@
 
 
                 </form>
+                {% endif %}
 
 
             </div>
