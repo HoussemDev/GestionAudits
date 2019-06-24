@@ -97,6 +97,7 @@ class AdminOrgController extends AbstractController
 		}
 
 		if 	 ($this->authorizationChecker->isGranted('ROLE_AUDITOR')) {
+			//$this->em->getRepository(Organisation::class)->findOrgByUser($this->getUser()->getId());
 			$a = $this->getUser();
 			$id = $a->usercb;
 			$id = $id->getid();

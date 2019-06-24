@@ -16,6 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Environment;
 
 class HomeContoller extends AbstractController
@@ -30,10 +31,12 @@ class HomeContoller extends AbstractController
 	 */
 	private $em;
 
-	public function __construct(Environment $twig, ObjectManager $em)
+	public function __construct(Environment $twig, ObjectManager $em, AuthorizationCheckerInterface $authorizationChecker)
 	{
 		$this->twig = $twig;
 		$this->em = $em;
+		$this->authorizationChecker = $authorizationChecker;
+
 	}
 
 	/**
@@ -42,7 +45,12 @@ class HomeContoller extends AbstractController
 	 */
 	public function index(): Response
 	{
-		return $this->render('pages/home.html.twig');
+		if ($this->authorizationChecker->isGranted('ROLE_AUDITOR')){
+			return $this->render('pages/home.html.twig');
+		}
+		return $this->render('security/login.html.twig');
+
+
 	}
 
 
